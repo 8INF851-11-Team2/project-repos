@@ -1,0 +1,12 @@
+public class TestingIndividualCommand : DemoMenuCommand {
+    private Certificate certificate;
+    public TestingIndividualCommand(Certificate certificates, Certifieur certifieur){
+
+    }
+    public bool isExecutable(){
+        return false;
+    }
+    public void execute(){
+
+    }
+}

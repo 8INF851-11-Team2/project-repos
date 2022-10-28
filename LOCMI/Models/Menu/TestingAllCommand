@@ -1,0 +1,13 @@
+public class TestingAllCommand : DemoMenuCommand {
+    private Certifieur certifieur;
+    private Certificates certificates;
+    public TestingAllCommand(List<Certificate> certificates, Certifieur certifieur){
+
+    }
+    public bool isExecutable(){
+        return false;
+    }
+    public void execute(){
+
+    }
+}

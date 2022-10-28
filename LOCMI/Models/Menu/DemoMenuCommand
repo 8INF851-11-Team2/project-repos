@@ -1,0 +1,5 @@
+public interface DemoMenuCommand {
+    public bool isExecutable();
+    public void execute();
+
+}
