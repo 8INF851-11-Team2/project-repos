@@ -24,21 +24,5 @@ public interface IMicroControllerAdapter
 
     public Identification BuildIdentification();
 
-    public MicroController GetResult()
-    {
-        string name = BuildName();
-        Dimension dimension = BuildDimension();
-        IEnumerable<Port>? ports = BuildPort();
-        IEnumerable<Connecter>? connecters = BuildConnecter();
-        Language language = BuildLanguage();
-        Disk disk = BuildDisk();
-        Identification identification = BuildIdentification();
-
-        MicroController microcontroller = new MicroController(name, dimension, disk, identification, language)
-        {
-            Ports = ports, Connecters = connecters,
-        };
-        
-        return microcontroller;
-    }
+    public MicroController GetResult();
 }
