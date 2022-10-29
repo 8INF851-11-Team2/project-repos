@@ -3,11 +3,12 @@ namespace LOCMI.Models.Menu
 {
     public interface IEntry<T>
     {
-        public string Title { get; set; }
-
+        string Title { get; set; }
+        T Command { get; set; }
         public bool IsExecutable();
         public void Execute();
 
+        public void show();
     }
 }
 

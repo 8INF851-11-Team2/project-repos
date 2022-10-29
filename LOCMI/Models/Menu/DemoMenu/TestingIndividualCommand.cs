@@ -5,15 +5,19 @@ namespace LOCMI.Models.Menu
     public class TestingIndividualCommand : ICommand
     {
         private Certificate _certificate;
+        private CertifieurDemonstration _certifieurDemonstration;
 
         public TestingIndividualCommand(Certificate certificates, CertifieurDemonstration certifieur)
         {
             _certificate = certificates;
+            _certifieurDemonstration = certifieur;
         }
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            List<Certificate> certificates = new List<Certificate>{ _certificate};
+            _certifieurDemonstration.setCertificates(certificates);
+            _certifieurDemonstration.apply();
         }
 
         public bool IsExecutable()

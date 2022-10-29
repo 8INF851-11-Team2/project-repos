@@ -5,9 +5,14 @@ namespace LOCMI.Controllers
     {
         private View _view;
 
+        public PromptController()
+        {
+            _view = new View();
+        }
+
         public void run(string msgToPrint)
         {
-
+            _view.display(msgToPrint);
         }
     }
 }

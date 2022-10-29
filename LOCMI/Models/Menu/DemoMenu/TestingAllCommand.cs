@@ -15,7 +15,8 @@ namespace LOCMI.Models.Menu
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            _certifieur.setCertificates(_certificats);
+            _certifieur.apply();
         }
 
         public bool IsExecutable()

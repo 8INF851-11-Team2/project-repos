@@ -1,4 +1,5 @@
 ﻿using System;
+using LOCMI.Noyau;
 namespace LOCMI.Models.Certificat
 {
     public class TestSuite : Test

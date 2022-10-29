@@ -1,4 +1,5 @@
 ﻿using System;
+using LOCMI.Noyau;
 namespace LOCMI.Models.Certificat
 {
     public class Certificate
@@ -20,7 +21,7 @@ namespace LOCMI.Models.Certificat
         }
         public bool isSuccess()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

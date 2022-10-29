@@ -12,7 +12,7 @@ namespace LOCMI.Controllers
 
         public void run()
         {
-
+            _menuExperimental = new Menu<MenuExpCommand>("Experimental Menu");
         }
 
 

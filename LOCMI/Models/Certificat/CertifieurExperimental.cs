@@ -1,5 +1,6 @@
 ﻿using System;
 using LOCMI.Controllers;
+using LOCMI.Noyau;
 namespace LOCMI.Models.Certificat
 {
     public class CertifieurExperimental

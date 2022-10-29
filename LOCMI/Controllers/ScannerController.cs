@@ -5,9 +5,16 @@ namespace LOCMI.Controllers
     {
         private View _view;
 
+        public ScannerController()
+        {
+            _view = new View();
+        }
+
         public string run()
         {
-            throw new NotImplementedException();
+            _view.display("Enter information");
+            return Console.ReadLine();
+
         }
     }
 }

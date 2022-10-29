@@ -11,9 +11,9 @@ namespace LOCMI.Controllers
 
         public void run()
         {
-             
+            _menuDemo = new Menu<MenuDemoCommand>("Demonstration Menu");
         }
-       
+
     }
 }
 

@@ -7,13 +7,15 @@ namespace LOCMI.Models.Menu
     {
         private DemoController _demoController;
 
+        public MenuDemoCommand(DemoController demoController) => _demoController = demoController;
+
         public bool isExecutable()
         {
             return false;
         }
-        public void execute()
+        public new void Execute()
         {
-
+            /* TODO */
         }
 
     }

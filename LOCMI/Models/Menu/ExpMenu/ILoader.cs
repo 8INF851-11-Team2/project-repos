@@ -1,5 +1,6 @@
 ﻿using System;
 using LOCMI.Models.Certificat;
+using LOCMI.Noyau;
 namespace LOCMI.Models.Menu
 {
     public interface ILoader
