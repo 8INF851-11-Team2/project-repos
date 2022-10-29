@@ -1,21 +1,14 @@
 ﻿namespace LOCMI.Core.Test;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using LOCMI.Core.Utils;
-using LOCMI.Noyau;
 
-internal class AdapterABuilder : IMicroControllerAdapter
+using LOCMI.Core.Utils;
+
+internal sealed class AdapterABuilder : IMicrocontrollerAdapter
 {
-    private AdapterA _adapterA = new AdapterA();
-    public IEnumerable<Connecter>? BuildConnecter()
+    private readonly AdapterA _adapterA = new ();
+
+    public IEnumerable<Connector> BuildConnectors()
     {
-        List<Connecter> list = new List<Connecter>();
-        list.Add(new Connecter(_adapterA.ConnecterName));
+        var list = new List<Connector> { new (_adapterA.ConnectorName) };
         return list;
     }
 
@@ -44,27 +37,25 @@ internal class AdapterABuilder : IMicroControllerAdapter
         return _adapterA.Name;
     }
 
-    public IEnumerable<Port>? BuildPort()
+    public IEnumerable<Port> BuildPort()
     {
-        List<Port> list = new List<Port>();
-        list.Add(new Port(_adapterA.NumPin, _adapterA.Data, _adapterA.Ground, _adapterA.Power));
+        var list = new List<Port> { new (_adapterA.NumPin, _adapterA.Data, _adapterA.Ground, _adapterA.Power) };
         return list;
     }
 
-    public MicroController GetResult()
+    public Microcontroller GetResult()
     {
         string name = BuildName();
         Dimension dimension = BuildDimension();
-        IEnumerable<Port>? ports = BuildPort();
-        IEnumerable<Connecter>? connecters = BuildConnecter();
+        IEnumerable<Port> ports = BuildPort();
+        IEnumerable<Connector> connecters = BuildConnectors();
         Language language = BuildLanguage();
         Disk disk = BuildDisk();
         Identification identification = BuildIdentification();
 
-        MicroController microcontroller = new MicroController(name, dimension, disk, identification, language)
+        var microcontroller = new Microcontroller(name, dimension, disk, identification, language)
         {
-            Ports = ports,
-            Connecters = connecters,
+            Ports = ports, Connectors = connecters,
         };
 
         return microcontroller;

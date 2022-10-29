@@ -1,8 +1,8 @@
 ﻿namespace LOCMI.Core.Utils;
 
-public sealed class Disk
+public class Connector
 {
-    public Disk(string name)
+    public Connector(string name)
     {
         Name = name;
     }
