@@ -1,16 +1,20 @@
+using System;
+using LOCMI.Models.Menu;
+namespace LOCMI.Controllers
+{
 
+    public class ExperimentalController
+    {
+        private View _view;
+        private Menu<MenuExpCommand> _menuExperimental;
 
-public class ExperimentalController {
-    private View view;
-    private Menu<T> menuExperimental;
+        public ExperimentalController(View view) => _view = view;
 
-    public ExperimentalController(View view) {
+        public void run()
+        {
+
+        }
+
 
     }
-
-    public void run() {
-
-    }
-
-
 }

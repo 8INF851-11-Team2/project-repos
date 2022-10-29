@@ -1,11 +1,20 @@
-public class MenuDemoCommand : MainMenuCommand {
-    private DemoController demoController;
+using System;
+using LOCMI.Controllers;
 
-    public bool isExecutable() {
-        return false;
+namespace LOCMI.Models.Menu
+{
+    public class MenuDemoCommand : MainMenuCommand
+    {
+        private DemoController _demoController;
+
+        public bool isExecutable()
+        {
+            return false;
+        }
+        public void execute()
+        {
+
+        }
+
     }
-    public void execute() {
-
-    }
-
 }

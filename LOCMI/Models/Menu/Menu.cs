@@ -1,17 +1,27 @@
+using System;
 
+namespace LOCMI.Models.Menu
+{
+    public class Menu<T>
+    {
+        private string _name;
+        private Boolean _isClosed;
 
+        public Menu(string name) => _name = name;
+        public List<IEntry<T>> GetEntries()
+        {
+            /* TODO */
+            List<IEntry<T>> entries = new List<IEntry<T>>();
+            return entries;
+        }
 
-public class Menu<T> {
-    private string name;
-    private Boolean isClosed;
-    public Menu(string name) {}
-    public List<Entry<T>> getEntries() {
-        
-    }
-    public void add(string text, T command) {
+        public void Add(string text, T command)
+        {
 
-    }
-    public void execute(int userChoice) {
+        }
+        public void Execute(int userChoice)
+        {
 
+        }
     }
 }

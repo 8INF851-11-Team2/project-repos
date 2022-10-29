@@ -1,9 +1,13 @@
+﻿using System;
+namespace LOCMI.Models.Menu
+{
+    public interface IEntry<T>
+    {
+        public string Title { get; set; }
 
+        public bool IsExecutable();
+        public void Execute();
 
-public interface Entry<T> {
-    public string title {get; set;}
-
-    public bool isExecutable();
-    public void execute();
-
+    }
 }
+

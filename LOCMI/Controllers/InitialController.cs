@@ -1,10 +1,13 @@
+using System;
+namespace LOCMI.Controllers
+{
+    public class InitialController
+    {
+        private View _view;
 
+        public void run()
+        {
 
-
-public class InitialController {
-    private View view;
-
-    public void run() {
-
+        }
     }
 }

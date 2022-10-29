@@ -1,11 +1,19 @@
+using System;
+using LOCMI.Controllers;
 
-public abstract class MainMenuCommand : Command {
+namespace LOCMI.Models.Menu
+{
+    public abstract class MainMenuCommand : ICommand
+    {
 
-    protected InitialController controller;
-    public bool isExecutable() {
-        return false;
+        protected InitialController controller;
+        public bool IsExecutable()
+        {
+            return false;
+        }
+        public void Execute()
+        {
+
+        }
     }
-    public void execute() {
-
-    } 
 }
