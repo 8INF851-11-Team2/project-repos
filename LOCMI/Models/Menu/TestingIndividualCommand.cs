@@ -6,7 +6,7 @@ namespace LOCMI.Models.Menu
     {
         private Certificate _certificate;
 
-        public TestingIndividualCommand(Certificate certificates, Certifieur certifieur)
+        public TestingIndividualCommand(Certificate certificates, CertifieurDemonstration certifieur)
         {
             _certificate = certificates;
         }

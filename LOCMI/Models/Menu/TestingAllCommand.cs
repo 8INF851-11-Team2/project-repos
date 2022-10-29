@@ -4,10 +4,10 @@ namespace LOCMI.Models.Menu
 {
     public class TestingAllCommand : ICommand
     {
-        private Certifieur _certifieur;
+        private CertifieurDemonstration _certifieur;
         private List<Certificate> _certificats;
 
-        public TestingAllCommand(List<Certificate> certificates, Certifieur certifieur)
+        public TestingAllCommand(List<Certificate> certificates, CertifieurDemonstration certifieur)
         {
             _certificats = certificates;
             _certifieur = certifieur;

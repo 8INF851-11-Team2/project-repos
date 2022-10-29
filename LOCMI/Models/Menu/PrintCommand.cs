@@ -5,7 +5,8 @@ namespace LOCMI.Models.Menu
 {
     public class PrintCommand : ICommand
     {
-        private Certifieur _cerifieur;
+        private CertifieurDemonstration _cerifieurDemonstration;
+        private CertifieurExperimental _certifieurExperimental;
      
         public void Execute()
         {
