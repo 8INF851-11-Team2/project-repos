@@ -1,10 +1,26 @@
 ﻿using System;
+using LOCMI.Models.Certificat;
 namespace LOCMI.Models.Menu
 {
-    public class TestingAllCommand
+    public class TestingAllCommand : ICommand
     {
-        public TestingAllCommand()
+        private Certifieur _certifieur;
+        private List<Certificate> _certificats;
+
+        public TestingAllCommand(List<Certificate> certificates, Certifieur certifieur)
         {
+            _certificats = certificates;
+            _certifieur = certifieur;
+        }
+
+        public void Execute()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsExecutable()
+        {
+            throw new NotImplementedException();
         }
     }
 }

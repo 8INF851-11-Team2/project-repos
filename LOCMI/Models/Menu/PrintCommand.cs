@@ -1,10 +1,20 @@
-﻿using System;
+﻿
+using System;
+using LOCMI.Models.Certificat;
 namespace LOCMI.Models.Menu
 {
-    public class PrintCommand
+    public class PrintCommand : ICommand
     {
-        public PrintCommand()
+        private Certifieur _cerifieur;
+     
+        public void Execute()
         {
+            throw new NotImplementedException();
+        }
+
+        public bool IsExecutable()
+        {
+            throw new NotImplementedException();
         }
     }
 }

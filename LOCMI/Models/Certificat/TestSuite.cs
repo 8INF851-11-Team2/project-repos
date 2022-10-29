@@ -1,10 +1,16 @@
 ﻿using System;
 namespace LOCMI.Models.Certificat
 {
-    public class TestSuite
+    public class TestSuite : Test
     {
-        public TestSuite()
+        public void addTest(Test test)
         {
+
+        }
+
+        public void run(TestResult testResult, MicroController microController)
+        {
+            throw new NotImplementedException();
         }
     }
 }

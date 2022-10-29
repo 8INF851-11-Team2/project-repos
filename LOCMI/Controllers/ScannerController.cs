@@ -3,8 +3,11 @@ namespace LOCMI.Controllers
 {
     public class ScannerController
     {
-        public ScannerController()
+        private View _view;
+
+        public string run()
         {
+            throw new NotImplementedException();
         }
     }
 }

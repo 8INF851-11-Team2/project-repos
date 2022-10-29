@@ -3,8 +3,11 @@ namespace LOCMI.Controllers
 {
     public class PromptController
     {
-        public PromptController()
+        private View _view;
+
+        public void run(string msgToPrint)
         {
+
         }
     }
 }
