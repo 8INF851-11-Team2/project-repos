@@ -1,22 +1,20 @@
 ﻿namespace LOCMI.Core;
 
-using LOCMI.Core.Utils;
-
 public interface IMicrocontrollerAdapter
 {
-    public IEnumerable<Connector>? BuildConnectors();
+    public IMicrocontrollerAdapter BuildConnectors();
 
-    public Dimension BuildDimension();
+    public IMicrocontrollerAdapter BuildDimension();
 
-    public Disk BuildDisk();
+    public IMicrocontrollerAdapter BuildDisk();
 
-    public Identification BuildIdentification();
+    public IMicrocontrollerAdapter BuildIdentification();
 
-    public Language BuildLanguage();
+    public IMicrocontrollerAdapter BuildLanguage();
 
-    public string BuildName();
+    public IMicrocontrollerAdapter BuildName();
 
-    public IEnumerable<Port>? BuildPort();
+    public IMicrocontrollerAdapter BuildPort();
 
     public Microcontroller GetResult();
 }
