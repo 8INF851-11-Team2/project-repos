@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Core.Utils;
 
-public class Dimension
+public struct Dimension
 {
     public Dimension(double length, double width, double height, double weight)
     {

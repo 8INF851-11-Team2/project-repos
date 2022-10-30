@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Core.Utils;
 
-public sealed class Disk
+public struct Disk
 {
     public Disk(string name)
     {

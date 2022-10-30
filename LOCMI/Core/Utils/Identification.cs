@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Core.Utils;
 
-public sealed class Identification
+public struct Identification
 {
     public Identification(string brand, string model)
     {

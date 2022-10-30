@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Core.Utils;
 
-public class Language
+public struct Language
 {
     public Language(string name, string version)
     {

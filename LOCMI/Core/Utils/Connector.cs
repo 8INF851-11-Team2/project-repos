@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Core.Utils;
 
-public class Connector
+public struct Connector
 {
     public Connector(string name)
     {
