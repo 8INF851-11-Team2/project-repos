@@ -1,19 +1,18 @@
-﻿using System;
-namespace LOCMI.Controllers
+﻿namespace LOCMI.Controllers;
+
+using LOCMI.Views;
+
+public class PromptController
 {
-    public class PromptController
+    private readonly View _view;
+
+    public PromptController()
     {
-        private View _view;
+        _view = new View();
+    }
 
-        public PromptController()
-        {
-            _view = new View();
-        }
-
-        public void run(string msgToPrint)
-        {
-            _view.display(msgToPrint);
-        }
+    public void Run(string msgToPrint)
+    {
+        _view.Display(msgToPrint);
     }
 }
-

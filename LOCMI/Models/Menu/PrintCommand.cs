@@ -1,32 +1,32 @@
-﻿
-using System;
-using LOCMI.Models.Certificat;
+﻿namespace LOCMI.Models.Menu;
+
 using LOCMI.Controllers;
-namespace LOCMI.Models.Menu
+using LOCMI.Models.Certificates;
+
+public class PrintCommand : ICommand
 {
-    public class PrintCommand : ICommand
+    private readonly CertifyDemonstration _certifierDemonstration;
+
+    private CertifierExperimental _certifierExperimental;
+
+    private IPrinter _printer;
+
+    private ScannerController _scannerController;
+
+    public PrintCommand(CertifyDemonstration certifyDemonstration)
     {
-        private CertifieurDemonstration _cerifieurDemonstration;
-        private CertifieurExperimental _certifieurExperimental;
-        private ScannerController _scannerController;
-        private IPrinter _printer;
+        _certifierDemonstration = certifyDemonstration;
+    }
 
-        public PrintCommand(CertifieurDemonstration certifieurDemonstration)
-        {
-            _cerifieurDemonstration = certifieurDemonstration;
-        }
-     
-        public void Execute()
-        {
-            string path = _scannerController.run();
-            List<Certificate> c = _cerifieurDemonstration.getCertificates();
-            _printer.print(c, path);
-        }
+    public void Execute()
+    {
+        string path = _scannerController.Run();
+        List<Certificate> c = _certifierDemonstration.GetCertificates();
+        _printer.Print(c, path);
+    }
 
-        public bool IsExecutable()
-        {
-            throw new NotImplementedException();
-        }
+    public bool IsExecutable()
+    {
+        throw new NotImplementedException();
     }
 }
-

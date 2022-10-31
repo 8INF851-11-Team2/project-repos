@@ -1,10 +1,8 @@
-﻿using System;
-namespace LOCMI.Models.Menu
-{
-    public interface ICommand
-    {
-        public bool IsExecutable();
-        public void Execute();
-    }
-}
+﻿namespace LOCMI.Models.Menu;
 
+public interface ICommand
+{
+    public void Execute();
+
+    public bool IsExecutable();
+}

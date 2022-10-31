@@ -1,37 +1,38 @@
-using System;
+namespace LOCMI.Controllers;
+
 using LOCMI.Models.Menu;
-namespace LOCMI.Controllers
+using LOCMI.Models.Menu.DemoMenu;
+using LOCMI.Models.Menu.ExpMenu;
+using LOCMI.Views;
+
+public sealed class InitialController
 {
-    public class InitialController
+    private Menu<MainMenuCommand>? _mainMenu;
+
+    private View? _view;
+
+    public void Run()
     {
-        private View? _view;
-        private Menu<MainMenuCommand>? _mainMenu;
+        _view = new View();
+        var demoController = new DemoController(_view);
+        var expController = new ExperimentalController(_view);
+        var demoCommand = new MenuDemoCommand(demoController);
+        var expCommand = new MenuExpCommand(expController);
+        _mainMenu = new Menu<MainMenuCommand>("Main Menu");
+        _mainMenu.Add("Demonstration", demoCommand);
+        _mainMenu.Add("Experimental", expCommand);
 
-        public void run()
+        while (!_mainMenu.GetIsClosed())
         {
-            _view = new View();
-            DemoController demoController = new DemoController(_view);
-            ExperimentalController expController = new ExperimentalController(_view);
-            MenuDemoCommand demoCommand = new MenuDemoCommand(demoController);
-            MenuExpCommand expCommand = new MenuExpCommand(expController);
-            _mainMenu = new Menu<MainMenuCommand>("Main Menu");
-            _mainMenu.Add("Demonstration", demoCommand);
-            _mainMenu.Add("Experimental", expCommand);
-
-            while(!_mainMenu.getIsClosed())
-            {
-                List<IEntry<MainMenuCommand>> entries = _mainMenu.GetEntries();
-                _view.display("Choose a choice from the menu below:");
-                /* display entries */
-                entries.ForEach(entry => entry.show());
-                /* Read the user's choice */
-                string read = Console.ReadLine();
-                int userChoice = Convert.ToInt32(read);
-                /* Execute the user's choice */
-                _mainMenu.Execute(userChoice);
-          
-            }
-
+            List<IEntry<MainMenuCommand>> entries = _mainMenu.GetEntries();
+            _view.Display("Choose a choice from the menu below:");
+            /* display entries */
+            entries.ForEach(static entry => entry.Show());
+            /* Read the user's choice */
+            string? read = Console.ReadLine();
+            var userChoice = Convert.ToInt32(read);
+            /* Execute the user's choice */
+            _mainMenu.Execute(userChoice);
         }
     }
 }

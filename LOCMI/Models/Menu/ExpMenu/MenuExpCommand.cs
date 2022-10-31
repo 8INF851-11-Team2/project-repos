@@ -1,21 +1,23 @@
-using System;
+namespace LOCMI.Models.Menu.ExpMenu;
+
 using LOCMI.Controllers;
 
-namespace LOCMI.Models.Menu
+public sealed class MenuExpCommand : MainMenuCommand
 {
-    public class MenuExpCommand : MainMenuCommand
+    private ExperimentalController _expController;
+
+    public MenuExpCommand(ExperimentalController experimentalController)
     {
-        private ExperimentalController _expController;
+        _expController = experimentalController;
+    }
 
-        public MenuExpCommand(ExperimentalController experimentalController) => _expController = experimentalController;
+    public override bool IsExecutable()
+    {
+        return false;
+    }
 
-        public bool isExecutable()
-        {
-            return false;
-        }
-        public new void Execute()
-        {
-            /* TODO */
-        }
+    public new void Execute()
+    {
+        /* TODO */
     }
 }

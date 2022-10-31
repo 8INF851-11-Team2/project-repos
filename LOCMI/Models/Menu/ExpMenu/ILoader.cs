@@ -1,12 +1,11 @@
-﻿using System;
-using LOCMI.Models.Certificat;
-using LOCMI.Noyau;
-namespace LOCMI.Models.Menu
-{
-    public interface ILoader
-    {
-        public Test loadTest(string path);
-        public MicroController loadController(string path);
-    }
-}
+﻿namespace LOCMI.Models.Menu.ExpMenu;
 
+using LOCMI.Core;
+using LOCMI.Models.Certificates;
+
+public interface ILoader
+{
+    public Microcontroller LoadController(string path);
+
+    public ITest LoadTest(string path);
+}

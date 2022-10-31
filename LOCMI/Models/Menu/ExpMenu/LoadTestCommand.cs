@@ -1,29 +1,29 @@
-﻿using System;
+﻿namespace LOCMI.Models.Menu.ExpMenu;
+
 using LOCMI.Controllers;
-using LOCMI.Models.Certificat;
-namespace LOCMI.Models.Menu
+using LOCMI.Models.Certificates;
+
+public class LoadTestCommand : ICommand
 {
-    public class LoadTestCommand : ICommand
+    private CertifierExperimental _certifier;
+
+    private ILoader _loader;
+
+    private ScannerController _scannerController;
+
+    private ITest _test;
+
+    public void Execute()
     {
-        private ILoader _loader;
-        private ScannerController _scannerController;
-        private Test _test;
-        private CertifieurExperimental _certifieur;
+        throw new NotImplementedException();
+    }
 
-        /* CertifieurExp ScannerController ?? */
-        public void LCC(CertifieurExperimental certifieur, ScannerController scannerController)
-        {
+    public bool IsExecutable()
+    {
+        throw new NotImplementedException();
+    }
 
-        }
-        public void Execute()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExecutable()
-        {
-            throw new NotImplementedException();
-        }
+    public void LCC(CertifierExperimental certifier, ScannerController scannerController)
+    {
     }
 }
-

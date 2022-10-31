@@ -1,21 +1,19 @@
-﻿using System;
-namespace LOCMI.Controllers
+﻿namespace LOCMI.Controllers;
+
+using LOCMI.Views;
+
+public sealed class ScannerController
 {
-    public class ScannerController
+    private readonly View _view;
+
+    public ScannerController()
     {
-        private View _view;
+        _view = new View();
+    }
 
-        public ScannerController()
-        {
-            _view = new View();
-        }
-
-        public string run()
-        {
-            _view.display("Enter information");
-            return Console.ReadLine();
-
-        }
+    public string Run()
+    {
+        _view.Display("Enter information");
+        return Console.ReadLine() ?? string.Empty;
     }
 }
-

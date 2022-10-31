@@ -1,19 +1,22 @@
-﻿using System;
+﻿namespace LOCMI.Controllers;
+
 using LOCMI.Models.Menu;
-namespace LOCMI.Controllers
+using LOCMI.Models.Menu.DemoMenu;
+using LOCMI.Views;
+
+public sealed class DemoController
 {
-    public class DemoController
+    private Menu<MenuDemoCommand> _menuDemo;
+
+    private View _view;
+
+    public DemoController(View view)
     {
-        private View _view;
-        private Menu<MenuDemoCommand> _menuDemo;
+        _view = view;
+    }
 
-        public DemoController(View view) => _view = view;
-
-        public void run()
-        {
-            _menuDemo = new Menu<MenuDemoCommand>("Demonstration Menu");
-        }
-
+    public void Run()
+    {
+        _menuDemo = new Menu<MenuDemoCommand>("Demonstration Menu");
     }
 }
-

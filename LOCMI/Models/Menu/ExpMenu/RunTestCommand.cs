@@ -1,13 +1,12 @@
-﻿using System;
-using LOCMI.Models.Certificat;
-namespace LOCMI.Models.Menu
+﻿namespace LOCMI.Models.Menu.ExpMenu;
+
+using LOCMI.Models.Certificates;
+
+public class RunTestCommand
 {
-    public class RunTestCommand
+    private CertifierExperimental _certifier;
+
+    public RunTestCommand(CertifierExperimental certifier)
     {
-        private CertifieurExperimental _certifieur;
-        public RunTestCommand(CertifieurExperimental certifieur)
-        {
-        }
     }
 }
-

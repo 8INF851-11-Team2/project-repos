@@ -1,29 +1,28 @@
-﻿using System;
-using LOCMI.Models.Certificat;
-namespace LOCMI.Models.Menu
+﻿namespace LOCMI.Models.Menu.DemoMenu;
+
+using LOCMI.Models.Certificates;
+
+public class TestingIndividualCommand : ICommand
 {
-    public class TestingIndividualCommand : ICommand
+    private readonly Certificate _certificate;
+
+    private readonly CertifyDemonstration _certifyDemonstration;
+
+    public TestingIndividualCommand(Certificate certificates, CertifyDemonstration certify)
     {
-        private Certificate _certificate;
-        private CertifieurDemonstration _certifieurDemonstration;
+        _certificate = certificates;
+        _certifyDemonstration = certify;
+    }
 
-        public TestingIndividualCommand(Certificate certificates, CertifieurDemonstration certifieur)
-        {
-            _certificate = certificates;
-            _certifieurDemonstration = certifieur;
-        }
+    public void Execute()
+    {
+        var certificates = new List<Certificate> { _certificate };
+        _certifyDemonstration.SetCertificates(certificates);
+        _certifyDemonstration.Apply();
+    }
 
-        public void Execute()
-        {
-            List<Certificate> certificates = new List<Certificate>{ _certificate};
-            _certifieurDemonstration.setCertificates(certificates);
-            _certifieurDemonstration.apply();
-        }
-
-        public bool IsExecutable()
-        {
-            throw new NotImplementedException();
-        }
+    public bool IsExecutable()
+    {
+        throw new NotImplementedException();
     }
 }
-

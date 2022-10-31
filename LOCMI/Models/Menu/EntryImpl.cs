@@ -1,29 +1,22 @@
-﻿using System;
-namespace LOCMI.Models.Menu
+﻿namespace LOCMI.Models.Menu;
+
+public sealed class EntryImpl<T> : IEntry<T>
 {
-    public class EntryImpl<T> : IEntry<T>
+    public T Command { get; set; }
+
+    public string Title { get; set; }
+
+    public void Execute()
     {
-        private string _title;
-        private T _command;
+    }
 
-        public string Title { get => _title; set => _title = value; }
-        public T Command { get => _command; set => _command = value; }
+    public bool IsExecutable()
+    {
+        return false;
+    }
 
-
-        public void Execute()
-        {
-           
-        }
-
-        public bool IsExecutable()
-        {
-           return false;
-        }
-
-        public void show()
-        {
-            Console.WriteLine("-----> " + _title);
-        }
+    public void Show()
+    {
+        Console.WriteLine("-----> " + Title);
     }
 }
-

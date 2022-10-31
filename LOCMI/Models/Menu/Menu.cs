@@ -1,47 +1,51 @@
-using System;
+namespace LOCMI.Models.Menu;
 
-namespace LOCMI.Models.Menu
+public sealed class Menu<T>
 {
-    public class Menu<T>
+    private readonly List<IEntry<T>> _entries;
+
+    private readonly bool _isClosed;
+
+    private string _name;
+
+    private ICommand _selected;
+
+    public Menu(string name)
     {
-        private string _name;
-        private Boolean _isClosed;
-        private List<IEntry<T>> entries;
-        private ICommand _selectionned;
+        _name = name;
+        _isClosed = false;
+        _entries = new List<IEntry<T>>();
+    }
 
-        public Menu(string name)
+    public void Add(string text, T command)
+    {
+        IEntry<T> entry = new EntryImpl<T>
         {
-            _name = name;
-            _isClosed = false;
-            entries = new List<IEntry<T>>();
-        }
+            Title = text, Command = command,
+        };
 
-        public List<IEntry<T>> GetEntries()
-        {
-            return entries;
-        }
+        _entries.Add(entry);
+    }
 
-        public Boolean getIsClosed()
+    public void Execute(int userChoice)
+    {
+        if (userChoice < _entries.Count)
         {
-            return _isClosed;
+            _entries[userChoice].Execute();
         }
+        else
+        {
+            Console.WriteLine("Please enter a valid choice");
+        }
+    }
 
-        public void Add(string text, T command)
-        {
-            IEntry<T> entry = new EntryImpl<T>();
-            entry.Title = text;
-            entry.Command = command;
-            entries.Add(entry);
-        }
+    public List<IEntry<T>> GetEntries()
+    {
+        return _entries;
+    }
 
-        public void Execute(int userChoice) 
-        {
-            if (userChoice < entries.Count)
-            {
-                entries[userChoice].Execute();
-            }
-            else
-                Console.WriteLine("Please enter a valid choice");
-        }
+    public bool GetIsClosed()
+    {
+        return _isClosed;
     }
 }

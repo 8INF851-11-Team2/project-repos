@@ -1,14 +1,5 @@
-﻿using System;
-using LOCMI.Controllers;
-using LOCMI.Models.Certificat;
-namespace LOCMI.Models.Menu
+﻿namespace LOCMI.Models.Menu.ExpMenu;
+
+public class LoadMicroControllerCommand
 {
-    public class LoadMicroControllerCommand
-    {
-        public void LMCC(CertifieurExperimental certifieur, ScannerController scannerController)
-        {
-
-        }
-    }
 }
-

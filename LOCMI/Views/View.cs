@@ -1,12 +1,13 @@
-using System;
+namespace LOCMI.Views;
 
-public class View {
+public sealed class View
+{
     public View()
     {
         Console.WriteLine("************* Microcontroller Software *************");
     }
 
-    public void display(string message)
+    public void Display(string message)
     {
         Console.WriteLine(message);
     }
