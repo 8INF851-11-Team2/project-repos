@@ -2,11 +2,21 @@
 
 using LOCMI.Models.Certificates;
 
-public class RunTestCommand
+public class RunTestCommand : IExpMenuCommand
 {
     private CertifierExperimental _certifier;
 
     public RunTestCommand(CertifierExperimental certifier)
     {
+    }
+
+    public void Execute()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsExecutable()
+    {
+        throw new NotImplementedException();
     }
 }

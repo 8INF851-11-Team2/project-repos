@@ -2,7 +2,7 @@
 
 using LOCMI.Models.Certificates;
 
-public class TestingIndividualCommand : ICommand
+public class TestingIndividualCommand : IDemoMenuCommand
 {
     private readonly Certificate _certificate;
 

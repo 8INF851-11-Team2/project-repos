@@ -3,7 +3,7 @@
 using LOCMI.Controllers;
 using LOCMI.Models.Certificates;
 
-public class LoadTestCommand : ICommand
+public class LoadTestCommand : IExpMenuCommand
 {
     private CertifierExperimental _certifier;
 

@@ -24,7 +24,7 @@ public sealed class InitialController
 
         while (!_mainMenu.GetIsClosed())
         {
-            List<IEntry<MainMenuCommand>> entries = _mainMenu.GetEntries();
+            List<Entry<MainMenuCommand>> entries = _mainMenu.GetEntries();
             _view.Display("Choose a choice from the menu below:");
             /* display entries */
             entries.ForEach(static entry => entry.Show());

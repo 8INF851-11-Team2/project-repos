@@ -2,7 +2,7 @@ namespace LOCMI.Models.Menu;
 
 public sealed class Menu<T>
 {
-    private readonly List<IEntry<T>> _entries;
+    private readonly List<Entry<T>> _entries;
 
     private readonly bool _isClosed;
 
@@ -14,16 +14,13 @@ public sealed class Menu<T>
     {
         _name = name;
         _isClosed = false;
-        _entries = new List<IEntry<T>>();
+        _entries = new List<Entry<T>>();
     }
 
     public void Add(string text, T command)
     {
-        IEntry<T> entry = new EntryImpl<T>
-        {
-            Title = text, Command = command,
-        };
-
+        Entry<T> entry = new Entry<T>(text,command);
+       
         _entries.Add(entry);
     }
 
@@ -39,7 +36,7 @@ public sealed class Menu<T>
         }
     }
 
-    public List<IEntry<T>> GetEntries()
+    public List<Entry<T>> GetEntries()
     {
         return _entries;
     }
