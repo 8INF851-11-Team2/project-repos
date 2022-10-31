@@ -1,11 +1,11 @@
-﻿using LOCMI.Core.Test;
+using LOCMI.Core.Test;
 using LOCMI.Noyau;
 using LOCMI.Controllers;
 
 Console.WriteLine("Hello, World!");
 
-AdapterABuilder builder = new AdapterABuilder();
-MicroController mc = builder.GetResult();
+var builder = new MicrocontrollerABuilder();
+builder.GetResult();
 
 InitialController initialController = new InitialController();
 initialController.run();

@@ -1,34 +1,20 @@
-﻿namespace LOCMI.Noyau;
+﻿namespace LOCMI.Core;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LOCMI.Core.Utils;
 
-public class MicroController
+public sealed class Microcontroller
 {
-    public MicroController(string name, Dimension dimension, Disk disk, Identification identification, Language language)
-    {
-        Name = name;
-        Dimension = dimension;
-        Disk = disk;
-        Identification = identification;
-        Language = language;
-    }
+    public IEnumerable<Connector>? Connectors { get; set; }
 
-    public IEnumerable<Connecter>? Connecters { get; init; }
+    public Dimension? Dimension { get; set; }
 
-    public Dimension Dimension { get; }
+    public Disk? Disk { get; set; }
 
-    public Disk Disk { get; }
+    public Identification? Identification { get; set; }
 
-    public Identification Identification { get; }
+    public Language? Language { get; set; }
 
-    public Language Language { get; }
+    public string? Name { get; set; }
 
-    public string Name { get; }
-
-    public IEnumerable<Port>? Ports { get; init; }
+    public Ports? Ports { get; set; }
 }

@@ -1,8 +1,8 @@
 ﻿namespace LOCMI.Core.Utils;
 
-public struct Disk
+public struct Connector
 {
-    public Disk(string name)
+    public Connector(string name)
     {
         Name = name;
     }
