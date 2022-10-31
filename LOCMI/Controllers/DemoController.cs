@@ -1,7 +1,6 @@
 ﻿namespace LOCMI.Controllers;
 
 using LOCMI.Models.Menu;
-using LOCMI.Models.Menu.DemoMenu;
 using LOCMI.Views;
 
 public sealed class DemoController

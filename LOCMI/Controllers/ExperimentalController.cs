@@ -1,7 +1,6 @@
 namespace LOCMI.Controllers;
 
 using LOCMI.Models.Menu;
-using LOCMI.Models.Menu.ExpMenu;
 using LOCMI.Views;
 
 public sealed class ExperimentalController

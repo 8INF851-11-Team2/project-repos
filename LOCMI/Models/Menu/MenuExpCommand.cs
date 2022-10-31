@@ -1,4 +1,4 @@
-namespace LOCMI.Models.Menu.ExpMenu;
+namespace LOCMI.Models.Menu;
 
 using LOCMI.Controllers;
 

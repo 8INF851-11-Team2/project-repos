@@ -1,8 +1,9 @@
 ﻿namespace LOCMI.Models.Menu;
 
-public class Entry<T>
+public sealed class Entry<T>
 {
-    private string _title;
+    private readonly string _title;
+
     private T _command;
 
     public Entry(string title, T command)
@@ -11,12 +12,12 @@ public class Entry<T>
         _command = command;
     }
 
-    public bool isExecutable()
+    public void Execute()
     {
         throw new NotImplementedException();
     }
 
-    public void Execute()
+    public bool IsExecutable()
     {
         throw new NotImplementedException();
     }

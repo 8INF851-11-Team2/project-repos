@@ -19,8 +19,8 @@ public sealed class Menu<T>
 
     public void Add(string text, T command)
     {
-        Entry<T> entry = new Entry<T>(text,command);
-       
+        var entry = new Entry<T>(text, command);
+
         _entries.Add(entry);
     }
 
