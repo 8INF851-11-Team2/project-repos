@@ -33,4 +33,5 @@ foreach(TestFailure test in list)
     Console.WriteLine("Failure on test : " + test.TestCase.Name + ", reason : " + test.Cause);
 }
 
-Thread.Sleep(5000);
+Console.WriteLine("Press a Key to quit...");
+Console.ReadKey();
