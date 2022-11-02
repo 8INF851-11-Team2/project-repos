@@ -2,6 +2,8 @@
 
 public class LoadMicroControllerCommand : IExpMenuCommand
 {
+
+    public LoadMicroControllerCommand() { }
     public void Execute()
     {
         throw new NotImplementedException();

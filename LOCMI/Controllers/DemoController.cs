@@ -1,11 +1,12 @@
 ﻿namespace LOCMI.Controllers;
 
+using LOCMI.Models.Menu.DemoMenu;
 using LOCMI.Models.Menu;
 using LOCMI.Views;
 
 public sealed class DemoController
 {
-    private Menu<MenuDemoCommand> _menuDemo;
+    private Menu<IDemoMenuCommand> _menuDemo;
 
     private View _view;
 
@@ -16,6 +17,25 @@ public sealed class DemoController
 
     public void Run()
     {
-        _menuDemo = new Menu<MenuDemoCommand>("Demonstration Menu");
+        _menuDemo = new Menu<IDemoMenuCommand>("Demonstration Menu");
+        TestingAllCommand testingAllCommand = new TestingAllCommand();
+        TestingIndividualCommand testingIndividualCommand = new TestingIndividualCommand();
+        _menuDemo.Add("Testing All", testingAllCommand);
+        _menuDemo.Add("Testing Individual", testingIndividualCommand);
+
+        while (!_menuDemo.GetIsClosed())
+        { 
+
+            List<Entry<IDemoMenuCommand>> entries = _menuDemo.GetEntries();
+            _view.Display("\nChoose a choice from the menu below:");
+            /* display entries */
+            entries.ForEach(static entry => entry.Show());
+            /* Read the user's choice */
+            string? read = Console.ReadLine();
+            var userChoice = Convert.ToInt32(read);
+            /* Execute the user's choice */
+            _menuDemo.Execute(userChoice - 1);
+        }
+
     }
 }

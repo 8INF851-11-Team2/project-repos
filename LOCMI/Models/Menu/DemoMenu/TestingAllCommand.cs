@@ -8,6 +8,11 @@ public class TestingAllCommand : IDemoMenuCommand
 
     private readonly CertifyDemonstration _certify;
 
+    public TestingAllCommand()
+    {
+        
+    }
+
     public TestingAllCommand(List<Certificate> certificates, CertifyDemonstration certify)
     {
         _certificates = certificates;

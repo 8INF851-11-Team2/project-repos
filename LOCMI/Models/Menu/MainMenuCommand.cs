@@ -6,12 +6,6 @@ public abstract class MainMenuCommand : ICommand
 {
     protected InitialController Controller;
 
-    public void Execute()
-    {
-    }
-
-    public virtual bool IsExecutable()
-    {
-        return false;
-    }
+    public abstract void Execute();
+    public abstract bool IsExecutable();
 }

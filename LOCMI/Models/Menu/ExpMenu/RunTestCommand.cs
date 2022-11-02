@@ -6,6 +6,10 @@ public class RunTestCommand : IExpMenuCommand
 {
     private CertifierExperimental _certifier;
 
+    public RunTestCommand()
+    {
+
+    }
     public RunTestCommand(CertifierExperimental certifier)
     {
     }

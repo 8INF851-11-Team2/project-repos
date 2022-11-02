@@ -16,8 +16,8 @@ public sealed class MenuExpCommand : MainMenuCommand
         return false;
     }
 
-    public new void Execute()
+    public override void Execute()
     {
-        /* TODO */
+        _expController.Run();
     }
 }

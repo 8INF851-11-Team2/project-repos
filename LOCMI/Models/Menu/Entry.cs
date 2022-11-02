@@ -1,5 +1,7 @@
 ﻿namespace LOCMI.Models.Menu;
 
+using LOCMI.Models.Menu.DemoMenu;
+
 public sealed class Entry<T>
 {
     private readonly string _title;
@@ -14,7 +16,30 @@ public sealed class Entry<T>
 
     public void Execute()
     {
-        throw new NotImplementedException();
+        switch(_command)
+        {
+            case MenuDemoCommand:
+                MenuDemoCommand menuDemo = (MenuDemoCommand) (object) _command;
+                menuDemo.Execute();
+                break;
+            case MenuExpCommand:
+                MenuExpCommand menuExp = (MenuExpCommand) (object) _command;
+                menuExp.Execute();
+                break;
+            case TestingAllCommand:
+                TestingAllCommand testingAll = (TestingAllCommand) (object) _command;
+                testingAll.Execute();
+                break;
+            case TestingIndividualCommand:
+                TestingIndividualCommand testingIndividual = (TestingIndividualCommand) (object) _command;
+                testingIndividual.Execute();
+                break;
+        }
+    }
+
+    public T GetCommand()
+    {
+        return _command;
     }
 
     public bool IsExecutable()
@@ -24,6 +49,6 @@ public sealed class Entry<T>
 
     public void Show()
     {
-        Console.WriteLine("--------> " + _title);
+        Console.WriteLine("-------->  " + _title);
     }
 }

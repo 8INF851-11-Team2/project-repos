@@ -13,6 +13,8 @@ public class LoadTestCommand : IExpMenuCommand
 
     private ITest _test;
 
+    public LoadTestCommand() { }
+
     public void Execute()
     {
         throw new NotImplementedException();

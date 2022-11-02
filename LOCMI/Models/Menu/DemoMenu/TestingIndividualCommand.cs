@@ -8,6 +8,8 @@ public class TestingIndividualCommand : IDemoMenuCommand
 
     private readonly CertifyDemonstration _certifyDemonstration;
 
+    public TestingIndividualCommand() { }
+
     public TestingIndividualCommand(Certificate certificates, CertifyDemonstration certify)
     {
         _certificate = certificates;

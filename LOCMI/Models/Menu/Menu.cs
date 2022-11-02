@@ -4,11 +4,11 @@ public sealed class Menu<T>
 {
     private readonly List<Entry<T>> _entries;
 
-    private readonly bool _isClosed;
+    private bool _isClosed;
 
     private string _name;
 
-    private ICommand _selected;
+    private T _selected;
 
     public Menu(string name)
     {
@@ -29,6 +29,7 @@ public sealed class Menu<T>
         if (userChoice < _entries.Count)
         {
             _entries[userChoice].Execute();
+            _selected = _entries[userChoice].GetCommand();
         }
         else
         {

@@ -2,9 +2,11 @@ namespace LOCMI.Models.Menu;
 
 using LOCMI.Controllers;
 
-public sealed class MenuDemoCommand : MainMenuCommand
+public class MenuDemoCommand : MainMenuCommand
 {
     private DemoController _demoController;
+
+    public MenuDemoCommand() { }
 
     public MenuDemoCommand(DemoController demoController)
     {
@@ -16,8 +18,9 @@ public sealed class MenuDemoCommand : MainMenuCommand
         return false;
     }
 
-    public new void Execute()
+    public override void Execute()
     {
-        /* TODO */
+        _demoController.Run();
     }
+
 }
