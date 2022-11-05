@@ -13,11 +13,22 @@ public class LoadTestCommand : IExpMenuCommand
 
     private ITest _test;
 
-    public LoadTestCommand() { }
+    public LoadTestCommand() 
+    {
+
+    }
+
+    public LoadTestCommand(CertifierExperimental certifier, ScannerController scannerController) 
+    {
+        _certifier = certifier;
+        _scannerController = scannerController;
+    }
 
     public void Execute()
     {
-        throw new NotImplementedException();
+        string path = _scannerController.Run();
+        //TODO
+        throw new NotImplementedException();        
     }
 
     public bool IsExecutable()

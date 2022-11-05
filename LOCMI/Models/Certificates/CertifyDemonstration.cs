@@ -14,8 +14,11 @@ public class CertifyDemonstration
     }
 
     public void Apply()
-    {
-        /* TODO */
+    {   
+        foreach (Certificate certi in _certificates)
+        {
+            /* TODO */
+        }
     }
 
     public List<Certificate> GetCertificates()

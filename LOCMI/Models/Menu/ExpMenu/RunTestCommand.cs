@@ -12,6 +12,7 @@ public class RunTestCommand : IExpMenuCommand
     }
     public RunTestCommand(CertifierExperimental certifier)
     {
+        _certifier=certifier;
     }
 
     public void Execute()
