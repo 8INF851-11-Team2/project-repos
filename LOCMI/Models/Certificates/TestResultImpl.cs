@@ -6,28 +6,45 @@ public class TestResultImpl : ITestResult
 
     public int RunCounter;
 
+    public List<TestFailure> TestFailures { get; set; }
+
+    public TestResultImpl()
+    {
+        FailureCounter = 0;
+        RunCounter = 0;
+        TestFailures = new List<TestFailure>();
+    }
+
     public void AddFailure(ITest test, string cause)
     {
-        throw new NotImplementedException();
+        FailureCounter++;
+        TestFailures.Add(new TestFailure(cause, test));
     }
 
-    public void GetFailureCount()
+    public int GetFailureCount()
     {
-        throw new NotImplementedException();
+        return FailureCounter;
     }
 
-    public void GetRunCount()
+    public int GetRunCount()
     {
-        throw new NotImplementedException();
+        return RunCounter;
     }
 
     public void IncrementRunCounter()
     {
-        throw new NotImplementedException();
+        RunCounter++;
     }
 
     public bool IsSuccessful()
     {
-        throw new NotImplementedException();
+        if (TestFailures.Count() == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

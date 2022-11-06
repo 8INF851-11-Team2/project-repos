@@ -14,16 +14,39 @@ public class Certificate
 
     private ITestResult _testResult;
 
-    public Certificate(ITest test, Microcontroller microController)
+    private ITest _test;
+
+    public Certificate(ITest test, Microcontroller microController, string name) //Name rajouté 
     {
+        _test = test;
+        _microController = microController;
+        _testResult = new TestResultImpl();
+        _name = name;
+        _isSuccess = false;
+        Date = DateTime.Now.ToShortDateString();
     }
 
     public void Certify()
     {
+        _test.Run(_testResult, _microController);
+        if (_testResult.IsSuccessful())
+        {
+            _isSuccess = true;
+        }
     }
 
     public bool IsSuccess()
     {
-        throw new NotImplementedException();
+        return _isSuccess;
+    }
+
+    public ITestResult GetTestResult()
+    {
+        return _testResult;
+    }
+
+    public string GetName()
+    {
+        return _name;
     }
 }

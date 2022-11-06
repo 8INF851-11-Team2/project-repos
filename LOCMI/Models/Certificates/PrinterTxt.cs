@@ -4,11 +4,19 @@ public class PrinterTxt : IPrinter
 {
     public void Print(List<Certificate> certificates, string path)
     {
-        throw new NotImplementedException();
+        foreach(var certificate in certificates)
+        {
+            Print(certificate, path);
+        }
     }
 
-    public void Print(Certificate certificate, string path)
+    public async void Print(Certificate certificate, string path)
     {
-        throw new NotImplementedException();
+        string[] lines =
+        {
+            certificate.GetName(), certificate.IsSuccess().ToString()
+        };
+
+        await File.WriteAllLinesAsync(path, lines);
     }
 }

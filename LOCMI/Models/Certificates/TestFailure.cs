@@ -8,5 +8,7 @@ public class TestFailure
 
     public TestFailure(string result, ITest testCase)
     {
+        TestCase = testCase;
+        Cause = result;
     }
 }

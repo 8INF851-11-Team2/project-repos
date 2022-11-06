@@ -2,11 +2,12 @@
 
 public interface ITestResult
 {
+    public List<TestFailure> TestFailures { get; set; }
     public void AddFailure(ITest test, string cause);
 
-    public void GetFailureCount();
+    public int GetFailureCount();
 
-    public void GetRunCount();
+    public int GetRunCount();
 
     public void IncrementRunCounter();
 
