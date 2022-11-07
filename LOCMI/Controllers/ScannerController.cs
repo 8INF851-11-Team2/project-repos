@@ -6,9 +6,9 @@ public sealed class ScannerController
 {
     private readonly View _view;
 
-    public ScannerController()
+    public ScannerController(View view)
     {
-        _view = new View();
+        _view = view;
     }
 
     public string Run()

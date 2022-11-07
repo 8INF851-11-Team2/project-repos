@@ -3,10 +3,11 @@
 using LOCMI.Controllers;
 using LOCMI.Certificates;
 using LOCMI.Certificates.Printers;
+using LOCMI.Views;
 
 public class PrintCommand : ICommand
 {
-    private readonly CertifyDemonstration _certifierDemonstration;
+    private readonly CertificateDemonstrationDTO _certifierDemonstration;
 
     private CertifierExperimental _certifierExperimental;
 
@@ -14,9 +15,11 @@ public class PrintCommand : ICommand
 
     private ScannerController _scannerController;
 
-    public PrintCommand(CertifyDemonstration certifyDemonstration)
+    public PrintCommand(CertificateDemonstrationDTO certifyDemonstration)
     {
         _certifierDemonstration = certifyDemonstration;
+        _printer = new PrinterTxt();
+        _scannerController = new ScannerController(new View());
     }
 
     public void Execute()

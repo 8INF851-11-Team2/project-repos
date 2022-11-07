@@ -3,11 +3,9 @@
 public class PrinterTxt : IPrinter
 {
     /// <inheritdoc />
-    public void Print(Certificate certificate, string path)
+    public async void Print(Certificate certificate, string path)
     {
-        using StreamWriter writer = File.CreateText(path);
-
-        // TODO
-        writer.WriteLine("Certificate");
+        using StreamWriter file = new(path, append: true);
+        await file.WriteLineAsync("Certificate : " + certificate.Name + '\n' + "Is success : " + certificate.IsSuccess);
     }
 }

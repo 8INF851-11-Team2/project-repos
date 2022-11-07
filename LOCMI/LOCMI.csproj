@@ -19,7 +19,6 @@
     <None Remove="Models\Menu\ExpMenu\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Menu\DemoMenu\" />
     <Folder Include="Models\Menu\ExpMenu\" />
   </ItemGroup>
 </Project>

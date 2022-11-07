@@ -6,21 +6,25 @@ public class TestingIndividualCommand : IDemoMenuCommand
 {
     private readonly Certificate _certificate;
 
-    private readonly CertifyDemonstration _certifyDemonstration;
+    private readonly CertificateDemonstrationDTO _dto;
 
-    public TestingIndividualCommand() { }
-
-    public TestingIndividualCommand(Certificate certificates, CertifyDemonstration certify)
+    public TestingIndividualCommand(Certificate certificates, CertificateDemonstrationDTO certify)
     {
         _certificate = certificates;
-        _certifyDemonstration = certify;
+        _dto = certify;
     }
 
     public void Execute()
     {
         var certificates = new List<Certificate> { _certificate };
-        _certifyDemonstration.SetCertificates(certificates);
-        _certifyDemonstration.Apply();
+        _dto.SetCertificates(certificates);
+        _dto.Apply();
+        foreach (Certificate cert in certificates)
+        {
+            Console.WriteLine(cert.Name + " : " + cert.IsSuccess);
+        }
+        PrintCommand p = new PrintCommand(_dto);
+        p.Execute();
     }
 
     public bool IsExecutable()

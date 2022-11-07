@@ -2,22 +2,22 @@
 
 using LOCMI.Controllers;
 
-public class CertifyDemonstration
+public class CertificateDemonstrationDTO
 {
     private List<Certificate> _certificates;
 
     private PromptController _promptController;
 
-    public CertifyDemonstration()
+    public CertificateDemonstrationDTO()
     {
         _certificates = new List<Certificate>();
     }
 
     public void Apply()
     {
-        foreach (Certificate certi in _certificates)
+        foreach (Certificate certificate in _certificates)
         {
-            /* TODO */
+            certificate.Certify();
         }
     }
 
