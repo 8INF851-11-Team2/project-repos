@@ -1,4 +1,5 @@
 ﻿using LOCMI.Certificates;
+using LOCMI.Certificates.Printers;
 using LOCMI.Certificates.Tests;
 using LOCMI.Certificates.Tests.TestCases;
 using LOCMI.Core;
@@ -33,6 +34,9 @@ foreach (TestFailure test in list)
 {
     Console.WriteLine("Failure on test : " + test.TestCase.Name + ", reason : " + test.Cause);
 }
+
+var printer = new PrinterTxt();
+printer.Print(certificate, "./certificate.txt");
 
 Console.WriteLine("Press a Key to quit...");
 Console.ReadKey();
