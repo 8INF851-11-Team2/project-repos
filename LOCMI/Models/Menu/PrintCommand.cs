@@ -1,7 +1,8 @@
 ﻿namespace LOCMI.Models.Menu;
 
 using LOCMI.Controllers;
-using LOCMI.Models.Certificates;
+using LOCMI.Certificates;
+using LOCMI.Certificates.Printers;
 
 public class PrintCommand : ICommand
 {

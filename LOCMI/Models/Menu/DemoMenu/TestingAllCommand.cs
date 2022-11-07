@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
-using LOCMI.Models.Certificates;
+using LOCMI.Certificates;
 
 public class TestingAllCommand : IDemoMenuCommand
 {

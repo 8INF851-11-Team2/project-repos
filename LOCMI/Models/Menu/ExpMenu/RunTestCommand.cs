@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
-using LOCMI.Models.Certificates;
+using LOCMI.Certificates;
 
 public class RunTestCommand : IExpMenuCommand
 {

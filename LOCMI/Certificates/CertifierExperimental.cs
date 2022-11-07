@@ -1,7 +1,8 @@
-﻿namespace LOCMI.Models.Certificates;
+﻿namespace LOCMI.Certificates;
 
 using LOCMI.Controllers;
 using LOCMI.Core;
+using LOCMI.Certificates.Tests;
 
 public class CertifierExperimental
 {

@@ -1,5 +1,5 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
-using LOCMI.Models.Certificates;
+using LOCMI.Certificates;
 using LOCMI.Controllers;
 using LOCMI.Core;
 public class LoadMicroControllerCommand : IExpMenuCommand

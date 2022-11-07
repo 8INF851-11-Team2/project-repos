@@ -1,7 +1,7 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
 using LOCMI.Core;
-using LOCMI.Models.Certificates;
+using LOCMI.Certificates.Tests;
 
 public interface ILoader
 {

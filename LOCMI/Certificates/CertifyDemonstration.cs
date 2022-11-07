@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Models.Certificates;
+﻿namespace LOCMI.Certificates;
 
 using LOCMI.Controllers;
 
@@ -14,7 +14,7 @@ public class CertifyDemonstration
     }
 
     public void Apply()
-    {   
+    {
         foreach (Certificate certi in _certificates)
         {
             /* TODO */
