@@ -1,6 +1,5 @@
-﻿namespace LOCMI.Certificates.TestCases;
+﻿namespace LOCMI.Certificates.Tests;
 
-using LOCMI.Certificates.TestResult;
 using LOCMI.Core;
 
 public abstract class TestCase : ITest

@@ -1,6 +1,4 @@
-﻿namespace LOCMI.Certificates;
-
-using LOCMI.Certificates.TestCases;
+﻿namespace LOCMI.Certificates.Tests;
 
 public sealed class TestFailure
 {

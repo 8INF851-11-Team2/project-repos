@@ -1,6 +1,6 @@
 ﻿using LOCMI.Certificates;
-using LOCMI.Certificates.TestCases;
-using LOCMI.Certificates.TestResult;
+using LOCMI.Certificates.Tests;
+using LOCMI.Certificates.Tests.TestCases;
 using LOCMI.Core;
 using LOCMI.Microcontrollers;
 

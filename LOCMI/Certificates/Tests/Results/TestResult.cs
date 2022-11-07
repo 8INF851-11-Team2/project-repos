@@ -1,10 +1,8 @@
-﻿namespace LOCMI.Certificates.TestResult;
+﻿namespace LOCMI.Certificates.Tests.Results;
 
-using LOCMI.Certificates.TestCases;
-
-public sealed class TestResultImpl : ITestResult
+public sealed class TestResult : ITestResult
 {
-    public TestResultImpl()
+    public TestResult()
     {
         FailureCounter = 0;
         RunCounter = 0;

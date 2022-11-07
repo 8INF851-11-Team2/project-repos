@@ -1,6 +1,5 @@
-﻿namespace LOCMI.Certificates.TestCases;
+﻿namespace LOCMI.Certificates.Tests.TestCases;
 
-using LOCMI.Certificates.TestResult;
 using LOCMI.Core;
 
 public sealed class TestCaseB : TestCase

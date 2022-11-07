@@ -1,6 +1,7 @@
 ﻿namespace LOCMI.Certificates;
 
-using LOCMI.Certificates.TestResult;
+using LOCMI.Certificates.Tests;
+using LOCMI.Certificates.Tests.Results;
 using LOCMI.Core;
 
 public sealed class Certificate
@@ -10,7 +11,7 @@ public sealed class Certificate
         Name = name;
         Microcontroller = mc;
         Test = test;
-        TestResult = new TestResultImpl();
+        TestResult = new TestResult();
     }
 
     public DateOnly Date { get; set; }

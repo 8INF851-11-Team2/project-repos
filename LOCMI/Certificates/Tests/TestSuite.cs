@@ -1,6 +1,5 @@
-﻿namespace LOCMI.Certificates;
+﻿namespace LOCMI.Certificates.Tests;
 
-using LOCMI.Certificates.TestResult;
 using LOCMI.Core;
 
 public sealed class TestSuite : ITest
