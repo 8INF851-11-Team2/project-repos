@@ -6,8 +6,6 @@ public sealed class Menu<T> : IEnumerable<T> where T : ICommand
 {
     private readonly List<Entry<T>> _entries;
 
-    private readonly bool _isClosed;
-
     private string _name;
 
     private T? _selected;
@@ -15,9 +13,10 @@ public sealed class Menu<T> : IEnumerable<T> where T : ICommand
     public Menu(string name)
     {
         _name = name;
-        _isClosed = false;
         _entries = new List<Entry<T>>();
     }
+
+    public bool IsClosed { get; } = false;
 
     public void Add(string text, T command)
     {
@@ -48,11 +47,6 @@ public sealed class Menu<T> : IEnumerable<T> where T : ICommand
     public IEnumerator<T> GetEnumerator()
     {
         return _entries.Select(static c => c.Command).GetEnumerator();
-    }
-
-    public bool GetIsClosed()
-    {
-        return _isClosed;
     }
 
     /// <inheritdoc />

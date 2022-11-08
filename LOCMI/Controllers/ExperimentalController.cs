@@ -28,7 +28,7 @@ public sealed class ExperimentalController
             { "Load Microcontroller Test", loadMicroControllerCommand },
         };
 
-        while (!_menuExperimental.GetIsClosed())
+        while (!_menuExperimental.IsClosed)
         {
             List<Entry<IExpMenuCommand>> entries = _menuExperimental.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");

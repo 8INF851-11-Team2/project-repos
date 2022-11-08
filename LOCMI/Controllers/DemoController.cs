@@ -48,7 +48,7 @@ public sealed class DemoController
             { "Testing All", testingAllCommand }, { "Testing Individual", testingIndividualCommand },
         };
 
-        while (!_menuDemo.GetIsClosed())
+        while (!_menuDemo.IsClosed)
         {
             List<Entry<IDemoMenuCommand>> entries = _menuDemo.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");

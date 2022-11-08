@@ -24,7 +24,7 @@ public sealed class InitialController
             { "Display the demo menu", demoCommand }, { "Display the experimental menu", expCommand },
         };
 
-        while (!_mainMenu.GetIsClosed())
+        while (!_mainMenu.IsClosed)
         {
             List<Entry<IMainMenuCommand>> entries = _mainMenu.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");
