@@ -31,7 +31,7 @@ public sealed class Menu<T> : IEnumerable<T> where T : ICommand
         if (userChoice < _entries.Count)
         {
             _entries[userChoice].Execute();
-            _selected = _entries[userChoice].GetCommand();
+            _selected = _entries[userChoice].Command;
         }
         else
         {
@@ -47,7 +47,7 @@ public sealed class Menu<T> : IEnumerable<T> where T : ICommand
     /// <inheritdoc />
     public IEnumerator<T> GetEnumerator()
     {
-        return _entries.Select(static c => c.GetCommand()).GetEnumerator();
+        return _entries.Select(static c => c.Command).GetEnumerator();
     }
 
     public bool GetIsClosed()
