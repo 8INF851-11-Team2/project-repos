@@ -21,15 +21,18 @@ public sealed class InitialController
 
         _mainMenu = new Menu<IMainMenuCommand>("Main Menu")
         {
-            { "Display the demo menu", demoCommand }, { "Display the experimental menu", expCommand },
+            { "Display the demo menu", demoCommand },
+            { "Display the experimental menu", expCommand },
         };
 
         while (!_mainMenu.IsClosed)
         {
-            List<Entry<IMainMenuCommand>> entries = _mainMenu.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");
-            /* display entries */
-            entries.ForEach(static entry => entry.Show());
+
+            foreach ((string displayText, _) in _mainMenu)
+            {
+                Console.WriteLine("-------->  " + displayText);
+            }
 
             /* Read the user's choice */
             string? read = Console.ReadLine();

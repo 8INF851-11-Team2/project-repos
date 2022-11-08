@@ -36,7 +36,12 @@ public sealed class DemoController
         //Certificate
         var certificateA = new Certificate(suiteA, microcontrollerA, "CertificateA");
         var certificateB = new Certificate(suiteB, microcontrollerA, "CertificateB");
-        var certificates = new List<Certificate> { certificateA, certificateB };
+
+        var certificates = new List<Certificate>
+        {
+            certificateA,
+            certificateB,
+        };
 
         var certificateDemonstrationDTO = new CertificateDemonstrationDTO();
 
@@ -45,18 +50,23 @@ public sealed class DemoController
 
         _menuDemo = new Menu<IDemoMenuCommand>("Demonstration Menu")
         {
-            { "Testing All", testingAllCommand }, { "Testing Individual", testingIndividualCommand },
+            { "Testing All", testingAllCommand },
+            { "Testing Individual", testingIndividualCommand },
         };
 
         while (!_menuDemo.IsClosed)
         {
-            List<Entry<IDemoMenuCommand>> entries = _menuDemo.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");
-            /* display entries */
-            entries.ForEach(static entry => entry.Show());
+
+            foreach ((string displayText, _) in _menuDemo)
+            {
+                Console.WriteLine("-------->  " + displayText);
+            }
+
             /* Read the user's choice */
             string? read = Console.ReadLine();
             var userChoice = Convert.ToInt32(read);
+
             /* Execute the user's choice */
             _menuDemo.Execute(userChoice - 1);
         }

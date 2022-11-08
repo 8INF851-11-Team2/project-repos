@@ -2,9 +2,9 @@ namespace LOCMI.Models.Menu;
 
 using System.Collections;
 
-public sealed class Menu<T> : IEnumerable<T> where T : ICommand
+public sealed class Menu<T> : IEnumerable<(string, T)> where T : ICommand
 {
-    private readonly List<Entry<T>> _entries;
+    private readonly List<(string DisplayText, T Command)> _commands = new ();
 
     private string _name;
 
@@ -13,24 +13,23 @@ public sealed class Menu<T> : IEnumerable<T> where T : ICommand
     public Menu(string name)
     {
         _name = name;
-        _entries = new List<Entry<T>>();
     }
 
     public bool IsClosed { get; } = false;
 
     public void Add(string text, T command)
     {
-        var entry = new Entry<T>(text, command);
-
-        _entries.Add(entry);
+        _commands.Add((text, command));
     }
 
     public void Execute(int userChoice)
     {
-        if (userChoice < _entries.Count)
+        if (userChoice < _commands.Count)
         {
-            _entries[userChoice].Execute();
-            _selected = _entries[userChoice].Command;
+            T command = _commands[userChoice].Command;
+
+            command.Execute();
+            _selected = command;
         }
         else
         {
@@ -38,15 +37,10 @@ public sealed class Menu<T> : IEnumerable<T> where T : ICommand
         }
     }
 
-    public List<Entry<T>> GetEntries()
-    {
-        return _entries;
-    }
-
     /// <inheritdoc />
-    public IEnumerator<T> GetEnumerator()
+    public IEnumerator<(string, T)> GetEnumerator()
     {
-        return _entries.Select(static c => c.Command).GetEnumerator();
+        return _commands.GetEnumerator();
     }
 
     /// <inheritdoc />
