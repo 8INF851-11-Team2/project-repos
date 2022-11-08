@@ -14,6 +14,6 @@ public sealed class ScannerController
     public string Run()
     {
         _view.Display("Enter information");
-        return Console.ReadLine() ?? string.Empty;
+        return _view.GetUserEntry() ?? string.Empty;
     }
 }

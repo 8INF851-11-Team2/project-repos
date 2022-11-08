@@ -34,15 +34,35 @@ public sealed class ExperimentalController
 
             foreach ((string displayText, _) in _menuExperimental)
             {
-                Console.WriteLine("-------->  " + displayText);
+                _view.Display("-------->  " + displayText);
             }
 
-            /* Read the user's choice */
-            string? read = Console.ReadLine();
-            var userChoice = Convert.ToInt32(read);
+            string? read;
 
-            /* Execute the user's choice */
-            _menuExperimental.Execute(userChoice);
+            do
+            {
+                read = _view.GetUserEntry();
+            } while (!string.IsNullOrEmpty(read));
+
+            if (!string.IsNullOrEmpty(read))
+            {
+                try
+                {
+                    int userChoice = int.Parse(read);
+                    _menuExperimental.Execute(userChoice - 1);
+                }
+                catch (Exception e)
+                {
+                    if (e is ArgumentOutOfRangeException or FormatException)
+                    {
+                        _view.Display("Please enter a valid choice");
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
         }
     }
 }

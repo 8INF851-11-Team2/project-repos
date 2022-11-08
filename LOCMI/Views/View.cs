@@ -16,4 +16,9 @@ public sealed class View
     {
         Console.WriteLine(message);
     }
+
+    public string? GetUserEntry()
+    {
+        return Console.ReadLine();
+    }
 }

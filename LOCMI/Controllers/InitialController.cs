@@ -31,17 +31,35 @@ public sealed class InitialController
 
             foreach ((string displayText, _) in _mainMenu)
             {
-                Console.WriteLine("-------->  " + displayText);
+                _view.Display("-------->  " + displayText);
             }
 
-            /* Read the user's choice */
-            string? read = Console.ReadLine();
+            string? read;
 
-            /* TODO Handle alpha characters */
-            var userChoice = Convert.ToInt32(read);
+            do
+            {
+                read = _view.GetUserEntry();
+            } while (!string.IsNullOrEmpty(read));
 
-            /* Execute the user's choice */
-            _mainMenu.Execute(userChoice - 1);
+            if (!string.IsNullOrEmpty(read))
+            {
+                try
+                {
+                    int userChoice = int.Parse(read);
+                    _mainMenu.Execute(userChoice - 1);
+                }
+                catch (Exception e)
+                {
+                    if (e is ArgumentOutOfRangeException or FormatException)
+                    {
+                        _view.Display("Please enter a valid choice");
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
         }
     }
 }

@@ -20,11 +20,6 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         _dto.SetCertificates(certificates);
         _dto.Apply();
 
-        foreach (Certificate cert in certificates)
-        {
-            Console.WriteLine(cert.Name + " : " + cert.IsSuccess);
-        }
-
         var p = new PrintCommand(_dto);
         p.Execute();
     }

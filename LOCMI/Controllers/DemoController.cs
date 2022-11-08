@@ -60,15 +60,35 @@ public sealed class DemoController
 
             foreach ((string displayText, _) in _menuDemo)
             {
-                Console.WriteLine("-------->  " + displayText);
+                _view.Display("-------->  " + displayText);
             }
 
-            /* Read the user's choice */
-            string? read = Console.ReadLine();
-            var userChoice = Convert.ToInt32(read);
+            string? read;
 
-            /* Execute the user's choice */
-            _menuDemo.Execute(userChoice - 1);
+            do
+            {
+                read = _view.GetUserEntry();
+            } while (!string.IsNullOrEmpty(read));
+
+            if (!string.IsNullOrEmpty(read))
+            {
+                try
+                {
+                    int userChoice = int.Parse(read);
+                    _menuDemo.Execute(userChoice - 1);
+                }
+                catch (Exception e)
+                {
+                    if (e is ArgumentOutOfRangeException or FormatException)
+                    {
+                        _view.Display("Please enter a valid choice");
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
         }
     }
 }

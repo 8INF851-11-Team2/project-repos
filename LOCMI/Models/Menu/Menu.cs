@@ -33,7 +33,7 @@ public sealed class Menu<T> : IEnumerable<(string, T)> where T : ICommand
         }
         else
         {
-            Console.WriteLine("Please enter a valid choice");
+            throw new ArgumentOutOfRangeException(nameof(userChoice), "choice out of range the available commands");
         }
     }
 
