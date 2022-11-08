@@ -6,7 +6,7 @@ public abstract class MainMenuCommand : ICommand
 {
     protected InitialController Controller;
 
-    public abstract Task Execute();
+    public abstract void Execute();
 
     public abstract bool IsExecutable();
 }

@@ -11,10 +11,9 @@ public sealed class MenuExpCommand : MainMenuCommand
         _expController = experimentalController;
     }
 
-    public override Task Execute()
+    public override void Execute()
     {
         _expController.Run();
-        return Task.CompletedTask;
     }
 
     public override bool IsExecutable()

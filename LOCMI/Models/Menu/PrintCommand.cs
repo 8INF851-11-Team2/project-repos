@@ -22,11 +22,11 @@ public sealed class PrintCommand : ICommand
         _scannerController = new ScannerController(new View());
     }
 
-    public async Task Execute()
+    public void Execute()
     {
         string path = _scannerController.Run();
         IEnumerable<Certificate> c = _certifierDemonstration.GetCertificates();
-        await _printer.Print(c, path);
+        _printer.Print(c, path).Wait();
     }
 
     public bool IsExecutable()

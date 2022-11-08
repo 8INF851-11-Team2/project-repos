@@ -11,10 +11,9 @@ public sealed class MenuDemoCommand : MainMenuCommand
         _demoController = demoController;
     }
 
-    public override Task Execute()
+    public override void Execute()
     {
         _demoController.Run();
-        return Task.CompletedTask;
     }
 
     public override bool IsExecutable()

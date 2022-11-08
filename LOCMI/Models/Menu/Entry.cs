@@ -4,9 +4,9 @@ using LOCMI.Models.Menu.DemoMenu;
 
 public sealed class Entry<T>
 {
-    private readonly string _title;
-
     private readonly T _command;
+
+    private readonly string _title;
 
     public Entry(string title, T command)
     {
