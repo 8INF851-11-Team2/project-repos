@@ -1,6 +1,8 @@
 namespace LOCMI.Models.Menu;
 
-public sealed class Menu<T>
+using System.Collections;
+
+public sealed class Menu<T> : IEnumerable<T>
 {
     private readonly List<Entry<T>> _entries;
 
@@ -8,7 +10,7 @@ public sealed class Menu<T>
 
     private string _name;
 
-    private T _selected;
+    private T? _selected;
 
     public Menu(string name)
     {
@@ -42,8 +44,20 @@ public sealed class Menu<T>
         return _entries;
     }
 
+    /// <inheritdoc />
+    public IEnumerator<T> GetEnumerator()
+    {
+        return _entries.Select(static c => c.GetCommand()).GetEnumerator();
+    }
+
     public bool GetIsClosed()
     {
         return _isClosed;
+    }
+
+    /// <inheritdoc />
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

@@ -17,13 +17,16 @@ public sealed class ExperimentalController
 
     public void Run()
     {
-        _menuExperimental = new Menu<IExpMenuCommand>("Experimental Menu");
         var loadTestCommand = new LoadTestCommand();
         var runTestCommand = new RunTestCommand();
         var loadMicroControllerCommand = new LoadMicrocontrollerCommand();
-        _menuExperimental.Add("Load Test", loadTestCommand);
-        _menuExperimental.Add("Run Test", runTestCommand);
-        _menuExperimental.Add("Load Microcontroller Test", loadMicroControllerCommand);
+
+        _menuExperimental = new Menu<IExpMenuCommand>("Experimental Menu")
+        {
+            { "Load Test", loadTestCommand },
+            { "Run Test", runTestCommand },
+            { "Load Microcontroller Test", loadMicroControllerCommand },
+        };
 
         while (!_menuExperimental.GetIsClosed())
         {

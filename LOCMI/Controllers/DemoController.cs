@@ -40,11 +40,13 @@ public sealed class DemoController
 
         var certificateDemonstrationDTO = new CertificateDemonstrationDTO();
 
-        _menuDemo = new Menu<IDemoMenuCommand>("Demonstration Menu");
         var testingAllCommand = new TestingAllCommand(certificates, certificateDemonstrationDTO);
         var testingIndividualCommand = new TestingIndividualCommand(certificateA, certificateDemonstrationDTO);
-        _menuDemo.Add("Testing All", testingAllCommand);
-        _menuDemo.Add("Testing Individual", testingIndividualCommand);
+
+        _menuDemo = new Menu<IDemoMenuCommand>("Demonstration Menu")
+        {
+            { "Testing All", testingAllCommand }, { "Testing Individual", testingIndividualCommand },
+        };
 
         while (!_menuDemo.GetIsClosed())
         {

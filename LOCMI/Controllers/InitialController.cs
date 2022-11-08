@@ -12,13 +12,17 @@ public sealed class InitialController
     public void Run()
     {
         _view = new View();
+
         var demoController = new DemoController(_view);
         var expController = new ExperimentalController(_view);
+
         var demoCommand = new MenuDemoCommand(demoController);
         var expCommand = new MenuExpCommand(expController);
-        _mainMenu = new Menu<MainMenuCommand>("Main Menu");
-        _mainMenu.Add("Display the demo menu", demoCommand);
-        _mainMenu.Add("Display the experimental menu", expCommand);
+
+        _mainMenu = new Menu<MainMenuCommand>("Main Menu")
+        {
+            { "Display the demo menu", demoCommand }, { "Display the experimental menu", expCommand },
+        };
 
         while (!_mainMenu.GetIsClosed())
         {
@@ -26,10 +30,13 @@ public sealed class InitialController
             _view.Display("\nChoose a choice from the menu below:");
             /* display entries */
             entries.ForEach(static entry => entry.Show());
+
             /* Read the user's choice */
             string? read = Console.ReadLine();
+
             /* TODO Handle alpha characters */
             var userChoice = Convert.ToInt32(read);
+
             /* Execute the user's choice */
             _mainMenu.Execute(userChoice - 1);
         }
