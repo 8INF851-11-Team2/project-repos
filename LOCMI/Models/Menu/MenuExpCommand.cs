@@ -4,20 +4,21 @@ using LOCMI.Controllers;
 
 public sealed class MenuExpCommand : MainMenuCommand
 {
-    private ExperimentalController _expController;
+    private readonly ExperimentalController _expController;
 
     public MenuExpCommand(ExperimentalController experimentalController)
     {
         _expController = experimentalController;
     }
 
+    public override Task Execute()
+    {
+        _expController.Run();
+        return Task.CompletedTask;
+    }
+
     public override bool IsExecutable()
     {
         return false;
-    }
-
-    public override void Execute()
-    {
-        _expController.Run();
     }
 }

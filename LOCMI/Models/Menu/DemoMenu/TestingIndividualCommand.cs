@@ -2,7 +2,7 @@
 
 using LOCMI.Certificates;
 
-public class TestingIndividualCommand : IDemoMenuCommand
+public sealed class TestingIndividualCommand : IDemoMenuCommand
 {
     private readonly Certificate _certificate;
 
@@ -19,11 +19,13 @@ public class TestingIndividualCommand : IDemoMenuCommand
         var certificates = new List<Certificate> { _certificate };
         _dto.SetCertificates(certificates);
         _dto.Apply();
+
         foreach (Certificate cert in certificates)
         {
             Console.WriteLine(cert.Name + " : " + cert.IsSuccess);
         }
-        PrintCommand p = new PrintCommand(_dto);
+
+        var p = new PrintCommand(_dto);
         p.Execute();
     }
 

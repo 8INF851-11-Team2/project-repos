@@ -4,7 +4,7 @@ public sealed class Menu<T>
 {
     private readonly List<Entry<T>> _entries;
 
-    private bool _isClosed;
+    private readonly bool _isClosed;
 
     private string _name;
 

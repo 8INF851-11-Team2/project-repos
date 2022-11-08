@@ -2,7 +2,7 @@
 
 using LOCMI.Controllers;
 
-public class CertificateDemonstrationDTO
+public sealed class CertificateDemonstrationDTO
 {
     private List<Certificate> _certificates;
 
@@ -21,7 +21,7 @@ public class CertificateDemonstrationDTO
         }
     }
 
-    public List<Certificate> GetCertificates()
+    public IEnumerable<Certificate> GetCertificates()
     {
         return _certificates;
     }

@@ -1,25 +1,24 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
-using LOCMI.Controllers;
 using LOCMI.Certificates;
 using LOCMI.Certificates.Tests;
+using LOCMI.Controllers;
 
-public class LoadTestCommand : IExpMenuCommand
+public sealed class LoadTestCommand : IExpMenuCommand
 {
+    private readonly ScannerController _scannerController;
+
     private CertifierExperimental _certifier;
 
     private ILoader _loader;
 
-    private ScannerController _scannerController;
-
     private ITest _test;
 
-    public LoadTestCommand() 
+    public LoadTestCommand()
     {
-
     }
 
-    public LoadTestCommand(CertifierExperimental certifier, ScannerController scannerController) 
+    public LoadTestCommand(CertifierExperimental certifier, ScannerController scannerController)
     {
         _certifier = certifier;
         _scannerController = scannerController;
@@ -29,7 +28,7 @@ public class LoadTestCommand : IExpMenuCommand
     {
         string path = _scannerController.Run();
         //TODO
-        throw new NotImplementedException();        
+        throw new NotImplementedException();
     }
 
     public bool IsExecutable()

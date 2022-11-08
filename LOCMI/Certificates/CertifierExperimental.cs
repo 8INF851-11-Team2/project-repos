@@ -1,8 +1,7 @@
 ﻿namespace LOCMI.Certificates;
 
-using LOCMI.Controllers;
-using LOCMI.Core;
 using LOCMI.Certificates.Tests;
+using LOCMI.Core;
 
 public class CertifierExperimental
 {
@@ -10,11 +9,7 @@ public class CertifierExperimental
 
     private Microcontroller _microController;
 
-    private ITest _test;
-
-    public CertifierExperimental(PromptController promptController)
-    {
-    }
+    public ITest Test { get; set; }
 
     public void Apply()
     {
@@ -23,10 +18,5 @@ public class CertifierExperimental
     public void SetMicrocontroller(Microcontroller microController)
     {
         _microController = microController;
-    }
-
-    public void SetTest(ITest test)
-    {
-        _test = test;
     }
 }

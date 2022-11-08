@@ -1,15 +1,14 @@
 namespace LOCMI.Controllers;
 
 using LOCMI.Models.Menu;
-using LOCMI.Models.Menu.DemoMenu;
 using LOCMI.Models.Menu.ExpMenu;
 using LOCMI.Views;
 
 public sealed class ExperimentalController
 {
-    private Menu<IExpMenuCommand> _menuExperimental;
+    private readonly View _view;
 
-    private View _view;
+    private Menu<IExpMenuCommand> _menuExperimental;
 
     public ExperimentalController(View view)
     {
@@ -19,16 +18,15 @@ public sealed class ExperimentalController
     public void Run()
     {
         _menuExperimental = new Menu<IExpMenuCommand>("Experimental Menu");
-        LoadTestCommand loadTestCommand = new LoadTestCommand();
-        RunTestCommand runTestCommand = new RunTestCommand();
-        LoadMicroControllerCommand loadMicroControllerCommand = new LoadMicroControllerCommand();
+        var loadTestCommand = new LoadTestCommand();
+        var runTestCommand = new RunTestCommand();
+        var loadMicroControllerCommand = new LoadMicrocontrollerCommand();
         _menuExperimental.Add("Load Test", loadTestCommand);
         _menuExperimental.Add("Run Test", runTestCommand);
         _menuExperimental.Add("Load Microcontroller Test", loadMicroControllerCommand);
 
         while (!_menuExperimental.GetIsClosed())
         {
-
             List<Entry<IExpMenuCommand>> entries = _menuExperimental.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");
             /* display entries */

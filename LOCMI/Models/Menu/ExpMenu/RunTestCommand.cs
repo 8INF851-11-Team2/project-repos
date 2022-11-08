@@ -2,17 +2,17 @@
 
 using LOCMI.Certificates;
 
-public class RunTestCommand : IExpMenuCommand
+public sealed class RunTestCommand : IExpMenuCommand
 {
     private CertifierExperimental _certifier;
 
     public RunTestCommand()
     {
-
     }
+
     public RunTestCommand(CertifierExperimental certifier)
     {
-        _certifier=certifier;
+        _certifier = certifier;
     }
 
     public void Execute()

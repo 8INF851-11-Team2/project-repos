@@ -6,7 +6,7 @@ public sealed class Entry<T>
 {
     private readonly string _title;
 
-    private T _command;
+    private readonly T _command;
 
     public Entry(string title, T command)
     {
@@ -16,22 +16,22 @@ public sealed class Entry<T>
 
     public void Execute()
     {
-        switch(_command)
+        switch (_command)
         {
             case MenuDemoCommand:
-                MenuDemoCommand menuDemo = (MenuDemoCommand) (object) _command;
+                var menuDemo = (MenuDemoCommand) (object) _command;
                 menuDemo.Execute();
                 break;
             case MenuExpCommand:
-                MenuExpCommand menuExp = (MenuExpCommand) (object) _command;
+                var menuExp = (MenuExpCommand) (object) _command;
                 menuExp.Execute();
                 break;
             case TestingAllCommand:
-                TestingAllCommand testingAll = (TestingAllCommand) (object) _command;
+                var testingAll = (TestingAllCommand) (object) _command;
                 testingAll.Execute();
                 break;
             case TestingIndividualCommand:
-                TestingIndividualCommand testingIndividual = (TestingIndividualCommand) (object) _command;
+                var testingIndividual = (TestingIndividualCommand) (object) _command;
                 testingIndividual.Execute();
                 break;
         }

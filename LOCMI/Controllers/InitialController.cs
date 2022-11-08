@@ -17,8 +17,8 @@ public sealed class InitialController
         var demoCommand = new MenuDemoCommand(demoController);
         var expCommand = new MenuExpCommand(expController);
         _mainMenu = new Menu<MainMenuCommand>("Main Menu");
-        _mainMenu.Add("Afficher le menu démonstration", demoCommand);
-        _mainMenu.Add("Afficher le menu expérimental", expCommand);
+        _mainMenu.Add("Display the demo menu", demoCommand);
+        _mainMenu.Add("Display the experimental menu", expCommand);
 
         while (!_mainMenu.GetIsClosed())
         {

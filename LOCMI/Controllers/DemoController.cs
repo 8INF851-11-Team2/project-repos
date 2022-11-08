@@ -1,19 +1,19 @@
 ﻿namespace LOCMI.Controllers;
 
-using LOCMI.Models.Menu.DemoMenu;
-using LOCMI.Models.Menu;
-using LOCMI.Views;
-using LOCMI.Core;
-using LOCMI.Microcontrollers;
+using LOCMI.Certificates;
 using LOCMI.Certificates.Tests;
 using LOCMI.Certificates.Tests.TestCases;
-using LOCMI.Certificates;
+using LOCMI.Core;
+using LOCMI.Microcontrollers;
+using LOCMI.Models.Menu;
+using LOCMI.Models.Menu.DemoMenu;
+using LOCMI.Views;
 
 public sealed class DemoController
 {
-    private Menu<IDemoMenuCommand> _menuDemo;
+    private readonly View _view;
 
-    private View _view;
+    private Menu<IDemoMenuCommand> _menuDemo;
 
     public DemoController(View view)
     {
@@ -28,27 +28,26 @@ public sealed class DemoController
         //Init TestSuite
         ITest testA = new TestCaseA("TestCaseA");
         ITest testB = new TestCaseB("TestCaseB");
-        TestSuite suiteA = new TestSuite();
+        var suiteA = new TestSuite();
         suiteA.AddTest(testA);
-        TestSuite suiteB = new TestSuite();
+        var suiteB = new TestSuite();
         suiteB.AddTest(testB);
 
         //Certificate
-        Certificate certificatA = new Certificate(suiteA, microcontrollerA, "CertificatA");
-        Certificate certificatB = new Certificate(suiteB, microcontrollerA, "CertificatB");
-        List<Certificate> certificates = new List<Certificate>() { certificatA, certificatB };
+        var certificateA = new Certificate(suiteA, microcontrollerA, "CertificateA");
+        var certificateB = new Certificate(suiteB, microcontrollerA, "CertificateB");
+        var certificates = new List<Certificate> { certificateA, certificateB };
 
-        CertificateDemonstrationDTO certificateDemonstrationDTO = new CertificateDemonstrationDTO();
+        var certificateDemonstrationDTO = new CertificateDemonstrationDTO();
 
         _menuDemo = new Menu<IDemoMenuCommand>("Demonstration Menu");
-        TestingAllCommand testingAllCommand = new TestingAllCommand(certificates, certificateDemonstrationDTO);
-        TestingIndividualCommand testingIndividualCommand = new TestingIndividualCommand(certificatA, certificateDemonstrationDTO);
+        var testingAllCommand = new TestingAllCommand(certificates, certificateDemonstrationDTO);
+        var testingIndividualCommand = new TestingIndividualCommand(certificateA, certificateDemonstrationDTO);
         _menuDemo.Add("Testing All", testingAllCommand);
         _menuDemo.Add("Testing Individual", testingIndividualCommand);
 
         while (!_menuDemo.GetIsClosed())
-        { 
-
+        {
             List<Entry<IDemoMenuCommand>> entries = _menuDemo.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");
             /* display entries */
@@ -59,6 +58,5 @@ public sealed class DemoController
             /* Execute the user's choice */
             _menuDemo.Execute(userChoice - 1);
         }
-
     }
 }

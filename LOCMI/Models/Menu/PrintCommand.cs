@@ -1,19 +1,19 @@
 ﻿namespace LOCMI.Models.Menu;
 
-using LOCMI.Controllers;
 using LOCMI.Certificates;
 using LOCMI.Certificates.Printers;
+using LOCMI.Controllers;
 using LOCMI.Views;
 
-public class PrintCommand : ICommand
+public sealed class PrintCommand : ICommand
 {
     private readonly CertificateDemonstrationDTO _certifierDemonstration;
 
+    private readonly IPrinter _printer;
+
+    private readonly ScannerController _scannerController;
+
     private CertifierExperimental _certifierExperimental;
-
-    private IPrinter _printer;
-
-    private ScannerController _scannerController;
 
     public PrintCommand(CertificateDemonstrationDTO certifyDemonstration)
     {
@@ -22,11 +22,11 @@ public class PrintCommand : ICommand
         _scannerController = new ScannerController(new View());
     }
 
-    public void Execute()
+    public async Task Execute()
     {
         string path = _scannerController.Run();
-        List<Certificate> c = _certifierDemonstration.GetCertificates();
-        _printer.Print(c, path);
+        IEnumerable<Certificate> c = _certifierDemonstration.GetCertificates();
+        await _printer.Print(c, path);
     }
 
     public bool IsExecutable()

@@ -2,7 +2,7 @@
 
 public interface ICommand
 {
-    public void Execute();
+    public Task Execute();
 
     public bool IsExecutable();
 }

@@ -1,25 +1,27 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
+
 using LOCMI.Certificates;
 using LOCMI.Controllers;
 using LOCMI.Core;
-public class LoadMicroControllerCommand : IExpMenuCommand
+
+public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 {
-    private CertifierExperimental _certifier;
-    
-    private ScannerController _scannerController;
+    private readonly CertifierExperimental _certifier;
+
+    private readonly ScannerController _scannerController;
 
     private ILoader _loader;
 
-    public LoadMicroControllerCommand()
+    public LoadMicrocontrollerCommand()
     {
-        
     }
 
-    public LoadMicroControllerCommand(CertifierExperimental certifier, ScannerController scannerController) 
-    { 
+    public LoadMicrocontrollerCommand(CertifierExperimental certifier, ScannerController scannerController)
+    {
         _scannerController = scannerController;
         _certifier = certifier;
     }
+
     public void Execute()
     {
         string path = _scannerController.Run();
