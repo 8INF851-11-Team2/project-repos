@@ -37,12 +37,7 @@ public sealed class ExperimentalController
                 _view.Display("-------->  " + displayText);
             }
 
-            string? read;
-
-            do
-            {
-                read = _view.GetUserEntry();
-            } while (!string.IsNullOrEmpty(read));
+            string? read = _view.GetUserEntry();
 
             if (!string.IsNullOrEmpty(read))
             {
