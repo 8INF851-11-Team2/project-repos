@@ -2,7 +2,7 @@ namespace LOCMI.Models.Menu;
 
 using System.Collections;
 
-public sealed class Menu<T> : IEnumerable<T>
+public sealed class Menu<T> : IEnumerable<T> where T : ICommand
 {
     private readonly List<Entry<T>> _entries;
 

@@ -1,8 +1,5 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
-public interface IDemoMenuCommand
+public interface IDemoMenuCommand : ICommand
 {
-    public void Execute();
-
-    public bool IsExecutable();
 }

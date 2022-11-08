@@ -2,7 +2,7 @@ namespace LOCMI.Models.Menu;
 
 using LOCMI.Controllers;
 
-public sealed class MenuDemoCommand : MainMenuCommand
+public sealed class MenuDemoCommand : IMainMenuCommand
 {
     private readonly DemoController _demoController;
 
@@ -11,12 +11,12 @@ public sealed class MenuDemoCommand : MainMenuCommand
         _demoController = demoController;
     }
 
-    public override void Execute()
+    public void Execute()
     {
         _demoController.Run();
     }
 
-    public override bool IsExecutable()
+    public bool IsExecutable()
     {
         return false;
     }

@@ -5,7 +5,7 @@ using LOCMI.Views;
 
 public sealed class InitialController
 {
-    private Menu<MainMenuCommand>? _mainMenu;
+    private Menu<IMainMenuCommand>? _mainMenu;
 
     private View? _view;
 
@@ -19,14 +19,14 @@ public sealed class InitialController
         var demoCommand = new MenuDemoCommand(demoController);
         var expCommand = new MenuExpCommand(expController);
 
-        _mainMenu = new Menu<MainMenuCommand>("Main Menu")
+        _mainMenu = new Menu<IMainMenuCommand>("Main Menu")
         {
             { "Display the demo menu", demoCommand }, { "Display the experimental menu", expCommand },
         };
 
         while (!_mainMenu.GetIsClosed())
         {
-            List<Entry<MainMenuCommand>> entries = _mainMenu.GetEntries();
+            List<Entry<IMainMenuCommand>> entries = _mainMenu.GetEntries();
             _view.Display("\nChoose a choice from the menu below:");
             /* display entries */
             entries.ForEach(static entry => entry.Show());
