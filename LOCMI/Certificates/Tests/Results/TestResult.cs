@@ -15,10 +15,10 @@ public sealed class TestResult : ITestResult
 
     public List<TestFailure> TestFailures { get; set; }
 
-    public void AddFailure(TestCase testCase, string cause)
+    public void AddFailure(TestCase testCase, IEnumerable<string> causes)
     {
         FailureCounter++;
-        TestFailures.Add(new TestFailure(cause, testCase));
+        TestFailures.Add(new TestFailure(causes, testCase));
     }
 
     public int GetFailureCount()

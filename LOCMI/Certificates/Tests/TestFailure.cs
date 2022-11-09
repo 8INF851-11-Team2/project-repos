@@ -2,13 +2,13 @@
 
 public sealed class TestFailure
 {
-    public TestFailure(string r, TestCase tc)
+    public TestFailure(IEnumerable<string> causes, TestCase testCase)
     {
-        Cause = r;
-        TestCase = tc;
+        Causes = causes;
+        TestCase = testCase;
     }
 
-    public string Cause { get; set; }
+    public IEnumerable<string> Causes { get; set; }
 
     public TestCase TestCase { get; set; }
 }
