@@ -9,18 +9,15 @@ using LOCMI.Models.Menu;
 using LOCMI.Models.Menu.DemoMenu;
 using LOCMI.Views;
 
-public sealed class DemoController
+public sealed class DemoController : MenuController<IDemoMenuCommand>
 {
-    private readonly View _view;
-
-    private Menu<IDemoMenuCommand> _menuDemo;
-
     public DemoController(View view)
+        : base(view)
     {
-        _view = view;
     }
 
-    public void Run()
+    /// <inheritdoc />
+    protected override Menu<IDemoMenuCommand> SetMenu()
     {
         var builder = new MicrocontrollerABuilder();
         Microcontroller microcontrollerA = builder.GetResult();
@@ -48,42 +45,10 @@ public sealed class DemoController
         var testingAllCommand = new TestingAllCommand(certificates, certificateDemonstrationDTO);
         var testingIndividualCommand = new TestingIndividualCommand(certificateA, certificateDemonstrationDTO);
 
-        _menuDemo = new Menu<IDemoMenuCommand>("Demonstration Menu")
+        return new Menu<IDemoMenuCommand>("Demonstration Menu")
         {
             { "Testing All", testingAllCommand },
             { "Testing Individual", testingIndividualCommand },
         };
-
-        while (!_menuDemo.IsClosed)
-        {
-            _view.Display("\nChoose a choice from the menu below:");
-
-            foreach ((string displayText, _) in _menuDemo)
-            {
-                _view.Display("-------->  " + displayText);
-            }
-
-            string? read = _view.GetUserEntry();
-
-            if (!string.IsNullOrEmpty(read))
-            {
-                try
-                {
-                    int userChoice = int.Parse(read);
-                    _menuDemo.Execute(userChoice - 1);
-                }
-                catch (Exception e)
-                {
-                    if (e is ArgumentOutOfRangeException or FormatException)
-                    {
-                        _view.Display("Please enter a valid choice");
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-        }
     }
 }
