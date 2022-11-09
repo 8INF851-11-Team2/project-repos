@@ -9,7 +9,7 @@ public abstract class TestCase : ITest
         Name = name;
     }
 
-    public string Name { get; set; }
+    public string Name { get; }
 
     public abstract void Run(ITestResult testResult, Microcontroller mc);
 }
