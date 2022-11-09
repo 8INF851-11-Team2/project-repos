@@ -14,4 +14,8 @@
     <Compile Remove="Core\Utils\Class2.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\Menu\DemoMenu\" />
+    <None Remove="Models\Menu\ExpMenu\" />
+  </ItemGroup>
 </Project>

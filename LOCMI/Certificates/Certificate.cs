@@ -12,9 +12,10 @@ public sealed class Certificate
         Microcontroller = mc;
         Test = test;
         TestResult = new TestResult();
+        Date = DateTime.Now;
     }
 
-    public DateOnly Date { get; set; }
+    public DateTime Date { get; set; }
 
     public bool IsSuccess { get; set; }
 
