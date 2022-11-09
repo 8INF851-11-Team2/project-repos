@@ -1,13 +1,11 @@
 ﻿namespace LOCMI.Certificates.Printers;
 
-public class PrinterTxt : IPrinter
+public sealed class PrinterTxt : IPrinter
 {
     /// <inheritdoc />
-    public void Print(Certificate certificate, string path)
+    public async Task Print(Certificate certificate, string path)
     {
-        using StreamWriter writer = File.CreateText(path);
-
-        // TODO
-        writer.WriteLine("Certificate");
+        await using StreamWriter file = new (path, true);
+        await file.WriteLineAsync("Certificate : " + certificate.Name + '\n' + "Is success : " + certificate.IsSuccess);
     }
 }
