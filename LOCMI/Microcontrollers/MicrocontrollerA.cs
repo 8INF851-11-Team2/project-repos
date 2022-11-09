@@ -1,6 +1,7 @@
 ﻿namespace LOCMI.Microcontrollers;
 
 using LOCMI.Core.Utils;
+using LOCMI.Core.Utils.PortTypes;
 
 public sealed class MicrocontrollerA
 {
@@ -21,9 +22,9 @@ public sealed class MicrocontrollerA
 
     public static Ports Ports => new ()
     {
-        { 0, EPortType.Ground },
-        { 1, EPortType.Power },
-        { 2, EPortType.Data },
-        { 3, EPortType.Data },
+        { 0, new GroundPort() },
+        { 1, new PowerPort(3.3) },
+        { 2, new DataPort() },
+        { 3, new GroundPort() },
     };
 }
