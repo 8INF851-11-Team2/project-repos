@@ -12,29 +12,19 @@ public sealed class TestCase1 : TestCase
     {
     }
 
-    public override void Run(ITestResult testResult, Microcontroller mc)
+    /// <inheritdoc />
+    protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
-        if (mc.Ports != null)
+        if (microcontroller.Ports != null)
         {
-            IEnumerable<PowerPort> powerPorts = mc.Ports.OfType<PowerPort>();
+            IEnumerable<PowerPort> powerPorts = microcontroller.Ports.OfType<PowerPort>();
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            IEnumerable<string> failureCauses = s_testedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
-                                                               .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
-                                                               .ToList();
+            return s_testedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
+                                  .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
+                                  .ToList();
+        }
 
-            if (failureCauses.Any())
-            {
-                testResult.AddFailure(this, failureCauses);
-            }
-            else
-            {
-                testResult.IncrementRunCounter();
-            }
-        }
-        else
-        {
-            testResult.AddFailure(this, new[] { "The microcontroller has no ports" });
-        }
+        return new[] { "The microcontroller has no ports" };
     }
 }

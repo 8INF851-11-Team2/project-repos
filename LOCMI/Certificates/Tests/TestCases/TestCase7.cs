@@ -10,15 +10,10 @@ public class TestCase7 : TestCase
     }
 
     /// <inheritdoc />
-    public override void Run(ITestResult testResult, Microcontroller mc)
+    protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
-        if (mc.Disk != null)
-        {
-            testResult.IncrementRunCounter();
-        }
-        else
-        {
-            testResult.AddFailure(this, new[] { "The microcontroller hasn't hard disk" });
-        }
+        return microcontroller.Disk != null
+                   ? Array.Empty<string>()
+                   : new[] { "The microcontroller hasn't hard disk" };
     }
 }

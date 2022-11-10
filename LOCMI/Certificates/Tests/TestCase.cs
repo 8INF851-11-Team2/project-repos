@@ -11,5 +11,19 @@ public abstract class TestCase : ITest
 
     public string Name { get; }
 
-    public abstract void Run(ITestResult testResult, Microcontroller mc);
+    public void Run(ITestResult testResult, Microcontroller mc)
+    {
+        IEnumerable<string> failureCauses = Test(mc).ToList();
+
+        if (failureCauses.Any())
+        {
+            testResult.AddFailure(this, failureCauses);
+        }
+        else
+        {
+            testResult.IncrementRunCounter();
+        }
+    }
+
+    protected abstract IEnumerable<string> Test(Microcontroller microcontroller);
 }
