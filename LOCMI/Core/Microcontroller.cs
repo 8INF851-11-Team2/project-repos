@@ -16,5 +16,7 @@ public sealed class Microcontroller
 
     public string? Name { get; set; }
 
+    public OS? OS { get; set; }
+
     public Ports? Ports { get; set; }
 }

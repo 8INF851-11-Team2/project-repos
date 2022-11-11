@@ -14,6 +14,8 @@ public interface IMicrocontrollerAdapter
 
     public IMicrocontrollerAdapter BuildName();
 
+    public IMicrocontrollerAdapter BuildOS();
+
     public IMicrocontrollerAdapter BuildPort();
 
     public Microcontroller GetResult();
