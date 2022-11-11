@@ -18,5 +18,9 @@ public class TestCase9 : TestCase
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
+        if (!microcontroller.IsMaintainable)
+        {
+            yield return "The microcontroller isn't maintainable";
+        }
     }
 }
