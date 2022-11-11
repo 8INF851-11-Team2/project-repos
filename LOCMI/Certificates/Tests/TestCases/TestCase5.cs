@@ -5,13 +5,12 @@ using LOCMI.Core.Utils;
 
 public class TestCase5 : TestCase
 {
-    /// <inheritdoc />
     public TestCase5()
         : base("Languages")
     {
     }
 
-    public IEnumerable<Language> MandatoryLanguages { get; set; } = new List<Language>();
+    public IEnumerable<Language> MandatoryLanguages { get; init; } = new List<Language>();
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
