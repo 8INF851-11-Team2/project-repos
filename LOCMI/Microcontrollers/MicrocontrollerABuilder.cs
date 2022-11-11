@@ -47,6 +47,12 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     }
 
     /// <inheritdoc />
+    public IMicrocontrollerAdapter BuildMaintenance()
+    {
+        return this;
+    }
+
+    /// <inheritdoc />
     public IMicrocontrollerAdapter BuildName()
     {
         _microcontroller.Name = MicrocontrollerA.Name;

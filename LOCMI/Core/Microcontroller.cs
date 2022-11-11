@@ -12,6 +12,8 @@ public sealed class Microcontroller
 
     public Identification? Identification { get; set; }
 
+    public bool IsMaintainable { get; set; } = false;
+
     public IEnumerable<Language>? Languages { get; set; }
 
     public string? Name { get; set; }
