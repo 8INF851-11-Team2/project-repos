@@ -41,7 +41,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildLanguage()
     {
-        _microcontroller.Language = MicrocontrollerA.Language;
+        _microcontroller.Languages = MicrocontrollerA.Languages;
 
         return this;
     }

@@ -12,7 +12,7 @@ public sealed class Microcontroller
 
     public Identification? Identification { get; set; }
 
-    public Language? Language { get; set; }
+    public IEnumerable<Language>? Languages { get; set; }
 
     public string? Name { get; set; }
 
