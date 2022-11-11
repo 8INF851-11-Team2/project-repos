@@ -46,16 +46,17 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
         return this;
     }
 
-    public IMicrocontrollerAdapter BuildLanguageCode()
-    {
-        return this;
-    }
-
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildName()
     {
         _microcontroller.Name = MicrocontrollerA.Name;
 
+        return this;
+    }
+
+    /// <inheritdoc />
+    public IMicrocontrollerAdapter BuildOS()
+    {
         return this;
     }
 
