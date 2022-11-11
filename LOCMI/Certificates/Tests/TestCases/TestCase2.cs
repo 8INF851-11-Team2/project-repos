@@ -5,16 +5,14 @@ using LOCMI.Core.Utils;
 
 public class TestCase2 : TestCase
 {
-    private readonly Dimension _maxDimension;
-
-    private readonly Dimension _minDimension;
-
-    public TestCase2(Dimension maxDimension, Dimension minDimension)
+    public TestCase2()
         : base("Validation of physical specifications")
     {
-        _maxDimension = maxDimension;
-        _minDimension = minDimension;
     }
+
+    public Dimension MaxDimension { get; init; } = new (double.MaxValue, double.MaxValue, double.MaxValue, double.MaxValue);
+
+    public Dimension MinDimension { get; init; } = new (0, 0, 0, 0);
 
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
@@ -36,47 +34,47 @@ public class TestCase2 : TestCase
 
     private IEnumerable<string> TestMaxDimension(Dimension dimension)
     {
-        if (dimension.Length > _maxDimension.Length)
+        if (dimension.Length > MaxDimension.Length)
         {
-            yield return $"The length of the microcontroller ({dimension.Length}) is greater than the maximum length ({_maxDimension.Length})";
+            yield return $"The length of the microcontroller ({dimension.Length}) is greater than the maximum length ({MaxDimension.Length})";
         }
 
-        if (dimension.Width > _maxDimension.Width)
+        if (dimension.Width > MaxDimension.Width)
         {
-            yield return $"The width of the microcontroller ({dimension.Width}) is greater than the maximum length ({_maxDimension.Width})";
+            yield return $"The width of the microcontroller ({dimension.Width}) is greater than the maximum length ({MaxDimension.Width})";
         }
 
-        if (dimension.Height > _maxDimension.Height)
+        if (dimension.Height > MaxDimension.Height)
         {
-            yield return $"The height of the microcontroller ({dimension.Height}) is greater than the maximum length ({_maxDimension.Height})";
+            yield return $"The height of the microcontroller ({dimension.Height}) is greater than the maximum length ({MaxDimension.Height})";
         }
 
-        if (dimension.Weight > _maxDimension.Weight)
+        if (dimension.Weight > MaxDimension.Weight)
         {
-            yield return $"The weight of the microcontroller ({dimension.Weight}) is greater than the maximum length ({_maxDimension.Weight})";
+            yield return $"The weight of the microcontroller ({dimension.Weight}) is greater than the maximum length ({MaxDimension.Weight})";
         }
     }
 
     private IEnumerable<string> TestMinDimension(Dimension dimension)
     {
-        if (dimension.Length > _minDimension.Length)
+        if (dimension.Length > MinDimension.Length)
         {
-            yield return $"The length of the microcontroller ({dimension.Length}) is less than the maximum length ({_minDimension.Length})";
+            yield return $"The length of the microcontroller ({dimension.Length}) is less than the maximum length ({MinDimension.Length})";
         }
 
-        if (dimension.Width > _minDimension.Width)
+        if (dimension.Width > MinDimension.Width)
         {
-            yield return $"The width of the microcontroller ({dimension.Width}) is less than the maximum length ({_minDimension.Width})";
+            yield return $"The width of the microcontroller ({dimension.Width}) is less than the maximum length ({MinDimension.Width})";
         }
 
-        if (dimension.Height > _minDimension.Height)
+        if (dimension.Height > MinDimension.Height)
         {
-            yield return $"The height of the microcontroller ({dimension.Height}) is less than the maximum length ({_minDimension.Height})";
+            yield return $"The height of the microcontroller ({dimension.Height}) is less than the maximum length ({MinDimension.Height})";
         }
 
-        if (dimension.Weight > _minDimension.Weight)
+        if (dimension.Weight > MinDimension.Weight)
         {
-            yield return $"The weight of the microcontroller ({dimension.Weight}) is greater than the maximum length ({_minDimension.Weight})";
+            yield return $"The weight of the microcontroller ({dimension.Weight}) is greater than the maximum length ({MinDimension.Weight})";
         }
     }
 }
