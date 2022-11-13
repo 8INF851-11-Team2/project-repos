@@ -8,7 +8,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
 {
     private readonly ScannerController _scannerController;
 
-    private CertifierExperimental _certifier;
+    private CertifierExperimentalDTO _certifier;
 
     private ILoader _loader;
 
@@ -18,7 +18,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
     {
     }
 
-    public LoadTestCommand(CertifierExperimental certifier, ScannerController scannerController)
+    public LoadTestCommand(CertifierExperimentalDTO certifier, ScannerController scannerController)
     {
         _certifier = certifier;
         _scannerController = scannerController;
@@ -28,7 +28,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
     {
         string path = _scannerController.Run();
         //TODO
-        throw new NotImplementedException();
+        //_certifier.SetTest();
     }
 
     public bool IsExecutable()
@@ -36,7 +36,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
         throw new NotImplementedException();
     }
 
-    public void LCC(CertifierExperimental certifier, ScannerController scannerController)
+    public void LCC(CertifierExperimentalDTO certifier, ScannerController scannerController)
     {
     }
 }

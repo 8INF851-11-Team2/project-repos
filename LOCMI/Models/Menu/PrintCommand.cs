@@ -13,7 +13,7 @@ public sealed class PrintCommand : ICommand
 
     private readonly ScannerController _scannerController;
 
-    private CertifierExperimental _certifierExperimental;
+    private CertifierExperimentalDTO _certifierExperimental;
 
     public PrintCommand(CertificateDemonstrationDTO certifyDemonstration)
     {
