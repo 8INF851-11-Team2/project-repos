@@ -6,6 +6,7 @@ using LOCMI.Views;
 public abstract class MenuController<T> where T : ICommand
 {
     private bool _loop;
+    private bool _restart = false;
 
     protected MenuController(bool loop)
     {
@@ -17,7 +18,7 @@ public abstract class MenuController<T> where T : ICommand
         Menu<T> menu = SetMenu();
         do
         {
-            
+            _restart = false;
             IView.Display("\nChoose a choice from the menu below:");
 
             var number = 1;
@@ -39,9 +40,10 @@ public abstract class MenuController<T> where T : ICommand
                 }
                 catch (Exception e)
                 {
+                    _restart = true;
                     if (e is ArgumentOutOfRangeException or FormatException)
                     {
-                        IView.Display("Please enter a valid choice");
+                        IView.Display("Please enter a valid choice");                        
                     }
                     else
                     {
@@ -49,8 +51,15 @@ public abstract class MenuController<T> where T : ICommand
                     }
                 }
             }
+            else
+            {
+                _restart = true;
+            }
 
-        } while (!menu.IsClosed && _loop);
+        } while ((!menu.IsClosed && _loop) || _restart);
+
+        IView.Display("\nEnter anything to continue to main menu:");
+        IView.GetUserEntry();
         IView.Clear();
     }
 

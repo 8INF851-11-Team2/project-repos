@@ -7,22 +7,23 @@ using LOCMI.Views;
 
 public sealed class PrintCommand : ICommand
 {
-    private readonly CertificateDemonstrationDTO _certifierDemonstration;
+    private readonly CertificateDemonstrationDTO? _certificateDemonstration;
 
     private readonly IPrinter _printer;
 
-    private CertificateExperimentalDTO _certifierExperimental;
+    private CertificateExperimentalDTO? _certifierExperimental;
 
     public PrintCommand(CertificateDemonstrationDTO certifyDemonstration)
     {
-        _certifierDemonstration = certifyDemonstration;
+        _certificateDemonstration = certifyDemonstration;
         _printer = new PrinterTxt();
     }
 
     public void Execute()
     {
-        string path = "MICROCONTROLEUR_CERTIFICAT.txt";
-        IEnumerable<Certificate> c = _certifierDemonstration.GetCertificates();
+        DateTime date = DateTime.Now;
+        string path = "MICROCONTROLEUR_CERTIFICAT" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
+        IEnumerable<Certificate> c = _certificateDemonstration.GetCertificates();
         _printer.Print(c, path).Wait();
     }
 
