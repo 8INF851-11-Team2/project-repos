@@ -3,13 +3,18 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils.PortTypes;
 
-public sealed class TestCase1 : TestCase
+/**
+ * Test 1
+ * Test if the microcontroller supports different voltages.
+ */
+public sealed class ElectronicVersatilityTest : TestCase
 {
-    private static readonly double[] s_testedVoltage = { 3.3, 5 };
+    private readonly IEnumerable<double> _testedVoltage;
 
-    public TestCase1()
+    public ElectronicVersatilityTest(IEnumerable<double> testedVoltage)
         : base("Electronic versatility")
     {
+        _testedVoltage = testedVoltage;
     }
 
     /// <inheritdoc />
@@ -20,9 +25,9 @@ public sealed class TestCase1 : TestCase
             IEnumerable<PowerPort> powerPorts = microcontroller.Ports.OfType<PowerPort>();
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return s_testedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
-                                  .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
-                                  .ToList();
+            return _testedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
+                                 .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
+                                 .ToList();
         }
 
         return new[] { "The microcontroller has no ports" };

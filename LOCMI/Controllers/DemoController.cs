@@ -23,7 +23,7 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
         Microcontroller microcontrollerA = builder.GetResult();
 
         //Init TestSuite
-        ITest testA = new TestCase1();
+        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
         var suiteA = new TestSuite();
         suiteA.AddTest(testA);
 
