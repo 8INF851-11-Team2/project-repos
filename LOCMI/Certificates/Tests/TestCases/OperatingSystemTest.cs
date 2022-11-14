@@ -3,10 +3,14 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils;
 
-public class TestCase6 : TestCase
+/// <summary>
+///     Test if the microcontroller has an OS and if the OS is correct
+/// </summary>
+/// <remarks>Test 6</remarks>
+public class OperatingSystemTest : TestCase
 {
-    public TestCase6()
-        : base("Operating system")
+    public OperatingSystemTest()
+        : base("Operating system test")
     {
     }
 
