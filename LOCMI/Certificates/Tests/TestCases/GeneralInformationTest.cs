@@ -3,11 +3,15 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils;
 
-public class TestCase8 : TestCase
+/// <summary>
+///     Test if the microcontroller is the right model and made by the right brand
+/// </summary>
+/// <remarks>Test 8</remarks>
+public class GeneralInformationTest : TestCase
 {
     private readonly Identification _identification;
 
-    public TestCase8(Identification identification)
+    public GeneralInformationTest(Identification identification)
         : base("Validation of general information")
     {
         _identification = identification;
