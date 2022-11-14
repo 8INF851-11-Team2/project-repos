@@ -3,9 +3,13 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils;
 
-public class TestCase4 : TestCase
+/// <summary>
+///     Test if the microcontroller has the asked connectors
+/// </summary>
+/// <remarks>Test 4</remarks>
+public class ConnectorSpecificationTest : TestCase
 {
-    public TestCase4()
+    public ConnectorSpecificationTest()
         : base("Connector Specification Validation")
     {
     }
