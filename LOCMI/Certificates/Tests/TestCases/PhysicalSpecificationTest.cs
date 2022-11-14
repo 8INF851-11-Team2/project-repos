@@ -3,9 +3,13 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils;
 
-public class TestCase2 : TestCase
+/**
+ * Test 2
+ * Test if the microcontroller respects the physical specifications
+ */
+public class PhysicalSpecificationTest : TestCase
 {
-    public TestCase2()
+    public PhysicalSpecificationTest()
         : base("Validation of physical specifications")
     {
     }
