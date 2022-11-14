@@ -5,18 +5,19 @@ using LOCMI.Views;
 
 public abstract class MenuController<T> where T : ICommand
 {
+    private bool _loop;
 
-    protected MenuController()
+    protected MenuController(bool loop)
     {
+        _loop = loop;
     }
 
     public void Run()
     {
         Menu<T> menu = SetMenu();
-
-        while (!menu.IsClosed)
+        do
         {
-            IView.Clear();
+            
             IView.Display("\nChoose a choice from the menu below:");
 
             var number = 1;
@@ -48,7 +49,9 @@ public abstract class MenuController<T> where T : ICommand
                     }
                 }
             }
-        }
+
+        } while (!menu.IsClosed && _loop);
+        IView.Clear();
     }
 
     protected abstract Menu<T> SetMenu();

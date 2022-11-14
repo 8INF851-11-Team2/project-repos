@@ -12,6 +12,7 @@ using LOCMI.Views;
 public sealed class DemoController : MenuController<IDemoMenuCommand>
 {
     public DemoController()
+        :base(false)
     {
     }
 

@@ -6,7 +6,9 @@ using LOCMI.Views;
 public sealed class InitialController : MenuController<IMainMenuCommand>
 {
     public InitialController()
+        : base(true)
     {
+        IView.Clear();
     }
 
     /// <inheritdoc />
