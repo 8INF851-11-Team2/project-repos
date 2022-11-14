@@ -5,11 +5,9 @@ using LOCMI.Views;
 
 public abstract class MenuController<T> where T : ICommand
 {
-    protected readonly View View;
 
-    protected MenuController(View view)
+    protected MenuController()
     {
-        View = view;
     }
 
     public void Run()
@@ -18,17 +16,18 @@ public abstract class MenuController<T> where T : ICommand
 
         while (!menu.IsClosed)
         {
-            View.Display("\nChoose a choice from the menu below:");
+            IView.Clear();
+            IView.Display("\nChoose a choice from the menu below:");
 
             var number = 1;
 
             foreach ((string displayText, _) in menu)
             {
-                View.Display($"{number} -------->  {displayText}");
+                IView.Display($"{number} -------->  {displayText}");
                 number++;
             }
 
-            string? read = View.GetUserEntry();
+            string? read = IView.GetUserEntry();
 
             if (!string.IsNullOrEmpty(read))
             {
@@ -41,7 +40,7 @@ public abstract class MenuController<T> where T : ICommand
                 {
                     if (e is ArgumentOutOfRangeException or FormatException)
                     {
-                        View.Display("Please enter a valid choice");
+                        IView.Display("Please enter a valid choice");
                     }
                     else
                     {

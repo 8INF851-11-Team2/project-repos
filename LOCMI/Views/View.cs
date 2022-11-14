@@ -1,8 +1,8 @@
 namespace LOCMI.Views;
 
-public sealed class View
+public interface IView
 {
-    public View()
+    public static void Clear()
     {
         /*
         Console.WriteLine(@"        _                                _             _ _               __        __ _                          ");
@@ -12,6 +12,7 @@ public sealed class View
         Console.WriteLine(@"\/    \|_|\___|_|  \___/ \___\___/|_| |_|\__|_|  \___/|_|_|\___|_|      \__/\___/|_|  \__| \_/\_/ \__,_|_|  \___|");
         Console.WriteLine(@"                                                                                                                 ");
         */
+        Console.Clear();
         Console.WriteLine(@" _                          _  ");
         Console.WriteLine(@"| |    ___   ___    _  _   (_) ");
         Console.WriteLine(@"| |   / _ \ / __|  / \/ \  | | ");
@@ -20,12 +21,12 @@ public sealed class View
         Console.WriteLine(@"                                                                                                                 ");
     }
 
-    public void Display(string message)
+    public static void Display(string message)
     {
         Console.WriteLine(message);
     }
 
-    public string? GetUserEntry()
+    public static string? GetUserEntry()
     {
         return Console.ReadLine();
     }

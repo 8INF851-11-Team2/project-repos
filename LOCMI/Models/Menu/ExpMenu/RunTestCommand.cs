@@ -4,14 +4,14 @@ using LOCMI.Certificates;
 
 public sealed class RunTestCommand : IExpMenuCommand
 {
-    private CertifierExperimentalDTO _certifier;
+    private CertificateExperimentalDTO _certifier;
 
     public RunTestCommand()
     {
         
     }
 
-    public RunTestCommand(CertifierExperimentalDTO certifier)
+    public RunTestCommand(CertificateExperimentalDTO certifier)
     {
         _certifier = certifier;
     }

@@ -11,8 +11,7 @@ using LOCMI.Views;
 
 public sealed class DemoController : MenuController<IDemoMenuCommand>
 {
-    public DemoController(View view)
-        : base(view)
+    public DemoController()
     {
     }
 

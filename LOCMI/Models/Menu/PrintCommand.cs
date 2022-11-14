@@ -11,20 +11,17 @@ public sealed class PrintCommand : ICommand
 
     private readonly IPrinter _printer;
 
-    private readonly ScannerController _scannerController;
-
-    private CertifierExperimentalDTO _certifierExperimental;
+    private CertificateExperimentalDTO _certifierExperimental;
 
     public PrintCommand(CertificateDemonstrationDTO certifyDemonstration)
     {
         _certifierDemonstration = certifyDemonstration;
         _printer = new PrinterTxt();
-        _scannerController = new ScannerController(new View());
     }
 
     public void Execute()
     {
-        string path = _scannerController.Run();
+        string path = "MICROCONTROLEUR_CERTIFICAT.txt";
         IEnumerable<Certificate> c = _certifierDemonstration.GetCertificates();
         _printer.Print(c, path).Wait();
     }

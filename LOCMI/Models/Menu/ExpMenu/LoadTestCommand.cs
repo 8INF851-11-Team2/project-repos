@@ -8,7 +8,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
 {
     private readonly ScannerController _scannerController;
 
-    private CertifierExperimentalDTO _certifier;
+    private CertificateExperimentalDTO _certifier;
 
     private ILoader _loader;
 
@@ -18,7 +18,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
     {
     }
 
-    public LoadTestCommand(CertifierExperimentalDTO certifier, ScannerController scannerController)
+    public LoadTestCommand(CertificateExperimentalDTO certifier, ScannerController scannerController)
     {
         _certifier = certifier;
         _scannerController = scannerController;
@@ -36,7 +36,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
         throw new NotImplementedException();
     }
 
-    public void LCC(CertifierExperimentalDTO certifier, ScannerController scannerController)
+    public void LCC(CertificateExperimentalDTO certifier, ScannerController scannerController)
     {
     }
 }

@@ -4,7 +4,7 @@ using LOCMI.Certificates.Tests;
 using LOCMI.Controllers;
 using LOCMI.Core;
 
-public class CertifierExperimentalDTO
+public class CertificateExperimentalDTO
 {
     private Certificate _certificate;
 

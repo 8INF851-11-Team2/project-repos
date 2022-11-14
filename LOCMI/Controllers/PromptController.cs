@@ -4,15 +4,9 @@ using LOCMI.Views;
 
 public class PromptController
 {
-    private readonly View _view;
 
-    public PromptController()
+    public static void Run(string msgToPrint)
     {
-        _view = new View();
-    }
-
-    public void Run(string msgToPrint)
-    {
-        _view.Display(msgToPrint);
+        IView.Display(msgToPrint);
     }
 }
