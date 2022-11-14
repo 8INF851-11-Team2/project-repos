@@ -13,17 +13,20 @@ public class PromptController
         {
             IView.Display("==============");
             ITestResult testResult = cert.TestResult;
-            IView.Display(cert.Name + " for : " + cert.Microcontroller.Name + " is successful : " + cert.IsSuccess);
+            IView.Display(cert.Name + " for : " + cert.Microcontroller.Name + ", successful : " + cert.IsSuccess);
             IView.Display("Successful test(s) : ");
             foreach(TestCase tc in testResult.TestSuccessful)
             {
                 IView.Display(tc.Name);
             }
-            IView.Display("");
-            IView.Display("Failed test(s) : ");
-            foreach (TestFailure tf in testResult.TestFailures)
+            if (!cert.IsSuccess)
             {
-                IView.Display(tf.TestCase.Name + ", cause : " + tf.Cause);
+                IView.Display("");
+                IView.Display("Failed test(s) : ");
+                foreach (TestFailure tf in testResult.TestFailures)
+                {
+                    IView.Display(tf.TestCase.Name + ", cause : " + tf.Cause);
+                }
             }
         }
     }
