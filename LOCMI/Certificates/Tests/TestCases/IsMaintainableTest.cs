@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-//  <copyright project="LOCMI" file="IsMaintainableTest.cs" company="syuko">
-//  Copyright (c) syuko. All rights reserved.
-//  </copyright>
-// -----------------------------------------------------------------------
-
-namespace LOCMI.Certificates.Tests.TestCases;
+﻿namespace LOCMI.Certificates.Tests.TestCases;
 
 using LOCMI.Core;
 
