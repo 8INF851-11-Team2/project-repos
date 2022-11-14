@@ -3,9 +3,13 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils;
 
-public class TestCase5 : TestCase
+/// <summary>
+///     Test if the microcontroller supports the asked programming languages
+/// </summary>
+/// <remarks>Test 5</remarks>
+public class ProgrammingLanguageTest : TestCase
 {
-    public TestCase5()
+    public ProgrammingLanguageTest()
         : base("Languages")
     {
     }
