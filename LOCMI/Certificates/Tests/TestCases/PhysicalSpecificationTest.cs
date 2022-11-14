@@ -3,10 +3,10 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils;
 
-/**
- * Test 2
- * Test if the microcontroller respects the physical specifications
- */
+/// <summary>
+///     Test if the microcontroller respects the physical specifications
+/// </summary>
+/// <remarks>Test 2</remarks>
 public class PhysicalSpecificationTest : TestCase
 {
     public PhysicalSpecificationTest()

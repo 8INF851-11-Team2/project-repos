@@ -3,10 +3,10 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils.PortTypes;
 
-/**
- * Test 1
- * Test if the microcontroller supports different voltages.
- */
+/// <summary>
+///     Test if the microcontroller supports different voltages.
+/// </summary>
+/// <remarks>Test 1</remarks>
 public sealed class ElectronicVersatilityTest : TestCase
 {
     private readonly IEnumerable<double> _testedVoltage;

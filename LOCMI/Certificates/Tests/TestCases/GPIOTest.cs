@@ -3,10 +3,10 @@
 using LOCMI.Core;
 using LOCMI.Core.Utils.PortTypes;
 
-/**
- * Test 3
- * Test if the microcontroller has the correct number of ports of each type (Data, Ground and Other)
- */
+/// <summary>
+///     Test if the microcontroller has the correct number of ports of each type (Data, Ground and Other)
+/// </summary>
+/// <remarks>Test 3</remarks>
 public class GPIOTest : TestCase
 {
     public GPIOTest()
