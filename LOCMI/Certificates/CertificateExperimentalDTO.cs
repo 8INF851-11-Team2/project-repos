@@ -28,7 +28,7 @@ public class CertificateExperimentalDTO
         this.Test = Test;
     }
 
-    public void Certifier(PromptController promptController)
+    public void Certifier()
     {
 
     }

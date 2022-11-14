@@ -1,6 +1,7 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
 using LOCMI.Certificates;
+using LOCMI.Controllers;
 
 public sealed class TestingAllCommand : IDemoMenuCommand
 {
@@ -18,6 +19,7 @@ public sealed class TestingAllCommand : IDemoMenuCommand
     {
         _dto.SetCertificates(_certificates);
         _dto.Apply();
+        PromptController.Run(_certificates);
         var p = new PrintCommand(_dto);
         p.Execute();
     }

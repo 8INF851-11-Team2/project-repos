@@ -6,6 +6,7 @@ using LOCMI.Certificates.Tests;
 using LOCMI.Core;
 using LOCMI.Microcontrollers;
 using LOCMI.Views;
+using LOCMI.Controllers;
 
 public sealed class TestingIndividualCommand : IDemoMenuCommand
 {
@@ -71,6 +72,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         _certificates = CreateListCertificates(microcontroller);
         _dto.SetCertificates(_certificates);
         _dto.Apply();
+        PromptController.Run(_certificates);
         var p = new PrintCommand(_dto);
         p.Execute();
     }
@@ -102,10 +104,8 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     {
         //Init TestSuite
         ITest test1 = new TestCaseA("TestCaseA");
-        ITest test2 = new TestCaseB("TestCaseB");
         var suite = new TestSuite();
         suite.AddTest(test1);
-        suite.AddTest(test2);
 
         var certificateA = new Certificate(suite, mc, "CertificateA");
         return certificateA;
@@ -113,10 +113,8 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     private Certificate CreateCertificateB(Microcontroller mc)
     {
         //Init TestSuite
-        ITest test1 = new TestCaseA("TestCaseA");
         ITest test2 = new TestCaseB("TestCaseB");
         var suite = new TestSuite();
-        suite.AddTest(test1);
         suite.AddTest(test2);
 
         var certificateB = new Certificate(suite, mc, "certificateB");

@@ -1,12 +1,16 @@
 ﻿namespace LOCMI.Controllers;
 
+using LOCMI.Certificates;
 using LOCMI.Views;
 
 public class PromptController
 {
 
-    public static void Run(string msgToPrint)
+    public static void Run(List<Certificate> certificates)
     {
-        IView.Display(msgToPrint);
+        foreach(var cert in certificates)
+        {
+            IView.Display(cert.Microcontroller.Name + " : " + cert.Name + " : " + cert.IsSuccess);
+        }
     }
 }
