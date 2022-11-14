@@ -22,7 +22,7 @@ public sealed class PrintCommand : ICommand
     public void Execute()
     {
         DateTime date = DateTime.Now;
-        string path = "MICROCONTROLEUR_CERTIFICAT" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
+        string path = "CERTIFICAT_" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
         IEnumerable<Certificate> c = _certificateDemonstration.GetCertificates();
         _printer.Print(c, path).Wait();
     }
