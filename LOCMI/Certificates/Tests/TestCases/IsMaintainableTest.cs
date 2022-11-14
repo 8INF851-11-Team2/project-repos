@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-//  <copyright project="LOCMI" file="TestCase9.cs" company="syuko">
+//  <copyright project="LOCMI" file="IsMaintainableTest.cs" company="syuko">
 //  Copyright (c) syuko. All rights reserved.
 //  </copyright>
 // -----------------------------------------------------------------------
@@ -8,9 +8,13 @@ namespace LOCMI.Certificates.Tests.TestCases;
 
 using LOCMI.Core;
 
-public class TestCase9 : TestCase
+/// <summary>
+///     Check is the microcontroller is maintainable.
+/// </summary>
+/// <remarks>Test 9</remarks>
+public class IsMaintainableTest : TestCase
 {
-    public TestCase9()
+    public IsMaintainableTest()
         : base("Maintenance testing")
     {
     }
