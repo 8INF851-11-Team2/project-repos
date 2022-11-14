@@ -13,7 +13,7 @@ public sealed class TestCaseA : TestCase
     {
         if (mc.Name is "MicrocontrollerA")
         {
-            testResult.IncrementRunCounter();
+            testResult.AddSuccess(this);
         }
         else
         {
