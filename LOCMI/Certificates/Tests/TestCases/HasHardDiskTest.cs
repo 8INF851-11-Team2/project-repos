@@ -2,9 +2,13 @@
 
 using LOCMI.Core;
 
-public class TestCase7 : TestCase
+/// <summary>
+///     Check if the microcontroller has a hard disk
+/// </summary>
+/// <remarks>Test 7</remarks>
+public class HasHardDiskTest : TestCase
 {
-    public TestCase7()
+    public HasHardDiskTest()
         : base("Has hard disk")
     {
     }
