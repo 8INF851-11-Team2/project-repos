@@ -1,18 +1,18 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
 using LOCMI.Certificates;
-using LOCMI.Certificates.Tests.TestCases;
 using LOCMI.Certificates.Tests;
+using LOCMI.Certificates.Tests.TestCases;
+using LOCMI.Controllers;
 using LOCMI.Core;
 using LOCMI.Microcontrollers;
 using LOCMI.Views;
-using LOCMI.Controllers;
 
 public sealed class TestingIndividualCommand : IDemoMenuCommand
 {
-    private List<Certificate> _certificates;
-
     private readonly CertificateDemonstrationDTO _dto;
+
+    private List<Certificate> _certificates;
 
     public TestingIndividualCommand(CertificateDemonstrationDTO certify)
     {
@@ -29,7 +29,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         IView.Display("3 -------->  Microcontroller C");
 
         string? read = IView.GetUserEntry();
-        int userChoice = 0;
+        var userChoice = 0;
 
         if (!string.IsNullOrEmpty(read))
         {
@@ -51,6 +51,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         }
 
         Microcontroller microcontroller;
+
         switch (userChoice)
         {
             case 1:
@@ -82,25 +83,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         throw new NotImplementedException();
     }
 
-    private List<Certificate> CreateListCertificates(Microcontroller mc)
-    {
-
-        //Certificate
-        var certificateA = CreateCertificateA(mc);
-        var certificateB = CreateCertificateB(mc);
-        var certificateC = CreateCertificateC(mc);
-
-        var certificates = new List<Certificate>
-        {
-            certificateA,
-            certificateB,
-            certificateC
-        };
-
-        return certificates;
-    }
-
-    private Certificate CreateCertificateA(Microcontroller mc)
+    private static Certificate CreateCertificateA(Microcontroller mc)
     {
         //Init TestSuite
         ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
@@ -110,7 +93,8 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         var certificateA = new Certificate(suiteA, mc, "CertificateA");
         return certificateA;
     }
-    private Certificate CreateCertificateB(Microcontroller mc)
+
+    private static Certificate CreateCertificateB(Microcontroller mc)
     {
         //Init TestSuite
         ITest testA = new HasHardDiskTest();
@@ -120,7 +104,8 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         var certificateB = new Certificate(suiteA, mc, "certificateB");
         return certificateB;
     }
-    private Certificate CreateCertificateC(Microcontroller mc)
+
+    private static Certificate CreateCertificateC(Microcontroller mc)
     {
         //Init TestSuite
         ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
@@ -131,5 +116,22 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
 
         var certificateC = new Certificate(suite, mc, "CertificateC");
         return certificateC;
+    }
+
+    private static List<Certificate> CreateListCertificates(Microcontroller mc)
+    {
+        //Certificate
+        Certificate certificateA = CreateCertificateA(mc);
+        Certificate certificateB = CreateCertificateB(mc);
+        Certificate certificateC = CreateCertificateC(mc);
+
+        var certificates = new List<Certificate>
+        {
+            certificateA,
+            certificateB,
+            certificateC,
+        };
+
+        return certificates;
     }
 }

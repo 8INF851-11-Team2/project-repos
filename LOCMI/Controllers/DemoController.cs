@@ -7,21 +7,18 @@ using LOCMI.Core;
 using LOCMI.Microcontrollers;
 using LOCMI.Models.Menu;
 using LOCMI.Models.Menu.DemoMenu;
-using LOCMI.Views;
-using static System.Net.Mime.MediaTypeNames;
 
 public sealed class DemoController : MenuController<IDemoMenuCommand>
 {
     public DemoController()
-        :base(false)
+        : base(false)
     {
     }
 
     /// <inheritdoc />
     protected override Menu<IDemoMenuCommand> SetMenu()
     {
-        var certificates = CreateListCertificates();
-
+        List<Certificate> certificates = CreateListCertificates();
 
         var certificateDemonstrationDTO = new CertificateDemonstrationDTO();
 
@@ -35,37 +32,7 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
         };
     }
 
-    private List<Certificate> CreateListCertificates()
-    {
-        var builderA = new MicrocontrollerABuilder();
-        Microcontroller microcontrollerA = builderA.GetResult();
-        var builderB = new MicrocontrollerBBuilder();
-        Microcontroller microcontrollerB = builderB.GetResult();
-        var builderC = new MicrocontrollerCBuilder();
-        Microcontroller microcontrollerC = builderC.GetResult();
-
-        //Certificate
-        var certificateA1 = CreateCertificateA(microcontrollerA);
-        var certificateA2 = CreateCertificateA(microcontrollerB);
-        var certificateA3 = CreateCertificateA(microcontrollerC);
-        var certificateB1 = CreateCertificateB(microcontrollerA);
-        var certificateB2 = CreateCertificateB(microcontrollerB);
-        var certificateB3 = CreateCertificateB(microcontrollerC);
-        var certificateC1 = CreateCertificateC(microcontrollerA);
-        var certificateC2 = CreateCertificateC(microcontrollerB);
-        var certificateC3 = CreateCertificateC(microcontrollerC);
-
-        var certificates = new List<Certificate>
-        {
-            certificateA1, certificateA2, certificateA3,
-            certificateB1, certificateB2, certificateB3,
-            certificateC1, certificateC2, certificateC3,
-        };
-
-        return certificates;
-    }
-
-    private Certificate CreateCertificateA(Microcontroller mc)
+    private static Certificate CreateCertificateA(Microcontroller mc)
     {
         //Init TestSuite
         ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
@@ -75,7 +42,8 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
         var certificateA = new Certificate(suiteA, mc, "CertificateA");
         return certificateA;
     }
-    private Certificate CreateCertificateB(Microcontroller mc)
+
+    private static Certificate CreateCertificateB(Microcontroller mc)
     {
         //Init TestSuite
         ITest testA = new HasHardDiskTest();
@@ -85,7 +53,8 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
         var certificateB = new Certificate(suiteA, mc, "certificateB");
         return certificateB;
     }
-    private Certificate CreateCertificateC(Microcontroller mc)
+
+    private static Certificate CreateCertificateC(Microcontroller mc)
     {
         //Init TestSuite
         ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
@@ -96,5 +65,41 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
 
         var certificateC = new Certificate(suite, mc, "CertificateC");
         return certificateC;
+    }
+
+    private static List<Certificate> CreateListCertificates()
+    {
+        var builderA = new MicrocontrollerABuilder();
+        Microcontroller microcontrollerA = builderA.GetResult();
+        var builderB = new MicrocontrollerBBuilder();
+        Microcontroller microcontrollerB = builderB.GetResult();
+        var builderC = new MicrocontrollerCBuilder();
+        Microcontroller microcontrollerC = builderC.GetResult();
+
+        //Certificate
+        Certificate certificateA1 = CreateCertificateA(microcontrollerA);
+        Certificate certificateA2 = CreateCertificateA(microcontrollerB);
+        Certificate certificateA3 = CreateCertificateA(microcontrollerC);
+        Certificate certificateB1 = CreateCertificateB(microcontrollerA);
+        Certificate certificateB2 = CreateCertificateB(microcontrollerB);
+        Certificate certificateB3 = CreateCertificateB(microcontrollerC);
+        Certificate certificateC1 = CreateCertificateC(microcontrollerA);
+        Certificate certificateC2 = CreateCertificateC(microcontrollerB);
+        Certificate certificateC3 = CreateCertificateC(microcontrollerC);
+
+        var certificates = new List<Certificate>
+        {
+            certificateA1,
+            certificateA2,
+            certificateA3,
+            certificateB1,
+            certificateB2,
+            certificateB3,
+            certificateC1,
+            certificateC2,
+            certificateC3,
+        };
+
+        return certificates;
     }
 }

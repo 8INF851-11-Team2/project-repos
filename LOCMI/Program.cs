@@ -1,6 +1,5 @@
 using LOCMI.Controllers;
 using LOCMI.Microcontrollers;
-using LOCMI.Views;
 
 var builder = new MicrocontrollerABuilder();
 builder.GetResult();

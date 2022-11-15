@@ -4,7 +4,7 @@ using LOCMI.Core;
 
 internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
 {
-    private readonly Microcontroller _microcontroller = new();
+    private readonly Microcontroller _microcontroller = new ();
 
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildConnectors()

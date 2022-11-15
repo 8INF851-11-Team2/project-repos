@@ -2,16 +2,12 @@
 
 using LOCMI.Certificates;
 using LOCMI.Certificates.Printers;
-using LOCMI.Controllers;
-using LOCMI.Views;
 
 public sealed class PrintCommand : ICommand
 {
-    private readonly CertificateDemonstrationDTO? _certificateDemonstration;
+    private readonly CertificateDemonstrationDTO _certificateDemonstration;
 
     private readonly IPrinter _printer;
-
-    private CertificateExperimentalDTO? _certifierExperimental;
 
     public PrintCommand(CertificateDemonstrationDTO certifyDemonstration)
     {
@@ -22,7 +18,7 @@ public sealed class PrintCommand : ICommand
     public void Execute()
     {
         DateTime date = DateTime.Now;
-        string path = "CERTIFICAT_" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
+        string path = "CERTIFICATE_" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
         IEnumerable<Certificate> c = _certificateDemonstration.GetCertificates();
         _printer.Print(c, path).Wait();
     }

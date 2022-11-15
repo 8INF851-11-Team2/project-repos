@@ -8,7 +8,6 @@ public sealed class RunTestCommand : IExpMenuCommand
 
     public RunTestCommand()
     {
-        
     }
 
     public RunTestCommand(CertificateExperimentalDTO certifier)

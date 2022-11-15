@@ -1,7 +1,5 @@
 ﻿namespace LOCMI.Certificates;
 
-using LOCMI.Controllers;
-
 public sealed class CertificateDemonstrationDTO
 {
     private List<Certificate> _certificates;

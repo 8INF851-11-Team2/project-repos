@@ -1,7 +1,5 @@
 ﻿namespace LOCMI.Certificates.Printers;
 
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using LOCMI.Certificates.Tests;
 
 public sealed class PrinterTxt : IPrinter
@@ -15,16 +13,15 @@ public sealed class PrinterTxt : IPrinter
         }
 
         await using StreamWriter file = new (path, true);
-        string tests = "";
-        foreach(TestCase test in ((TestSuite) certificate.Test).Tests)
-        {
-            tests += test.Name + "\n";
-        }
 
-        await file.WriteLineAsync("Certificate : " + certificate.Name + '\n' 
-            + "Date : " + DateTime.Now  + '\n'
-            + "Is sucess : " + certificate.IsSuccess + '\n'
-            + "Tests : " + tests
-            + "Description microcontroller : " + certificate.Microcontroller.Name + '\n');
+        string tests = certificate.Test switch
+        {
+            TestSuite testSuite => string.Join(string.Empty, testSuite.Tests.OfType<TestCase>().Select(static c => c.Name + "\n")),
+            TestCase testCase => testCase.Name + "\n",
+            _ => string.Empty,
+        };
+
+        await file.WriteLineAsync("Certificate : " + certificate.Name + '\n' + "Date : " + DateTime.Now + '\n' + "Is success : " + certificate.IsSuccess + '\n'
+                                + "Tests : " + tests + "Description microcontroller : " + certificate.Microcontroller.Name + '\n');
     }
 }
