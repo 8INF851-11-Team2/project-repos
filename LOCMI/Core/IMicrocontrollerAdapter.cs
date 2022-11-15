@@ -12,7 +12,11 @@ public interface IMicrocontrollerAdapter
 
     public IMicrocontrollerAdapter BuildLanguage();
 
+    public IMicrocontrollerAdapter BuildMaintenance();
+
     public IMicrocontrollerAdapter BuildName();
+
+    public IMicrocontrollerAdapter BuildOS();
 
     public IMicrocontrollerAdapter BuildPort();
 

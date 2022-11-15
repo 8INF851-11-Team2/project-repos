@@ -23,12 +23,11 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
         Microcontroller microcontrollerA = builder.GetResult();
 
         //Init TestSuite
-        ITest testA = new TestCaseA("TestCaseA");
-        ITest testB = new TestCaseB("TestCaseB");
+        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
         var suiteA = new TestSuite();
         suiteA.AddTest(testA);
+
         var suiteB = new TestSuite();
-        suiteB.AddTest(testB);
 
         //Certificate
         var certificateA = new Certificate(suiteA, microcontrollerA, "CertificateA");
