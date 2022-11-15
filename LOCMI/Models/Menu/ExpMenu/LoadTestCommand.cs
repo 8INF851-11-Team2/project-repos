@@ -26,7 +26,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
 
     public void Execute()
     {
-        string path = ScannerController.Run();
+        string path = _scannerController.Run();
         //TODO
         //_certifier.SetTest();
     }

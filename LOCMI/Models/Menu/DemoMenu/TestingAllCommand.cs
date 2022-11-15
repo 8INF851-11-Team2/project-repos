@@ -2,6 +2,7 @@
 
 using LOCMI.Certificates;
 using LOCMI.Controllers;
+using LOCMI.Views;
 
 public sealed class TestingAllCommand : IDemoMenuCommand
 {
@@ -9,17 +10,20 @@ public sealed class TestingAllCommand : IDemoMenuCommand
 
     private readonly CertificateDemonstrationDTO _dto;
 
-    public TestingAllCommand(List<Certificate> certificates, CertificateDemonstrationDTO certify)
+    private readonly PromptController _promptController;
+
+    public TestingAllCommand(IView view, List<Certificate> certificates, CertificateDemonstrationDTO certify)
     {
         _certificates = certificates;
         _dto = certify;
+        _promptController = new PromptController(view);
     }
 
     public void Execute()
     {
         _dto.SetCertificates(_certificates);
         _dto.Apply();
-        PromptController.Run(_certificates);
+        _promptController.Run(_certificates);
         var p = new PrintCommand(_dto);
         p.Execute();
     }
