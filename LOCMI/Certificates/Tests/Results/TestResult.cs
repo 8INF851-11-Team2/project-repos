@@ -18,10 +18,10 @@ public sealed class TestResult : ITestResult
 
     public List<TestCase> TestSuccessful { get; set; }
 
-    public void AddFailure(TestCase testCase, string cause)
+    public void AddFailure(TestCase testCase, IEnumerable<string> causes)
     {
         FailureCounter++;
-        TestFailures.Add(new TestFailure(cause, testCase));
+        TestFailures.Add(new TestFailure(causes, testCase));
     }
 
     public void AddSuccess(TestCase testCase)

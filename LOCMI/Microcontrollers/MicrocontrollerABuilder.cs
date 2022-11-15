@@ -41,8 +41,14 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildLanguage()
     {
-        _microcontroller.Language = MicrocontrollerA.Language;
+        _microcontroller.Languages = MicrocontrollerA.Languages;
 
+        return this;
+    }
+
+    /// <inheritdoc />
+    public IMicrocontrollerAdapter BuildMaintenance()
+    {
         return this;
     }
 
@@ -51,6 +57,12 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     {
         _microcontroller.Name = MicrocontrollerA.Name;
 
+        return this;
+    }
+
+    /// <inheritdoc />
+    public IMicrocontrollerAdapter BuildOS()
+    {
         return this;
     }
 
@@ -64,7 +76,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public Microcontroller GetResult()
     {
-        BuildConnectors().BuildDimension().BuildDisk().BuildIdentification().BuildLanguage().BuildName().BuildPort();
+        BuildConnectors().BuildDimension().BuildDisk().BuildIdentification().BuildLanguage().BuildMaintenance().BuildName().BuildOS().BuildPort();
 
         return _microcontroller;
     }

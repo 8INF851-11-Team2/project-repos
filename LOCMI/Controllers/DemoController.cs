@@ -22,6 +22,12 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
     {
         var certificates = CreateListCertificates();
 
+        //Init TestSuite
+        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
+        var suiteA = new TestSuite();
+        suiteA.AddTest(testA);
+
+        var suiteB = new TestSuite();
         var certificateDemonstrationDTO = new CertificateDemonstrationDTO();
 
         var testingAllCommand = new TestingAllCommand(certificates, certificateDemonstrationDTO);

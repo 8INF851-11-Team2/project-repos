@@ -6,7 +6,7 @@ public interface ITestResult
 
     public List<TestCase> TestSuccessful { get; set; }
 
-    public void AddFailure(TestCase testCase, string cause);
+    public void AddFailure(TestCase testCase, IEnumerable<string> causes);
 
     public void AddSuccess(TestCase testCase);
 

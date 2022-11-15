@@ -1,14 +1,15 @@
 ﻿namespace LOCMI.Core.Utils;
 
 using System.Collections;
+using LOCMI.Core.Utils.PortTypes;
 
-public sealed class Ports : IEnumerable<EPortType>
+public sealed class Ports : IEnumerable<Port>
 {
-    private readonly Dictionary<int, EPortType> _ports = new ();
+    private readonly Dictionary<int, Port> _ports = new ();
 
     public int Count => _ports.Count;
 
-    public EPortType? this[int numPin]
+    public Port? this[int numPin]
     {
         get => _ports.ContainsKey(numPin)
                    ? _ports[numPin]
@@ -18,7 +19,7 @@ public sealed class Ports : IEnumerable<EPortType>
         {
             if (value != null)
             {
-                _ports[numPin] = value.Value;
+                _ports[numPin] = value;
             }
             else
             {
@@ -30,13 +31,13 @@ public sealed class Ports : IEnumerable<EPortType>
         }
     }
 
-    public void Add(int numPin, EPortType portType)
+    public void Add(int numPin, Port portType)
     {
         _ports[numPin] = portType;
     }
 
     /// <inheritdoc />
-    public IEnumerator<EPortType> GetEnumerator()
+    public IEnumerator<Port> GetEnumerator()
     {
         return _ports.Values.GetEnumerator();
     }
