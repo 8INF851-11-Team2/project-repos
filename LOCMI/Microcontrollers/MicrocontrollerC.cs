@@ -13,8 +13,6 @@ public sealed class MicrocontrollerC
 
     public static Dimension Dimension => new(10, 20, 30, 40);
 
-    public static Disk Disk => new("SSD");
-
     public static Identification Identification => new("NXP", "LPC5500 Series");
 
     public static IEnumerable<Language> Languages => new List<Language>

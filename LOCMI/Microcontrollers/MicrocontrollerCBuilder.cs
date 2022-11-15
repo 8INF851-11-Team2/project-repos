@@ -25,7 +25,7 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDisk()
     {
-        _microcontroller.Disk = MicrocontrollerC.Disk;
+        _microcontroller.Disk = null;
 
         return this;
     }

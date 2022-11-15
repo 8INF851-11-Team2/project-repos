@@ -21,7 +21,7 @@ public abstract class TestCase : ITest
         }
         else
         {
-            testResult.IncrementRunCounter();
+            testResult.AddSuccess(this);
         }
     }
 

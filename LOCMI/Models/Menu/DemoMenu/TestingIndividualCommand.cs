@@ -113,7 +113,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     private Certificate CreateCertificateB(Microcontroller mc)
     {
         //Init TestSuite
-        ITest testA = new IsMaintainableTest();
+        ITest testA = new HasHardDiskTest();
         var suiteA = new TestSuite();
         suiteA.AddTest(testA);
 
@@ -124,7 +124,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     {
         //Init TestSuite
         ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
-        ITest testB = new IsMaintainableTest();
+        ITest testB = new HasHardDiskTest();
         var suite = new TestSuite();
         suite.AddTest(testA);
         suite.AddTest(testB);
