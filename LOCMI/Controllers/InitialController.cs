@@ -5,16 +5,17 @@ using LOCMI.Views;
 
 public sealed class InitialController : MenuController<IMainMenuCommand>
 {
-    public InitialController(View view)
-        : base(view)
+    public InitialController()
+        : base(true)
     {
+        IView.Clear();
     }
 
     /// <inheritdoc />
     protected override Menu<IMainMenuCommand> SetMenu()
     {
-        var demoController = new DemoController(View);
-        var expController = new ExperimentalController(View);
+        var demoController = new DemoController();
+        var expController = new ExperimentalController();
 
         var demoCommand = new MenuDemoCommand(demoController);
         var expCommand = new MenuExpCommand(expController);

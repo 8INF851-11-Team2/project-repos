@@ -4,7 +4,11 @@ public interface ITestResult
 {
     public List<TestFailure> TestFailures { get; set; }
 
-    public void AddFailure(TestCase testCase, string cause);
+    public List<TestCase> TestSuccessful { get; set; }
+
+    public void AddFailure(TestCase testCase, IEnumerable<string> causes);
+
+    public void AddSuccess(TestCase testCase);
 
     public int GetFailureCount();
 

@@ -7,6 +7,7 @@ public sealed class TestResult : ITestResult
         FailureCounter = 0;
         RunCounter = 0;
         TestFailures = new List<TestFailure>();
+        TestSuccessful = new List<TestCase>();
     }
 
     public int FailureCounter { get; set; }
@@ -15,10 +16,17 @@ public sealed class TestResult : ITestResult
 
     public List<TestFailure> TestFailures { get; set; }
 
-    public void AddFailure(TestCase testCase, string cause)
+    public List<TestCase> TestSuccessful { get; set; }
+
+    public void AddFailure(TestCase testCase, IEnumerable<string> causes)
     {
         FailureCounter++;
-        TestFailures.Add(new TestFailure(cause, testCase));
+        TestFailures.Add(new TestFailure(causes, testCase));
+    }
+
+    public void AddSuccess(TestCase testCase)
+    {
+        TestSuccessful.Add(testCase);
     }
 
     public int GetFailureCount()

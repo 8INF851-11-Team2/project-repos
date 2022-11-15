@@ -3,7 +3,7 @@
 using LOCMI.Core.Utils;
 using LOCMI.Core.Utils.PortTypes;
 
-public sealed class MicrocontrollerA
+public sealed class MicrocontrollerC
 {
     public static IEnumerable<Connector> Connectors => new List<Connector>
     {
@@ -11,20 +11,18 @@ public sealed class MicrocontrollerA
         new ("Ethernet"),
     };
 
-    public static Dimension Dimension => new (10, 20, 30, 40);
+    public static Dimension Dimension => new(10, 20, 30, 40);
 
-    public static Disk Disk => new ("SSD");
-
-    public static Identification Identification => new ("NXP", "LPC5500 Series");
+    public static Identification Identification => new("NXP", "LPC5500 Series");
 
     public static IEnumerable<Language> Languages => new List<Language>
     {
         new ("java", "17.0"),
     };
 
-    public static string Name => "MicrocontrollerA";
+    public static string Name => "MicrocontrollerC";
 
-    public static Ports Ports => new ()
+    public static Ports Ports => new()
     {
         { 0, new GroundPort() },
         { 1, new PowerPort(3.3) },

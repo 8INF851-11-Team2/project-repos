@@ -2,14 +2,14 @@
 
 using LOCMI.Core;
 
-internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
+internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
 {
-    private readonly Microcontroller _microcontroller = new ();
+    private readonly Microcontroller _microcontroller = new();
 
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildConnectors()
     {
-        _microcontroller.Connectors = MicrocontrollerA.Connectors.ToList();
+        _microcontroller.Connectors = MicrocontrollerB.Connectors.ToList();
 
         return this;
     }
@@ -17,7 +17,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDimension()
     {
-        _microcontroller.Dimension = MicrocontrollerA.Dimension;
+        _microcontroller.Dimension = MicrocontrollerB.Dimension;
 
         return this;
     }
@@ -25,7 +25,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDisk()
     {
-        _microcontroller.Disk = MicrocontrollerA.Disk;
+        _microcontroller.Disk = MicrocontrollerB.Disk;
 
         return this;
     }
@@ -33,7 +33,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildIdentification()
     {
-        _microcontroller.Identification = MicrocontrollerA.Identification;
+        _microcontroller.Identification = MicrocontrollerB.Identification;
 
         return this;
     }
@@ -41,7 +41,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildLanguage()
     {
-        _microcontroller.Languages = MicrocontrollerA.Languages;
+        _microcontroller.Languages = MicrocontrollerB.Languages;
 
         return this;
     }
@@ -55,7 +55,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildName()
     {
-        _microcontroller.Name = MicrocontrollerA.Name;
+        _microcontroller.Name = MicrocontrollerB.Name;
 
         return this;
     }
@@ -69,7 +69,7 @@ internal sealed class MicrocontrollerABuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildPort()
     {
-        _microcontroller.Ports = MicrocontrollerA.Ports;
+        _microcontroller.Ports = MicrocontrollerB.Ports;
         return this;
     }
 
