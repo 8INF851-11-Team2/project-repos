@@ -103,31 +103,31 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     private Certificate CreateCertificateA(Microcontroller mc)
     {
         //Init TestSuite
-        ITest test1 = new TestCaseA("TestCaseA");
-        var suite = new TestSuite();
-        suite.AddTest(test1);
+        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
+        var suiteA = new TestSuite();
+        suiteA.AddTest(testA);
 
-        var certificateA = new Certificate(suite, mc, "CertificateA");
+        var certificateA = new Certificate(suiteA, mc, "CertificateA");
         return certificateA;
     }
     private Certificate CreateCertificateB(Microcontroller mc)
     {
         //Init TestSuite
-        ITest test2 = new TestCaseB("TestCaseB");
-        var suite = new TestSuite();
-        suite.AddTest(test2);
+        ITest testA = new IsMaintainableTest();
+        var suiteA = new TestSuite();
+        suiteA.AddTest(testA);
 
-        var certificateB = new Certificate(suite, mc, "certificateB");
+        var certificateB = new Certificate(suiteA, mc, "certificateB");
         return certificateB;
     }
     private Certificate CreateCertificateC(Microcontroller mc)
     {
         //Init TestSuite
-        ITest test1 = new TestCaseA("TestCaseA");
-        ITest test2 = new TestCaseB("TestCaseB");
+        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
+        ITest testB = new IsMaintainableTest();
         var suite = new TestSuite();
-        suite.AddTest(test1);
-        suite.AddTest(test2);
+        suite.AddTest(testA);
+        suite.AddTest(testB);
 
         var certificateC = new Certificate(suite, mc, "CertificateC");
         return certificateC;

@@ -4,7 +4,7 @@ using LOCMI.Core;
 
 internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
 {
-    private readonly Microcontroller _microcontroller = new ();
+    private readonly Microcontroller _microcontroller = new();
 
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildConnectors()
@@ -41,8 +41,14 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildLanguage()
     {
-        _microcontroller.Language = MicrocontrollerB.Language;
+        _microcontroller.Languages = MicrocontrollerB.Languages;
 
+        return this;
+    }
+
+    /// <inheritdoc />
+    public IMicrocontrollerAdapter BuildMaintenance()
+    {
         return this;
     }
 
@@ -51,6 +57,12 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     {
         _microcontroller.Name = MicrocontrollerB.Name;
 
+        return this;
+    }
+
+    /// <inheritdoc />
+    public IMicrocontrollerAdapter BuildOS()
+    {
         return this;
     }
 
@@ -64,7 +76,7 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public Microcontroller GetResult()
     {
-        BuildConnectors().BuildDimension().BuildDisk().BuildIdentification().BuildLanguage().BuildName().BuildPort();
+        BuildConnectors().BuildDimension().BuildDisk().BuildIdentification().BuildLanguage().BuildMaintenance().BuildName().BuildOS().BuildPort();
 
         return _microcontroller;
     }

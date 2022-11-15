@@ -25,7 +25,7 @@ public class PromptController
                 IView.Display("Failed test(s) : ");
                 foreach (TestFailure tf in testResult.TestFailures)
                 {
-                    IView.Display(tf.TestCase.Name + ", cause : " + tf.Cause);
+                    IView.Display(tf.TestCase.Name + ", cause : " + tf.Causes);
                 }
             }
         }
