@@ -6,8 +6,6 @@ public sealed class CertificateDemonstrationDTO
 {
     private List<Certificate> _certificates;
 
-    private PromptController _promptController;
-
     public CertificateDemonstrationDTO()
     {
         _certificates = new List<Certificate>();

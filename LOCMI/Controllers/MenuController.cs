@@ -5,30 +5,31 @@ using LOCMI.Views;
 
 public abstract class MenuController<T> where T : ICommand
 {
-    protected readonly View View;
+    private bool _loop;
+    private bool _restart = false;
 
-    protected MenuController(View view)
+    protected MenuController(bool loop)
     {
-        View = view;
+        _loop = loop;
     }
 
     public void Run()
     {
         Menu<T> menu = SetMenu();
-
-        while (!menu.IsClosed)
+        do
         {
-            View.Display("\nChoose a choice from the menu below:");
+            _restart = false;
+            IView.Display("\nChoose a choice from the menu below:");
 
             var number = 1;
 
             foreach ((string displayText, _) in menu)
             {
-                View.Display($"{number} -------->  {displayText}");
+                IView.Display($"{number} -------->  {displayText}");
                 number++;
             }
 
-            string? read = View.GetUserEntry();
+            string? read = IView.GetUserEntry();
 
             if (!string.IsNullOrEmpty(read))
             {
@@ -39,9 +40,10 @@ public abstract class MenuController<T> where T : ICommand
                 }
                 catch (Exception e)
                 {
+                    _restart = true;
                     if (e is ArgumentOutOfRangeException or FormatException)
                     {
-                        View.Display("Please enter a valid choice");
+                        IView.Display("Please enter a valid choice");                        
                     }
                     else
                     {
@@ -49,7 +51,16 @@ public abstract class MenuController<T> where T : ICommand
                     }
                 }
             }
-        }
+            else
+            {
+                _restart = true;
+            }
+
+        } while ((!menu.IsClosed && _loop) || _restart);
+
+        IView.Display("\nEnter anything to continue to main menu:");
+        IView.GetUserEntry();
+        IView.Clear();
     }
 
     protected abstract Menu<T> SetMenu();

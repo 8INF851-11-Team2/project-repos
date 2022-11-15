@@ -6,8 +6,8 @@ using LOCMI.Views;
 
 public sealed class ExperimentalController : MenuController<IExpMenuCommand>
 {
-    public ExperimentalController(View view)
-        : base(view)
+    public ExperimentalController()
+        : base(false)
     {
     }
 

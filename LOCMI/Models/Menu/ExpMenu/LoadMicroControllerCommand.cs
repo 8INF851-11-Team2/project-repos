@@ -6,7 +6,7 @@ using LOCMI.Core;
 
 public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 {
-    private readonly CertifierExperimental _certifier;
+    private readonly CertificateExperimentalDTO _certifier;
 
     private readonly ScannerController _scannerController;
 
@@ -16,7 +16,7 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
     {
     }
 
-    public LoadMicrocontrollerCommand(CertifierExperimental certifier, ScannerController scannerController)
+    public LoadMicrocontrollerCommand(CertificateExperimentalDTO certifier, ScannerController scannerController)
     {
         _scannerController = scannerController;
         _certifier = certifier;
