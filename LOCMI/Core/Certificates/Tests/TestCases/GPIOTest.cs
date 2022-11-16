@@ -7,7 +7,7 @@ using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 ///     Test if the microcontroller has the correct number of ports of each type (Data, Ground and Other)
 /// </summary>
 /// <remarks>Test 3</remarks>
-public class GPIOTest : TestCase
+public sealed class GPIOTest : TestCase
 {
     public GPIOTest()
         : base("General purpose input/output specifications")

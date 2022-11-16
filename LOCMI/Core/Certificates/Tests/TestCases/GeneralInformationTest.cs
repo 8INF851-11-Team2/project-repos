@@ -7,7 +7,7 @@ using LOCMI.Core.Microcontrollers.Utils;
 ///     Test if the microcontroller is the right model and made by the right brand
 /// </summary>
 /// <remarks>Test 8</remarks>
-public class GeneralInformationTest : TestCase
+public sealed class GeneralInformationTest : TestCase
 {
     private readonly Identification _identification;
 

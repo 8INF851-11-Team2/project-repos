@@ -7,7 +7,7 @@ using LOCMI.Core.Microcontrollers.Utils;
 ///     Test if the microcontroller has the asked connectors
 /// </summary>
 /// <remarks>Test 4</remarks>
-public class ConnectorSpecificationTest : TestCase
+public sealed class ConnectorSpecificationTest : TestCase
 {
     public ConnectorSpecificationTest()
         : base("Connector Specification Validation")

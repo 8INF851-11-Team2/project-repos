@@ -2,7 +2,7 @@
 
 using LOCMI.Core.Microcontrollers;
 
-public class FirmwareTest : TestCase
+public sealed class FirmwareTest : TestCase
 {
     public FirmwareTest()
         : base("Firmware test")

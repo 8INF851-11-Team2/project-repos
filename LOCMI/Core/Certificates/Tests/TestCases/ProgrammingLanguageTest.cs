@@ -7,7 +7,7 @@ using LOCMI.Core.Microcontrollers.Utils;
 ///     Test if the microcontroller supports the asked programming languages
 /// </summary>
 /// <remarks>Test 5</remarks>
-public class ProgrammingLanguageTest : TestCase
+public sealed class ProgrammingLanguageTest : TestCase
 {
     public ProgrammingLanguageTest()
         : base("Languages")
