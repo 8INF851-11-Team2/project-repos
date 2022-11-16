@@ -35,7 +35,9 @@ public sealed class CertificateA : Certificate
             },
             new ConnectorSpecificationTest
             {
-                MandatoryConnectors = new Connector[] { new ("HDMI"), new ("USB"), new ("Wifi") },
+                "HDMI",
+                "USB",
+                "Wifi",
             },
         };
     }

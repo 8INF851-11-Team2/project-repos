@@ -20,11 +20,11 @@ public sealed class GPIOTest : TestCase
 
     public int MaxOtherPort { get; init; } = int.MaxValue;
 
-    public int MinDataPort { get; init; } = 0;
+    public int MinDataPort { get; init; }
 
-    public int MinGround { get; init; } = 0;
+    public int MinGround { get; init; }
 
-    public int MinOtherPort { get; init; } = 0;
+    public int MinOtherPort { get; init; }
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
