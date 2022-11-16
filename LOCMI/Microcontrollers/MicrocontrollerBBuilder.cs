@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Microcontrollers;
 
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
 {

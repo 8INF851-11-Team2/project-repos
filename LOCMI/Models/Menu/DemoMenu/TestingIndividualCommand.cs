@@ -1,10 +1,10 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
-using LOCMI.Certificates;
-using LOCMI.Certificates.Tests;
-using LOCMI.Certificates.Tests.TestCases;
 using LOCMI.Controllers;
-using LOCMI.Core;
+using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.Tests;
+using LOCMI.Core.Certificates.Tests.TestCases;
+using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 using LOCMI.Views;
 
@@ -93,8 +93,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     {
         //Init TestSuite
         ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
-        var suiteA = new TestSuite();
-        suiteA.AddTest(testA);
+        var suiteA = new TestSuite { testA };
 
         var certificateA = new Certificate(suiteA, mc, "CertificateA");
         return certificateA;
@@ -104,8 +103,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     {
         //Init TestSuite
         ITest testA = new HasHardDiskTest();
-        var suiteA = new TestSuite();
-        suiteA.AddTest(testA);
+        var suiteA = new TestSuite { testA };
 
         var certificateB = new Certificate(suiteA, mc, "certificateB");
         return certificateB;
@@ -116,9 +114,12 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         //Init TestSuite
         ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
         ITest testB = new HasHardDiskTest();
-        var suite = new TestSuite();
-        suite.AddTest(testA);
-        suite.AddTest(testB);
+
+        var suite = new TestSuite
+        {
+            testA,
+            testB,
+        };
 
         var certificateC = new Certificate(suite, mc, "CertificateC");
         return certificateC;

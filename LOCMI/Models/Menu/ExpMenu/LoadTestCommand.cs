@@ -1,8 +1,8 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
-using LOCMI.Certificates;
-using LOCMI.Certificates.Tests;
 using LOCMI.Controllers;
+using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.Tests;
 
 public sealed class LoadTestCommand : IExpMenuCommand
 {

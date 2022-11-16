@@ -1,7 +1,7 @@
 ﻿namespace LOCMI.Microcontrollers;
 
-using LOCMI.Core.Utils;
-using LOCMI.Core.Utils.PortTypes;
+using LOCMI.Core.Microcontrollers.Utils;
+using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
 public static class MicrocontrollerC
 {
