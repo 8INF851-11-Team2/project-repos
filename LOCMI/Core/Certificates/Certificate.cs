@@ -4,28 +4,30 @@ using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.Results;
 using LOCMI.Core.Microcontrollers;
 
-public sealed class Certificate
+public class Certificate
 {
-    public Certificate(ITest test, Microcontroller mc, string name)
+    public Certificate(ITest test, Microcontroller microcontroller, string name)
     {
         Name = name;
-        Microcontroller = mc;
+        Microcontroller = microcontroller;
         Test = test;
-        TestResult = new TestResult();
-        Date = DateTime.Now;
     }
 
-    public DateTime Date { get; set; }
+    protected Certificate(string name, Microcontroller microcontroller)
+    {
+        Name = name;
+        Microcontroller = microcontroller;
+    }
 
-    public bool IsSuccess { get; set; }
+    public bool IsSuccess { get; private set; }
 
-    public Microcontroller Microcontroller { get; set; }
+    public Microcontroller Microcontroller { get; }
 
-    public string Name { get; set; }
+    public string Name { get; }
 
-    public ITest Test { get; set; }
+    public ITest Test { get; protected init; } = new TestSuite();
 
-    public ITestResult TestResult { get; set; }
+    public ITestResult TestResult { get; } = new TestResult();
 
     public void Certify()
     {
