@@ -2,11 +2,12 @@ namespace LOCMI.Controllers;
 
 using LOCMI.Models.Menu;
 using LOCMI.Models.Menu.ExpMenu;
+using LOCMI.Views;
 
 public sealed class ExperimentalController : MenuController<IExpMenuCommand>
 {
-    public ExperimentalController()
-        : base(false)
+    public ExperimentalController(IView view)
+        : base(view, false)
     {
     }
 

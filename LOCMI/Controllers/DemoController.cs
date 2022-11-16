@@ -7,11 +7,12 @@ using LOCMI.Core;
 using LOCMI.Microcontrollers;
 using LOCMI.Models.Menu;
 using LOCMI.Models.Menu.DemoMenu;
+using LOCMI.Views;
 
 public sealed class DemoController : MenuController<IDemoMenuCommand>
 {
-    public DemoController()
-        : base(false)
+    public DemoController(IView view)
+        : base(view, false)
     {
     }
 
@@ -22,8 +23,8 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
 
         var certificateDemonstrationDTO = new CertificateDemonstrationDTO();
 
-        var testingAllCommand = new TestingAllCommand(certificates, certificateDemonstrationDTO);
-        var testingIndividualCommand = new TestingIndividualCommand(certificateDemonstrationDTO);
+        var testingAllCommand = new TestingAllCommand(View, certificates, certificateDemonstrationDTO);
+        var testingIndividualCommand = new TestingIndividualCommand(View, certificateDemonstrationDTO);
 
         return new Menu<IDemoMenuCommand>("Demonstration Menu")
         {

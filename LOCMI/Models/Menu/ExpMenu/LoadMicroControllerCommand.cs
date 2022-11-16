@@ -24,7 +24,7 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 
     public void Execute()
     {
-        string path = ScannerController.Run();
+        string path = _scannerController.Run();
         Microcontroller microcontroller = _loader.LoadController(path);
         _certifier.SetMicrocontroller(microcontroller);
     }

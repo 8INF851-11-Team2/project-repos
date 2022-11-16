@@ -12,23 +12,29 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
 {
     private readonly CertificateDemonstrationDTO _dto;
 
+    private readonly PromptController _promptController;
+
+    private readonly IView _view;
+
     private List<Certificate> _certificates;
 
-    public TestingIndividualCommand(CertificateDemonstrationDTO certify)
+    public TestingIndividualCommand(IView view, CertificateDemonstrationDTO certify)
     {
         _certificates = new List<Certificate>();
+        _promptController = new PromptController(view);
+        _view = view;
         _dto = certify;
     }
 
     public void Execute()
     {
-        IView.Display("\nChoose a choice from the menu below:");
+        _view.Display("\nChoose a choice from the menu below:");
 
-        IView.Display("1 -------->  Microcontroller A");
-        IView.Display("2 -------->  Microcontroller B");
-        IView.Display("3 -------->  Microcontroller C");
+        _view.Display("1 -------->  Microcontroller A");
+        _view.Display("2 -------->  Microcontroller B");
+        _view.Display("3 -------->  Microcontroller C");
 
-        string? read = IView.GetUserEntry();
+        string? read = _view.GetUserEntry();
         var userChoice = 0;
 
         if (!string.IsNullOrEmpty(read))
@@ -41,7 +47,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
             {
                 if (e is FormatException)
                 {
-                    IView.Display("Please enter a valid choice");
+                    _view.Display("Please enter a valid choice");
                 }
                 else
                 {
@@ -73,7 +79,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         _certificates = CreateListCertificates(microcontroller);
         _dto.SetCertificates(_certificates);
         _dto.Apply();
-        PromptController.Run(_certificates);
+        _promptController.Run(_certificates);
         var p = new PrintCommand(_dto);
         p.Execute();
     }
