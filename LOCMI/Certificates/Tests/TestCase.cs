@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Certificates.Tests;
 
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 public abstract class TestCase : ITest
 {

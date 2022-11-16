@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Certificates.Tests.TestCases;
 
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 /// <summary>
 ///     Check if the microcontroller has a hard disk

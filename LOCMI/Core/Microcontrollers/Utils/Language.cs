@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Core.Utils;
+﻿namespace LOCMI.Core.Microcontrollers.Utils;
 
 public struct Language
 {

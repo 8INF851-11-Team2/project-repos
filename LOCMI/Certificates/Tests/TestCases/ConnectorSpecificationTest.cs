@@ -1,7 +1,7 @@
 ﻿namespace LOCMI.Certificates.Tests.TestCases;
 
-using LOCMI.Core;
-using LOCMI.Core.Utils;
+using LOCMI.Core.Microcontrollers;
+using LOCMI.Core.Microcontrollers.Utils;
 
 /// <summary>
 ///     Test if the microcontroller has the asked connectors

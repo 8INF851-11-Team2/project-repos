@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Core.Utils.PortTypes;
+﻿namespace LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
 public sealed class PowerPort : Port
 {

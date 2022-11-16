@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Certificates.Tests.TestCases;
 
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 public class FirmwareTest : TestCase
 {

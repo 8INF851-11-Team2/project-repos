@@ -1,7 +1,7 @@
-﻿namespace LOCMI.Core.Utils;
+﻿namespace LOCMI.Core.Microcontrollers.Utils;
 
 using System.Collections;
-using LOCMI.Core.Utils.PortTypes;
+using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
 public sealed class Ports : IEnumerable<Port>
 {

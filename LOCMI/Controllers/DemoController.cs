@@ -3,7 +3,7 @@
 using LOCMI.Certificates;
 using LOCMI.Certificates.Tests;
 using LOCMI.Certificates.Tests.TestCases;
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 using LOCMI.Models.Menu;
 using LOCMI.Models.Menu.DemoMenu;

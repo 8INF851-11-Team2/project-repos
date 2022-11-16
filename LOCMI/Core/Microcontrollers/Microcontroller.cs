@@ -1,6 +1,6 @@
-﻿namespace LOCMI.Core;
+﻿namespace LOCMI.Core.Microcontrollers;
 
-using LOCMI.Core.Utils;
+using LOCMI.Core.Microcontrollers.Utils;
 
 public sealed class Microcontroller
 {

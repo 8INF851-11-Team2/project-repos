@@ -1,7 +1,7 @@
 ﻿namespace LOCMI.Certificates.Tests.TestCases;
 
-using LOCMI.Core;
-using LOCMI.Core.Utils.PortTypes;
+using LOCMI.Core.Microcontrollers;
+using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
 /// <summary>
 ///     Test if the microcontroller has the correct number of ports of each type (Data, Ground and Other)

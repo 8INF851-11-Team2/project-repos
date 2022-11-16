@@ -2,7 +2,7 @@
 
 using LOCMI.Certificates.Tests;
 using LOCMI.Certificates.Tests.Results;
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 public sealed class Certificate
 {

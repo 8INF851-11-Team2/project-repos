@@ -2,7 +2,7 @@
 
 using LOCMI.Certificates;
 using LOCMI.Controllers;
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 {

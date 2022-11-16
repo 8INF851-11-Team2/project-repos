@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Core;
+﻿namespace LOCMI.Core.Microcontrollers;
 
 public interface IMicrocontrollerAdapter
 {

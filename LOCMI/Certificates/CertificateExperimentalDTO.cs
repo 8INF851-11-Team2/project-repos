@@ -1,7 +1,7 @@
 ﻿namespace LOCMI.Certificates;
 
 using LOCMI.Certificates.Tests;
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 public class CertificateExperimentalDTO
 {

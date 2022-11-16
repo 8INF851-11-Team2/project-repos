@@ -4,7 +4,7 @@ using LOCMI.Certificates;
 using LOCMI.Certificates.Tests;
 using LOCMI.Certificates.Tests.TestCases;
 using LOCMI.Controllers;
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 using LOCMI.Views;
 
