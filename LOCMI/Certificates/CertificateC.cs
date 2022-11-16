@@ -14,7 +14,11 @@ public class CertificateC : Certificate
     {
         Test = new TestSuite
         {
-            new ElectronicVersatilityTest(new[] { 3.3, 5 }),
+            new ElectronicVersatilityTest
+            {
+                3.3,
+                5,
+            },
             new GPIOTest
             {
                 MaxDataPort = 7,

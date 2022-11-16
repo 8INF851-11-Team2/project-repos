@@ -1,5 +1,6 @@
 ﻿namespace LOCMI.Core.Certificates.Tests.TestCases;
 
+using System.Collections;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
@@ -7,14 +8,24 @@ using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 ///     Test if the microcontroller supports different voltages.
 /// </summary>
 /// <remarks>Test 1</remarks>
-public sealed class ElectronicVersatilityTest : TestCase
+public sealed class ElectronicVersatilityTest : TestCase, IEnumerable<double>
 {
-    private readonly IEnumerable<double> _testedVoltage;
+    private readonly List<double> _testedVoltage = new ();
 
-    public ElectronicVersatilityTest(IEnumerable<double> testedVoltage)
+    public ElectronicVersatilityTest()
         : base("Electronic versatility")
     {
-        _testedVoltage = testedVoltage;
+    }
+
+    public void Add(double voltage)
+    {
+        _testedVoltage.Add(voltage);
+    }
+
+    /// <inheritdoc />
+    public IEnumerator<double> GetEnumerator()
+    {
+        return _testedVoltage.GetEnumerator();
     }
 
     /// <inheritdoc />
@@ -31,5 +42,11 @@ public sealed class ElectronicVersatilityTest : TestCase
         }
 
         return new[] { "The microcontroller has no ports" };
+    }
+
+    /// <inheritdoc />
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
