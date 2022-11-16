@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
-using LOCMI.Certificates.Tests;
+using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Microcontrollers;
 
 public interface ILoader

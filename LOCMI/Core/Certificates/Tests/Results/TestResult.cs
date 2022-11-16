@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Certificates.Tests.Results;
+﻿namespace LOCMI.Core.Certificates.Tests.Results;
 
 public sealed class TestResult : ITestResult
 {

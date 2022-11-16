@@ -1,6 +1,6 @@
-﻿namespace LOCMI.Certificates.Printers;
+﻿namespace LOCMI.Core.Certificates.Printers;
 
-using LOCMI.Certificates.Tests;
+using LOCMI.Core.Certificates.Tests;
 
 public sealed class PrinterTxt : IPrinter
 {

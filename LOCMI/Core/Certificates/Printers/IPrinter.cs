@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Certificates.Printers;
+﻿namespace LOCMI.Core.Certificates.Printers;
 
 public interface IPrinter
 {

@@ -1,8 +1,8 @@
 ﻿namespace LOCMI.Controllers;
 
-using LOCMI.Certificates;
-using LOCMI.Certificates.Tests;
-using LOCMI.Certificates.Tests.TestCases;
+using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.Tests;
+using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 using LOCMI.Models.Menu;

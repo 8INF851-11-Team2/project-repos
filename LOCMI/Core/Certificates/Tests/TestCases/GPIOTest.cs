@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Certificates.Tests.TestCases;
+﻿namespace LOCMI.Core.Certificates.Tests.TestCases;
 
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils.PortTypes;

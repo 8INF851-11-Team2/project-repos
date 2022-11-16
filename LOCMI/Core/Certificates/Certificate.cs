@@ -1,7 +1,7 @@
-﻿namespace LOCMI.Certificates;
+﻿namespace LOCMI.Core.Certificates;
 
-using LOCMI.Certificates.Tests;
-using LOCMI.Certificates.Tests.Results;
+using LOCMI.Core.Certificates.Tests;
+using LOCMI.Core.Certificates.Tests.Results;
 using LOCMI.Core.Microcontrollers;
 
 public sealed class Certificate

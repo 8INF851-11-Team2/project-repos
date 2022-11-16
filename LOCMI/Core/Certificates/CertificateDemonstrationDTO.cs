@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Certificates;
+﻿namespace LOCMI.Core.Certificates;
 
 public sealed class CertificateDemonstrationDTO
 {

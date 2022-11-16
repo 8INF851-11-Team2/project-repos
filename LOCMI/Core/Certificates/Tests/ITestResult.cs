@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Certificates.Tests;
+﻿namespace LOCMI.Core.Certificates.Tests;
 
 public interface ITestResult
 {

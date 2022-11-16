@@ -1,4 +1,4 @@
-﻿namespace LOCMI.Certificates.Tests;
+﻿namespace LOCMI.Core.Certificates.Tests;
 
 using LOCMI.Core.Microcontrollers;
 

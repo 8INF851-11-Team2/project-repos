@@ -1,7 +1,7 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
-using LOCMI.Certificates;
 using LOCMI.Controllers;
+using LOCMI.Core.Certificates;
 using LOCMI.Views;
 
 public sealed class TestingAllCommand : IDemoMenuCommand
