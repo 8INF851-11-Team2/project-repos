@@ -1,8 +1,9 @@
 ﻿namespace LOCMI.Core.Certificates.Tests;
 
+using System.Collections;
 using LOCMI.Core.Microcontrollers;
 
-public sealed class TestSuite : ITest
+public sealed class TestSuite : ITest, IEnumerable<ITest>
 {
     public TestSuite()
     {
@@ -11,9 +12,15 @@ public sealed class TestSuite : ITest
 
     public List<ITest> Tests { get; }
 
-    public void AddTest(ITest test)
+    public void Add(ITest test)
     {
         Tests.Add(test);
+    }
+
+    /// <inheritdoc />
+    public IEnumerator<ITest> GetEnumerator()
+    {
+        return Tests.GetEnumerator();
     }
 
     public void Run(ITestResult testResult, Microcontroller mc)
@@ -22,5 +29,11 @@ public sealed class TestSuite : ITest
         {
             test.Run(testResult, mc);
         }
+    }
+
+    /// <inheritdoc />
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
