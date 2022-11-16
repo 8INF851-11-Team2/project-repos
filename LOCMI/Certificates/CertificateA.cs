@@ -5,11 +5,7 @@ using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils;
-using LOCMI.Microcontrollers;
 
-/// <summary>
-///     Certificate for <see cref="MicrocontrollerA" />
-/// </summary>
 public sealed class CertificateA : Certificate
 {
     /// <inheritdoc />

@@ -5,10 +5,10 @@ using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
 
-public class CertificateC : Certificate
+public sealed class CertificateC : Certificate
 {
     /// <inheritdoc />
-    protected CertificateC(Microcontroller microcontroller)
+    public CertificateC(Microcontroller microcontroller)
         : base("CertificateC", microcontroller)
     {
         Test = new TestSuite
