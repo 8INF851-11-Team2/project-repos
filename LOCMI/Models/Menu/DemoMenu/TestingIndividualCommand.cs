@@ -1,9 +1,8 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
+using LOCMI.Certificates;
 using LOCMI.Controllers;
 using LOCMI.Core.Certificates;
-using LOCMI.Core.Certificates.Tests;
-using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 using LOCMI.Views;
@@ -16,11 +15,8 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
 
     private readonly IView _view;
 
-    private List<Certificate> _certificates;
-
     public TestingIndividualCommand(IView view, CertificateDemonstrationDTO certify)
     {
-        _certificates = new List<Certificate>();
         _promptController = new PromptController(view);
         _view = view;
         _dto = certify;
@@ -76,10 +72,18 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
                 return;
         }
 
-        _certificates = CreateListCertificates(microcontroller);
-        _dto.SetCertificates(_certificates);
+        var certificates = new List<Certificate>
+        {
+            new CertificateA(microcontroller),
+            new CertificateB(microcontroller),
+            new CertificateC(microcontroller),
+        };
+
+        _dto.SetCertificates(certificates);
         _dto.Apply();
-        _promptController.Run(_certificates);
+
+        _promptController.Run(certificates);
+
         var p = new PrintCommand(_dto);
         p.Execute();
     }
@@ -87,68 +91,5 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     public bool IsExecutable()
     {
         throw new NotImplementedException();
-    }
-
-    private static Certificate CreateCertificateA(Microcontroller mc)
-    {
-        //Init TestSuite
-        ITest testA = new ElectronicVersatilityTest
-        {
-            3.3,
-            5,
-        };
-
-        var suiteA = new TestSuite { testA };
-
-        var certificateA = new Certificate(suiteA, mc, "CertificateA");
-        return certificateA;
-    }
-
-    private static Certificate CreateCertificateB(Microcontroller mc)
-    {
-        //Init TestSuite
-        ITest testA = new HasHardDiskTest();
-        var suiteA = new TestSuite { testA };
-
-        var certificateB = new Certificate(suiteA, mc, "certificateB");
-        return certificateB;
-    }
-
-    private static Certificate CreateCertificateC(Microcontroller mc)
-    {
-        //Init TestSuite
-        ITest testA = new ElectronicVersatilityTest
-        {
-            3.3,
-            5,
-        };
-
-        ITest testB = new HasHardDiskTest();
-
-        var suite = new TestSuite
-        {
-            testA,
-            testB,
-        };
-
-        var certificateC = new Certificate(suite, mc, "CertificateC");
-        return certificateC;
-    }
-
-    private static List<Certificate> CreateListCertificates(Microcontroller mc)
-    {
-        //Certificate
-        Certificate certificateA = CreateCertificateA(mc);
-        Certificate certificateB = CreateCertificateB(mc);
-        Certificate certificateC = CreateCertificateC(mc);
-
-        var certificates = new List<Certificate>
-        {
-            certificateA,
-            certificateB,
-            certificateC,
-        };
-
-        return certificates;
     }
 }
