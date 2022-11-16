@@ -14,7 +14,7 @@ public sealed class CertificateB : Certificate
     {
         Test = new TestSuite
         {
-            new ProgrammingLanguageTest { MandatoryLanguages = new Language[] { new ("C++", "17") } },
+            new ProgrammingLanguageTest { new ("C++", "17") },
             new OperatingSystemTest(new OS()),
             new HasHardDiskTest(),
             new GeneralInformationTest(new Identification("Raspberry PI", "RP2000")),
