@@ -36,7 +36,12 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
     private static Certificate CreateCertificateA(Microcontroller mc)
     {
         //Init TestSuite
-        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
+        ITest testA = new ElectronicVersatilityTest
+        {
+            3.3,
+            5,
+        };
+
         var suiteA = new TestSuite { testA };
 
         var certificateA = new Certificate(suiteA, mc, "CertificateA");
@@ -56,7 +61,12 @@ public sealed class DemoController : MenuController<IDemoMenuCommand>
     private static Certificate CreateCertificateC(Microcontroller mc)
     {
         //Init TestSuite
-        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
+        ITest testA = new ElectronicVersatilityTest
+        {
+            3.3,
+            5,
+        };
+
         ITest testB = new HasHardDiskTest();
 
         var suite = new TestSuite

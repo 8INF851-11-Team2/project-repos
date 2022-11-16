@@ -7,7 +7,7 @@ using LOCMI.Core.Microcontrollers.Utils;
 ///     Test if the microcontroller respects the physical specifications
 /// </summary>
 /// <remarks>Test 2</remarks>
-public class PhysicalSpecificationTest : TestCase
+public sealed class PhysicalSpecificationTest : TestCase
 {
     public PhysicalSpecificationTest()
         : base("Validation of physical specifications")

@@ -18,7 +18,10 @@ public sealed class CertificateA : Certificate
     {
         Test = new TestSuite
         {
-            new ElectronicVersatilityTest(new[] { 3.3 }),
+            new ElectronicVersatilityTest
+            {
+                3.3,
+            },
             new PhysicalSpecificationTest
             {
                 MaxDimension = new Dimension(5, 2.10, 0.9, 100),
@@ -35,7 +38,9 @@ public sealed class CertificateA : Certificate
             },
             new ConnectorSpecificationTest
             {
-                MandatoryConnectors = new Connector[] { new ("HDMI"), new ("USB"), new ("Wifi") },
+                "HDMI",
+                "USB",
+                "Wifi",
             },
         };
     }

@@ -4,7 +4,6 @@ using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
-using LOCMI.Core.Microcontrollers.Utils;
 
 public class CertificateC : Certificate
 {
@@ -14,7 +13,11 @@ public class CertificateC : Certificate
     {
         Test = new TestSuite
         {
-            new ElectronicVersatilityTest(new[] { 3.3, 5 }),
+            new ElectronicVersatilityTest
+            {
+                3.3,
+                5,
+            },
             new GPIOTest
             {
                 MaxDataPort = 7,
@@ -24,10 +27,7 @@ public class CertificateC : Certificate
                 MaxOtherPort = 3,
                 MinOtherPort = 3,
             },
-            new ProgrammingLanguageTest
-            {
-                MandatoryLanguages = new Language[] { new ("C++", "17") },
-            },
+            new ProgrammingLanguageTest { new ("C++", "17") },
             new HasHardDiskTest(),
             new IsMaintainableTest(),
         };

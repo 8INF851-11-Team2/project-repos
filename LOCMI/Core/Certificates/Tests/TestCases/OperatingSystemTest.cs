@@ -7,7 +7,7 @@ using LOCMI.Core.Microcontrollers.Utils;
 ///     Test if the microcontroller has an OS and if the OS is correct
 /// </summary>
 /// <remarks>Test 6</remarks>
-public class OperatingSystemTest : TestCase
+public sealed class OperatingSystemTest : TestCase
 {
     private readonly OS _mandatoryOS;
 

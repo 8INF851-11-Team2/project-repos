@@ -6,7 +6,7 @@ using LOCMI.Core.Microcontrollers;
 ///     Check is the microcontroller is maintainable.
 /// </summary>
 /// <remarks>Test 9</remarks>
-public class IsMaintainableTest : TestCase
+public sealed class IsMaintainableTest : TestCase
 {
     public IsMaintainableTest()
         : base("Maintenance testing")
