@@ -3,6 +3,7 @@
 using LOCMI.Controllers;
 using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.Tests;
+using LOCMI.Core.Loaders;
 
 public sealed class LoadTestCommand : IExpMenuCommand
 {
@@ -10,7 +11,7 @@ public sealed class LoadTestCommand : IExpMenuCommand
 
     private CertificateExperimentalDTO _certifier;
 
-    private ILoader _loader;
+    private ILoader<ITest> _loader;
 
     private ITest _test;
 
