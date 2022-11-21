@@ -1,7 +1,7 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
 using LOCMI.Controllers;
-using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Loaders;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Views;

@@ -1,6 +1,6 @@
-﻿namespace LOCMI.Core.Certificates;
+﻿namespace LOCMI.Core.Certificates.DTO;
 
-public sealed class CertificateDemonstrationDTO
+public sealed class CertificateDemonstrationDTO : ICertificateDTO
 {
     private List<Certificate> _certificates;
 
