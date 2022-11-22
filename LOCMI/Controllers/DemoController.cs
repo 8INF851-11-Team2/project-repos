@@ -2,6 +2,7 @@
 
 using LOCMI.Certificates;
 using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 using LOCMI.Models.Menu;

@@ -1,17 +1,18 @@
 ﻿namespace LOCMI.Models.Menu;
 
 using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Certificates.Printers;
 
 public sealed class PrintCommand : ICommand
 {
-    private readonly CertificateDemonstrationDTO _certificateDemonstration;
+    private readonly ICertificateDTO _certificateDTO;
 
     private readonly IPrinter _printer;
 
-    public PrintCommand(CertificateDemonstrationDTO certifyDemonstration)
+    public PrintCommand(ICertificateDTO certificateDTO)
     {
-        _certificateDemonstration = certifyDemonstration;
+        _certificateDTO = certificateDTO;
         _printer = new PrinterTxt();
     }
 
@@ -19,7 +20,7 @@ public sealed class PrintCommand : ICommand
     {
         DateTime date = DateTime.Now;
         string path = "CERTIFICATE_" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
-        IEnumerable<Certificate> c = _certificateDemonstration.GetCertificates();
+        IEnumerable<Certificate> c = _certificateDTO.GetCertificates();
         _printer.Print(c, path).Wait();
     }
 

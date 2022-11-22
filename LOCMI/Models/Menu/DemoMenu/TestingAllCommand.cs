@@ -2,6 +2,7 @@
 
 using LOCMI.Controllers;
 using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.DTO;
 using LOCMI.Views;
 
 public sealed class TestingAllCommand : IDemoMenuCommand
