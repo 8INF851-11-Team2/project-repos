@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
-using LOCMI.Certificates;
+using LOCMI.Core.Certificates.DTO;
 
 public sealed class RunTestCommand : IExpMenuCommand
 {
@@ -8,7 +8,6 @@ public sealed class RunTestCommand : IExpMenuCommand
 
     public RunTestCommand()
     {
-        
     }
 
     public RunTestCommand(CertificateExperimentalDTO certifier)

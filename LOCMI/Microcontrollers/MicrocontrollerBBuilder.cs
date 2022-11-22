@@ -1,10 +1,10 @@
 ﻿namespace LOCMI.Microcontrollers;
 
-using LOCMI.Core;
+using LOCMI.Core.Microcontrollers;
 
 internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
 {
-    private readonly Microcontroller _microcontroller = new();
+    private readonly Microcontroller _microcontroller = new ();
 
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildConnectors()

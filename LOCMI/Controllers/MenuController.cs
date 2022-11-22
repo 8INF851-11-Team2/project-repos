@@ -5,31 +5,36 @@ using LOCMI.Views;
 
 public abstract class MenuController<T> where T : ICommand
 {
-    private bool _loop;
-    private bool _restart = false;
+    protected readonly IView View;
 
-    protected MenuController(bool loop)
+    private readonly bool _loop;
+
+    private bool _restart;
+
+    protected MenuController(IView view, bool loop)
     {
+        View = view;
         _loop = loop;
     }
 
     public void Run()
     {
         Menu<T> menu = SetMenu();
+
         do
         {
             _restart = false;
-            IView.Display("\nChoose a choice from the menu below:");
+            View.Display("\nChoose a choice from the menu below:");
 
             var number = 1;
 
             foreach ((string displayText, _) in menu)
             {
-                IView.Display($"{number} -------->  {displayText}");
+                View.Display($"{number} -------->  {displayText}");
                 number++;
             }
 
-            string? read = IView.GetUserEntry();
+            string? read = View.GetUserEntry();
 
             if (!string.IsNullOrEmpty(read))
             {
@@ -41,9 +46,10 @@ public abstract class MenuController<T> where T : ICommand
                 catch (Exception e)
                 {
                     _restart = true;
+
                     if (e is ArgumentOutOfRangeException or FormatException)
                     {
-                        IView.Display("Please enter a valid choice");                        
+                        View.Display("Please enter a valid choice");
                     }
                     else
                     {
@@ -55,12 +61,11 @@ public abstract class MenuController<T> where T : ICommand
             {
                 _restart = true;
             }
-
         } while ((!menu.IsClosed && _loop) || _restart);
 
-        IView.Display("\nEnter anything to continue to main menu:");
-        IView.GetUserEntry();
-        IView.Clear();
+        View.Display("\nEnter anything to continue to main menu:");
+        View.GetUserEntry();
+        View.Clear();
     }
 
     protected abstract Menu<T> SetMenu();

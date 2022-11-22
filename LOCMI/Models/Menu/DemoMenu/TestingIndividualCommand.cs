@@ -1,35 +1,38 @@
 ﻿namespace LOCMI.Models.Menu.DemoMenu;
 
 using LOCMI.Certificates;
-using LOCMI.Certificates.Tests.TestCases;
-using LOCMI.Certificates.Tests;
-using LOCMI.Core;
+using LOCMI.Controllers;
+using LOCMI.Core.Certificates;
+using LOCMI.Core.Certificates.DTO;
+using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 using LOCMI.Views;
-using LOCMI.Controllers;
 
 public sealed class TestingIndividualCommand : IDemoMenuCommand
 {
-    private List<Certificate> _certificates;
-
     private readonly CertificateDemonstrationDTO _dto;
 
-    public TestingIndividualCommand(CertificateDemonstrationDTO certify)
+    private readonly PromptController _promptController;
+
+    private readonly IView _view;
+
+    public TestingIndividualCommand(IView view, CertificateDemonstrationDTO certify)
     {
-        _certificates = new List<Certificate>();
+        _promptController = new PromptController(view);
+        _view = view;
         _dto = certify;
     }
 
     public void Execute()
     {
-        IView.Display("\nChoose a choice from the menu below:");
+        _view.Display("\nChoose a choice from the menu below:");
 
-        IView.Display("1 -------->  Microcontroller A");
-        IView.Display("2 -------->  Microcontroller B");
-        IView.Display("3 -------->  Microcontroller C");
+        _view.Display("1 -------->  Microcontroller A");
+        _view.Display("2 -------->  Microcontroller B");
+        _view.Display("3 -------->  Microcontroller C");
 
-        string? read = IView.GetUserEntry();
-        int userChoice = 0;
+        string? read = _view.GetUserEntry();
+        var userChoice = 0;
 
         if (!string.IsNullOrEmpty(read))
         {
@@ -41,7 +44,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
             {
                 if (e is FormatException)
                 {
-                    IView.Display("Please enter a valid choice");
+                    _view.Display("Please enter a valid choice");
                 }
                 else
                 {
@@ -51,6 +54,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
         }
 
         Microcontroller microcontroller;
+
         switch (userChoice)
         {
             case 1:
@@ -69,10 +73,18 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
                 return;
         }
 
-        _certificates = CreateListCertificates(microcontroller);
-        _dto.SetCertificates(_certificates);
+        var certificates = new List<Certificate>
+        {
+            new CertificateA(microcontroller),
+            new CertificateB(microcontroller),
+            new CertificateC(microcontroller),
+        };
+
+        _dto.SetCertificates(certificates);
         _dto.Apply();
-        PromptController.Run(_certificates);
+
+        _promptController.Run(certificates);
+
         var p = new PrintCommand(_dto);
         p.Execute();
     }
@@ -80,56 +92,5 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
     public bool IsExecutable()
     {
         throw new NotImplementedException();
-    }
-
-    private List<Certificate> CreateListCertificates(Microcontroller mc)
-    {
-
-        //Certificate
-        var certificateA = CreateCertificateA(mc);
-        var certificateB = CreateCertificateB(mc);
-        var certificateC = CreateCertificateC(mc);
-
-        var certificates = new List<Certificate>
-        {
-            certificateA,
-            certificateB,
-            certificateC
-        };
-
-        return certificates;
-    }
-
-    private Certificate CreateCertificateA(Microcontroller mc)
-    {
-        //Init TestSuite
-        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
-        var suiteA = new TestSuite();
-        suiteA.AddTest(testA);
-
-        var certificateA = new Certificate(suiteA, mc, "CertificateA");
-        return certificateA;
-    }
-    private Certificate CreateCertificateB(Microcontroller mc)
-    {
-        //Init TestSuite
-        ITest testA = new HasHardDiskTest();
-        var suiteA = new TestSuite();
-        suiteA.AddTest(testA);
-
-        var certificateB = new Certificate(suiteA, mc, "certificateB");
-        return certificateB;
-    }
-    private Certificate CreateCertificateC(Microcontroller mc)
-    {
-        //Init TestSuite
-        ITest testA = new ElectronicVersatilityTest(new[] { 3.3, 5 });
-        ITest testB = new HasHardDiskTest();
-        var suite = new TestSuite();
-        suite.AddTest(testA);
-        suite.AddTest(testB);
-
-        var certificateC = new Certificate(suite, mc, "CertificateC");
-        return certificateC;
     }
 }

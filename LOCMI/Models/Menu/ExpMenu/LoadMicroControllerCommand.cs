@@ -1,23 +1,28 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
-using LOCMI.Certificates;
 using LOCMI.Controllers;
-using LOCMI.Core;
+using LOCMI.Core.Certificates.DTO;
+using LOCMI.Core.Loaders;
+using LOCMI.Core.Microcontrollers;
+using LOCMI.Views;
 
 public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 {
     private readonly CertificateExperimentalDTO _certifier;
 
+    private readonly ILoader<Microcontroller> _loader;
+
     private readonly ScannerController _scannerController;
 
-    private ILoader _loader;
+    private readonly IView _view;
 
     public LoadMicrocontrollerCommand()
     {
     }
 
-    public LoadMicrocontrollerCommand(CertificateExperimentalDTO certifier, ScannerController scannerController)
+    public LoadMicrocontrollerCommand(IView view, CertificateExperimentalDTO certifier, ScannerController scannerController)
     {
+        _view = view;
         _scannerController = scannerController;
         _certifier = certifier;
     }
@@ -25,8 +30,33 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
     public void Execute()
     {
         string path = _scannerController.Run();
-        Microcontroller microcontroller = _loader.LoadController(path);
-        _certifier.SetMicrocontroller(microcontroller);
+
+        Microcontroller? microcontroller;
+
+        try
+        {
+            microcontroller = _loader.Load(path);
+        }
+        catch (LoadException ex)
+        {
+            _view.Display(ex.Message);
+
+            if (ex.InnerException != null)
+            {
+                _view.Display(ex.InnerException.Message);
+            }
+
+            return;
+        }
+
+        if (microcontroller != null)
+        {
+            _certifier.SetMicrocontroller(microcontroller);
+        }
+        else
+        {
+            _view.Display("The microcontroller has not been loaded");
+        }
     }
 
     public bool IsExecutable()

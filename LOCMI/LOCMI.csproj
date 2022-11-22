@@ -11,7 +11,7 @@
     <Compile Remove="Core\IMicrocontrolerAdapter.cs" />
     <Compile Remove="Core\MicroControler.cs" />
     <Compile Remove="Core\MicroControlerAdapter.cs" />
-    <Compile Remove="Core\Utils\Class2.cs" />
+    <Compile Remove="Core\Microcontrollers\Utils\Class2.cs" />
   </ItemGroup>
 
   <ItemGroup>

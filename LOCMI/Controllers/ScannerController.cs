@@ -2,16 +2,18 @@
 
 using LOCMI.Views;
 
-public sealed class ScannerController
+public class ScannerController
 {
+    private readonly IView _view;
 
-    public ScannerController()
+    public ScannerController(IView view)
     {
+        _view = view;
     }
 
     public string Run()
     {
-        IView.Display("Enter information");
-        return IView.GetUserEntry() ?? string.Empty;
+        _view.Display("Enter information");
+        return _view.GetUserEntry() ?? string.Empty;
     }
 }

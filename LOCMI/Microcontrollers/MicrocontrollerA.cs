@@ -1,9 +1,9 @@
 ﻿namespace LOCMI.Microcontrollers;
 
-using LOCMI.Core.Utils;
-using LOCMI.Core.Utils.PortTypes;
+using LOCMI.Core.Microcontrollers.Utils;
+using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
-public sealed class MicrocontrollerA
+public static class MicrocontrollerA
 {
     public static IEnumerable<Connector> Connectors => new List<Connector>
     {

@@ -1,9 +1,7 @@
 using LOCMI.Controllers;
-using LOCMI.Microcontrollers;
 using LOCMI.Views;
 
-var builder = new MicrocontrollerABuilder();
-builder.GetResult();
+IView view = new ConsoleView();
 
-var initialController = new InitialController();
+var initialController = new InitialController(view);
 initialController.Run();
