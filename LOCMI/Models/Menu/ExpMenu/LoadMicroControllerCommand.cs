@@ -1,5 +1,6 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
+using System.Drawing;
 using LOCMI.Controllers;
 using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Loaders;
@@ -39,11 +40,11 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         }
         catch (LoadException ex)
         {
-            _view.Display(ex.Message);
+            _view.Display(ex.Message, Color.Red);
 
             if (ex.InnerException != null)
             {
-                _view.Display(ex.InnerException.Message);
+                _view.Display(ex.InnerException.Message, Color.Red);
             }
 
             return;
@@ -55,7 +56,7 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         }
         else
         {
-            _view.Display("The microcontroller has not been loaded");
+            _view.Display("The microcontroller has not been loaded", Color.Red);
         }
     }
 

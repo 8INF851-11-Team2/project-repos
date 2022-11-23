@@ -1,5 +1,8 @@
 ﻿namespace LOCMI.Views;
 
+using System.Drawing;
+using LOCMI.Extensions;
+
 public sealed class ConsoleView : IView
 {
     /// <inheritdoc />
@@ -18,6 +21,33 @@ public sealed class ConsoleView : IView
     public void Display(string message)
     {
         Console.WriteLine(message);
+    }
+
+    /// <inheritdoc />
+    public void Display(string message, Color textColor)
+    {
+        ConsoleColor currentTextColor = Console.ForegroundColor;
+
+        Console.ForegroundColor = textColor.ToConsoleColor();
+        Display(message);
+        Console.ForegroundColor = currentTextColor;
+    }
+
+    /// <inheritdoc />
+    public void Display(string message, Color textColor, Color backColor)
+    {
+        ConsoleColor currentTextColor = Console.ForegroundColor;
+        ConsoleColor currentBackColor = Console.BackgroundColor;
+
+        Console.ForegroundColor = textColor.ToConsoleColor();
+        Console.BackgroundColor = backColor.ToConsoleColor();
+
+        Console.Write(message);
+
+        Console.BackgroundColor = currentBackColor;
+        Console.ForegroundColor = currentTextColor;
+
+        Console.WriteLine();
     }
 
     /// <inheritdoc />
