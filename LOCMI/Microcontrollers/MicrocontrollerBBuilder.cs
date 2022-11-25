@@ -1,6 +1,7 @@
 ﻿namespace LOCMI.Microcontrollers;
 
 using LOCMI.Core.Microcontrollers;
+using LOCMI.Core.Microcontrollers.Utils;
 
 internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
 {
@@ -9,7 +10,7 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildConnectors()
     {
-        _microcontroller.Connectors = MicrocontrollerB.Connectors.ToList();
+        _microcontroller.Connectors = MicrocontrollerB.Connectors.Select(static c => new Connector(c));
 
         return this;
     }
@@ -17,7 +18,9 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDimension()
     {
-        _microcontroller.Dimension = MicrocontrollerB.Dimension;
+        (int weight, int length, double width, double height) = MicrocontrollerB.Dimension;
+
+        _microcontroller.Dimension = new Dimension(length, width, height, weight);
 
         return this;
     }
@@ -33,7 +36,7 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildIdentification()
     {
-        _microcontroller.Identification = MicrocontrollerB.Identification;
+        _microcontroller.Identification = new Identification(MicrocontrollerB.Brand, MicrocontrollerB.Model);
 
         return this;
     }
@@ -41,7 +44,10 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildLanguage()
     {
-        _microcontroller.Languages = MicrocontrollerB.Languages;
+        _microcontroller.Languages = new List<Language>
+        {
+            new (MicrocontrollerB.Language, string.Empty),
+        };
 
         return this;
     }
@@ -63,20 +69,21 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildOS()
     {
+        _microcontroller.OS = MicrocontrollerB.OS;
         return this;
     }
 
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildPort()
     {
-        _microcontroller.Ports = MicrocontrollerB.Ports;
+        _microcontroller.Ports = MicrocontrollerB.GPIO;
         return this;
     }
 
     /// <inheritdoc />
     public Microcontroller GetResult()
     {
-        BuildConnectors().BuildDimension().BuildDisk().BuildIdentification().BuildLanguage().BuildMaintenance().BuildName().BuildOS().BuildPort();
+        BuildDimension().BuildConnectors().BuildDisk().BuildIdentification().BuildLanguage().BuildMaintenance().BuildName().BuildPort().BuildOS();
 
         return _microcontroller;
     }
