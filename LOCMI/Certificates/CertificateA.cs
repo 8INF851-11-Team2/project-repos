@@ -31,6 +31,8 @@ public sealed class CertificateA : Certificate
                 MinGround = 2,
                 MaxOtherPort = 8,
                 MinOtherPort = 6,
+                MaxPowerPort = 1,
+                MinPowerPort = 1,
             },
             new ConnectorSpecificationTest
             {

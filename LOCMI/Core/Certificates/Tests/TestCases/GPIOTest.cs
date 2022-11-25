@@ -20,11 +20,15 @@ public sealed class GPIOTest : TestCase
 
     public int MaxOtherPort { get; init; } = int.MaxValue;
 
+    public int MaxPowerPort { get; init; } = int.MaxValue;
+
     public int MinDataPort { get; init; }
 
     public int MinGround { get; init; }
 
     public int MinOtherPort { get; init; }
+
+    public int MinPowerPort { get; init; }
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
@@ -50,7 +54,8 @@ public sealed class GPIOTest : TestCase
         {
             int nbDataPorts = microcontroller.Ports.OfType<DataPort>().Count();
             int nbGround = microcontroller.Ports.OfType<GroundPort>().Count();
-            int nbOtherPorts = microcontroller.Ports.Count - nbDataPorts - nbGround;
+            int nbPowerPorts = microcontroller.Ports.OfType<PowerPort>().Count();
+            int nbOtherPorts = microcontroller.Ports.Count - nbDataPorts - nbGround - nbPowerPorts;
 
             string? failureCause = TestNbDataPorts(nbDataPorts);
 
@@ -67,6 +72,13 @@ public sealed class GPIOTest : TestCase
             }
 
             failureCause = TestNbOtherPorts(nbOtherPorts);
+
+            if (failureCause != null)
+            {
+                yield return failureCause;
+            }
+
+            failureCause = TestNbPowerPorts(nbPowerPorts);
 
             if (failureCause != null)
             {
@@ -96,9 +108,18 @@ public sealed class GPIOTest : TestCase
     private string? TestNbOtherPorts(int nbOtherPorts)
     {
         return nbOtherPorts < MinOtherPort
-                   ? $"The microcontroller must have at least {MinOtherPort} ports other than data ports and ground"
+                   ? $"The microcontroller must have at least {MinOtherPort} other ports"
                    : nbOtherPorts > MaxOtherPort
-                       ? $"The microcontroller must have at most {MaxOtherPort} ports other than data ports and ground"
+                       ? $"The microcontroller must have at most {MaxOtherPort} other ports"
+                       : null;
+    }
+
+    private string? TestNbPowerPorts(int nbPowerPorts)
+    {
+        return nbPowerPorts < MinPowerPort
+                   ? $"The microcontroller must have at least {MinPowerPort} power ports"
+                   : nbPowerPorts > MaxPowerPort
+                       ? $"The microcontroller must have at most {MaxPowerPort} power ports"
                        : null;
     }
 }
