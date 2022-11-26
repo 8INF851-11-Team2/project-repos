@@ -28,12 +28,12 @@ public sealed class GeneralInformationTest : TestCase
         {
             Identification identification = microcontroller.Identification.Value;
 
-            if (identification.Brand == _identification.Brand)
+            if (identification.Brand != _identification.Brand)
             {
                 yield return $"The microcontroller must be made by {_identification.Brand}";
             }
 
-            if (identification.Model == _identification.Model)
+            if (identification.Model != _identification.Model)
             {
                 yield return $"The microcontroller must be a {_identification.Model}";
             }
