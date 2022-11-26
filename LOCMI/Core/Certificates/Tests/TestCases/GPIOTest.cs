@@ -52,9 +52,9 @@ public sealed class GPIOTest : TestCase
         }
         else
         {
-            int nbDataPorts = microcontroller.Ports.OfType<DataPort>().Count();
-            int nbGround = microcontroller.Ports.OfType<GroundPort>().Count();
-            int nbPowerPorts = microcontroller.Ports.OfType<PowerPort>().Count();
+            int nbDataPorts = microcontroller.Ports.Count(static c => c is DataPort);
+            int nbGround = microcontroller.Ports.Count(static c => c is GroundPort);
+            int nbPowerPorts = microcontroller.Ports.Count(static c => c is PowerPort);
             int nbOtherPorts = microcontroller.Ports.Count - nbDataPorts - nbGround - nbPowerPorts;
 
             string? failureCause = TestNbDataPorts(nbDataPorts);
