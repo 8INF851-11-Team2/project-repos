@@ -55,6 +55,7 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildMaintenance()
     {
+        _microcontroller.IsMaintainable = MicrocontrollerB.IsMaintainable;
         return this;
     }
 

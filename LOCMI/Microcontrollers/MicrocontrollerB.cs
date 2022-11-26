@@ -7,6 +7,8 @@ public static class MicrocontrollerB
 {
     public const string Brand = "Raspberry PI";
 
+    public const bool IsMaintainable = true;
+
     public const string Language = "C++";
 
     public const string LanguageVersion = "17";
