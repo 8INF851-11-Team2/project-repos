@@ -5,30 +5,43 @@ using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
 public static class MicrocontrollerB
 {
-    public static IEnumerable<Connector> Connectors => new List<Connector>
+    public const string Brand = "Raspberry PI";
+
+    public const string Language = "C++";
+
+    public const string Model = "RP2000";
+
+    public const string Name = "MicrocontrollerB";
+
+    public static readonly string[] Connectors = { "HDMI", "USB", "Wifi", "Bluetooth" };
+
+    public static readonly (int Weight, int Length, double Width, double Height) Dimension = (182, 6, 2.9, 0.77);
+
+    public static readonly Disk Disk = new ();
+
+    public static readonly OS OS = new ();
+
+    public static Ports GPIO => new ()
     {
-        new ("USB-C"),
-        new ("Ethernet"),
-    };
-
-    public static Dimension Dimension => new (10, 20, 30, 40);
-
-    public static Disk Disk => new ("SSD");
-
-    public static Identification Identification => new ("NXP", "LPC5500 Series");
-
-    public static IEnumerable<Language> Languages => new List<Language>
-    {
-        new ("java", "17.0"),
-    };
-
-    public static string Name => "MicrocontrollerB";
-
-    public static Ports Ports => new ()
-    {
-        { 0, new GroundPort() },
-        { 1, new PowerPort(3.3) },
+        { 1, new DataPort() },
         { 2, new DataPort() },
-        { 3, new GroundPort() },
+        { 3, new DataPort() },
+        { 4, new DataPort() },
+        { 5, new DataPort() },
+        { 6, new DataPort() },
+        { 7, new DataPort() },
+        { 8, new DataPort() },
+        { 9, new PowerPort(3.3) },
+        { 10, new PowerPort(5) },
+        { 11, new DataPort() },
+        { 12, new DataPort() },
+        { 13, new OtherPort() },
+        { 14, new OtherPort() },
+        { 15, new OtherPort() },
+        { 16, new OtherPort() },
+        { 17, new OtherPort() },
+        { 18, new OtherPort() },
+        { 19, new GroundPort() },
+        { 20, new GroundPort() },
     };
 }
