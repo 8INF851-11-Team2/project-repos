@@ -4,5 +4,5 @@ public interface ICertificateDTO
 {
     public void Apply();
 
-    public IEnumerable<Certificate> GetCertificates();
+    public List<Certificate> GetCertificates();
 }

@@ -23,7 +23,7 @@ public sealed class CertificateExperimentalDTO : ICertificateDTO
         }
     }
 
-    public IEnumerable<Certificate> GetCertificates()
+    public List<Certificate> GetCertificates()
     {
         return _certificates;
     }

@@ -2,37 +2,36 @@
 
 using System.Drawing;
 using LOCMI.Controllers;
+using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
+using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Loaders;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Views;
 
 public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 {
-    private readonly CertificateExperimentalDTO _certifier;
+    private readonly CertificateExperimentalDTO _dto;
 
     private readonly ILoader<Microcontroller> _loader;
 
-    private readonly ScannerController _scannerController;
-
     private readonly IView _view;
 
-    public LoadMicrocontrollerCommand()
-    {
-    }
-
-    public LoadMicrocontrollerCommand(IView view, CertificateExperimentalDTO certifier, ScannerController scannerController)
+    public LoadMicrocontrollerCommand(IView view, CertificateExperimentalDTO dto, ILoader<Microcontroller> loader)
     {
         _view = view;
-        _scannerController = scannerController;
-        _certifier = certifier;
+        _dto = dto;
+        _loader = loader;
     }
 
     public void Execute()
     {
-        string path = _scannerController.Run();
+        _view.Display("TODO : LOAD CONTROLLER");
+        _view.Display("Enter Path for Microcontroller");
+        string path = _view.GetUserEntry();
 
-        Microcontroller? microcontroller;
+        //TODO / TO COMPLETE
+        /*Microcontroller? microcontroller;
 
         try
         {
@@ -52,12 +51,21 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 
         if (microcontroller != null)
         {
-            _certifier.SetMicrocontroller(microcontroller);
+            _dto.SetMicrocontroller(microcontroller);
+            var command = new LoadTestCommand(_view, _dto);
+            command.Execute();
         }
         else
         {
             _view.Display("The microcontroller has not been loaded", Color.Red);
         }
+        */
+
+
+        //Next Step
+        ILoader<ITest> loader = LoadersUtils.GetSameLoader<ITest, Microcontroller>(_loader);
+        var command = new LoadTestCommand(_view, _dto, loader);
+        command.Execute();
     }
 
     public bool IsExecutable()

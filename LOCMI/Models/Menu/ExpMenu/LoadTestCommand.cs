@@ -1,35 +1,44 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
 using LOCMI.Controllers;
+using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Loaders;
+using LOCMI.Core.Microcontrollers;
+using LOCMI.Views;
 
 public sealed class LoadTestCommand : IExpMenuCommand
 {
-    private readonly ScannerController _scannerController;
+    private CertificateExperimentalDTO _dto;
 
-    private CertificateExperimentalDTO _certifier;
-
-    private ILoader<ITest> _loader;
+    private readonly ILoader<ITest> _loader;
 
     private ITest _test;
 
-    public LoadTestCommand()
-    {
-    }
+    private readonly IView _view;
 
-    public LoadTestCommand(CertificateExperimentalDTO certifier, ScannerController scannerController)
+
+    public LoadTestCommand(IView view, CertificateExperimentalDTO dto, ILoader<ITest> loader)
     {
-        _certifier = certifier;
-        _scannerController = scannerController;
+        _view = view;
+        _dto = dto;
+        _loader = loader;
     }
 
     public void Execute()
     {
-        string path = _scannerController.Run();
+        _view.Display("TODO : LOAD TEST || Vérifier avec AF si on doit aussi laisser la possibilité de crée des tests");
+        _view.Display("Enter Path for Test");
+        string path = _view.GetUserEntry();
         //TODO
         //_certifier.SetTest();
+
+
+        //Next Step
+        ILoader<Certificate> loader = LoadersUtils.GetSameLoader<Certificate, ITest>(_loader);
+        var command = new LoadCertificateCommand(_view, _dto, loader);
+        command.Execute();
     }
 
     public bool IsExecutable()
