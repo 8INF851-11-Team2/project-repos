@@ -80,7 +80,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
             new CertificateC(microcontroller),
         };
 
-        _dto.SetCertificates(certificates);
+        _dto.Certificates = certificates;
         _dto.Apply();
 
         _promptController.Run(certificates);

@@ -2,7 +2,7 @@
 
 public interface ICertificateDTO
 {
-    public void Apply();
+    public List<Certificate> Certificates { get; set; }
 
-    public List<Certificate> GetCertificates();
+    public void Apply();
 }

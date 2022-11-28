@@ -25,17 +25,17 @@ internal sealed class LoadCertificateCommand : ICommand
     {
         _view.Display("TODO : LOAD OR CREATE CERTIFICATE");
         _view.Display("Enter Path for Certificate");
-        string path = _view.GetUserEntry();
+        string? path = _view.GetUserEntry();
 
         //TODO
         //_certifier.SetTest();
 
         _view.Display("TODO : DTO");
-        //All certificate are created : 
+        //All certificate are created :
 
         _dto.Apply();
         var promptController = new PromptController(_view);
-        promptController.Run(_dto.GetCertificates());
+        promptController.Run(_dto.Certificates);
         var p = new PrintCommand(_dto);
         p.Execute();
     }

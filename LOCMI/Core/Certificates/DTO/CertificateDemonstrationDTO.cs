@@ -2,28 +2,19 @@
 
 public sealed class CertificateDemonstrationDTO : ICertificateDTO
 {
-    private List<Certificate> _certificates;
-
     public CertificateDemonstrationDTO()
     {
-        _certificates = new List<Certificate>();
+        Certificates = new List<Certificate>();
     }
+
+    /// <inheritdoc />
+    public List<Certificate> Certificates { get; set; }
 
     public void Apply()
     {
-        foreach (Certificate certificate in _certificates)
+        foreach (Certificate certificate in Certificates)
         {
             certificate.Certify();
         }
-    }
-
-    public List<Certificate> GetCertificates()
-    {
-        return _certificates;
-    }
-
-    public void SetCertificates(List<Certificate> certificates)
-    {
-        _certificates = certificates;
     }
 }
