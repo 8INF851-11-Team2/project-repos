@@ -46,7 +46,7 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     {
         _microcontroller.Languages = new List<Language>
         {
-            new (MicrocontrollerB.Language, string.Empty),
+            new (MicrocontrollerB.Language, MicrocontrollerB.LanguageVersion),
         };
 
         return this;
@@ -55,6 +55,7 @@ internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildMaintenance()
     {
+        _microcontroller.IsMaintainable = MicrocontrollerB.IsMaintainable;
         return this;
     }
 

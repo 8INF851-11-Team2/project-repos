@@ -31,17 +31,17 @@ public sealed class ElectronicVersatilityTest : TestCase, IEnumerable<double>
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
-        if (microcontroller.Ports != null)
+        if (microcontroller.Ports == null)
         {
-            IEnumerable<PowerPort> powerPorts = microcontroller.Ports.OfType<PowerPort>();
-
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return _testedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
-                                 .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
-                                 .ToList();
+            return new[] { "The microcontroller has no ports" };
         }
 
-        return new[] { "The microcontroller has no ports" };
+        IEnumerable<PowerPort> powerPorts = microcontroller.Ports.Where(static c => c is PowerPort).Cast<PowerPort>();
+
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        return _testedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
+                             .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
+                             .ToList();
     }
 
     /// <inheritdoc />

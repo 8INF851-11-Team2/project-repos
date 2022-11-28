@@ -8,6 +8,8 @@ public static class MicrocontrollerC
 
     public const double Height = 0.68;
 
+    public const bool IsMaintainable = true;
+
     public const double Length = 1.72;
 
     public const string Name = "MicrocontrollerC";

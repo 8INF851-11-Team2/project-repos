@@ -58,6 +58,8 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildMaintenance()
     {
+        _microcontroller.IsMaintainable = MicrocontrollerC.IsMaintainable;
+
         return this;
     }
 
@@ -88,7 +90,7 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
                             {
                                 "VIN" => new PowerPort(MicrocontrollerC.Powers.Where(p => p.Key == key).Select(static p => p.Value).First()),
                                 "GRN" => new GroundPort(),
-                                "DATA" => new GroundPort(),
+                                "DATA" => new DataPort(),
                                 _ => new OtherPort(),
                             };
 
