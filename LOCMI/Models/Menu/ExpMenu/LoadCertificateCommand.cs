@@ -1,19 +1,18 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
-using System;
+
 using LOCMI.Controllers;
 using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
-using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Loaders;
 using LOCMI.Views;
 
-internal class LoadCertificateCommand : ICommand
+internal sealed class LoadCertificateCommand : ICommand
 {
-    private CertificateExperimentalDTO _dto;
-
-    private ILoader<Certificate> _loader;
+    private readonly CertificateExperimentalDTO _dto;
 
     private readonly IView _view;
+
+    private ILoader<Certificate> _loader;
 
     public LoadCertificateCommand(IView view, CertificateExperimentalDTO dto, ILoader<Certificate> loader)
     {
@@ -39,7 +38,6 @@ internal class LoadCertificateCommand : ICommand
         promptController.Run(_dto.GetCertificates());
         var p = new PrintCommand(_dto);
         p.Execute();
-        
     }
 
     public bool IsExecutable()
