@@ -1,5 +1,6 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
+using System.Drawing;
 using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Loaders;
@@ -23,12 +24,10 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 
     public void Execute()
     {
-        _view.Display("TODO : LOAD CONTROLLER");
         _view.Display("Enter Path for Microcontroller");
         string? path = _view.GetUserEntry();
 
-        //TODO / TO COMPLETE
-        /*Microcontroller? microcontroller;
+        Microcontroller? microcontroller;
 
         try
         {
@@ -49,19 +48,15 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         if (microcontroller != null)
         {
             _dto.SetMicrocontroller(microcontroller);
-            var command = new LoadTestCommand(_view, _dto);
+            ILoader<ITest> loader = LoaderUtils.GetSameLoader<ITest, Microcontroller>(_loader);
+
+            var command = new LoadTestCommand(_view, _dto, loader);
             command.Execute();
         }
         else
         {
             _view.Display("The microcontroller has not been loaded", Color.Red);
         }
-        */
-
-        //Next Step
-        ILoader<ITest> loader = LoaderUtils.GetSameLoader<ITest, Microcontroller>(_loader);
-        var command = new LoadTestCommand(_view, _dto, loader);
-        command.Execute();
     }
 
     public bool IsExecutable()

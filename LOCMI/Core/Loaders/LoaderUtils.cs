@@ -6,8 +6,8 @@ public static class LoaderUtils
     {
         ILoader<T1> newLoader = loader switch
         {
-            JsonLoader<T2> json => new JsonLoader<T1>(),
-            ExternalClassLoader<T2> external => new ExternalClassLoader<T1>(),
+            JsonLoader<T2> => new JsonLoader<T1>(),
+            ExternalClassLoader<T2> => new ExternalClassLoader<T1>(),
             _ => new JsonLoader<T1>(),
         };
 
