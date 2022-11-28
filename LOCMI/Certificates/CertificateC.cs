@@ -29,7 +29,7 @@ public sealed class CertificateC : Certificate
                 MaxPowerPort = 2,
                 MinPowerPort = 1,
             },
-            new ProgrammingLanguageTest { new ("C++", "17") },
+            new ProgrammingLanguageTest { new ("C++", string.Empty) },
             new HasHardDiskTest(),
             new IsMaintainableTest(),
         };
