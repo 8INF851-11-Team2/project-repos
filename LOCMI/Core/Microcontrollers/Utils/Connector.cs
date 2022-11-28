@@ -7,5 +7,5 @@ public struct Connector
         Name = name;
     }
 
-    public string Name { get; }
+    public string Name { get; set; }
 }

@@ -8,7 +8,7 @@ public struct Identification
         Model = model;
     }
 
-    public string Brand { get; }
+    public string Brand { get; set; }
 
-    public string Model { get; }
+    public string Model { get; set; }
 }

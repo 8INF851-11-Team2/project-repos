@@ -8,7 +8,7 @@ public struct Language
         Version = version;
     }
 
-    public string Name { get; }
+    public string Name { get; set; }
 
-    public string Version { get; }
+    public string Version { get; set; }
 }
