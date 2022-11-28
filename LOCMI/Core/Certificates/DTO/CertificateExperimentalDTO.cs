@@ -5,32 +5,25 @@ using LOCMI.Core.Microcontrollers;
 
 public sealed class CertificateExperimentalDTO : ICertificateDTO
 {
-    private List<Certificate> _certificates;
     //TODO
     private Microcontroller _microController;
-    public ITest Test { get; set; }
 
     public CertificateExperimentalDTO()
     {
-        _certificates = new List<Certificate>();
+        Certificates = new List<Certificate>();
     }
+
+    /// <inheritdoc />
+    public List<Certificate> Certificates { get; set; }
+
+    public ITest Test { get; set; }
 
     public void Apply()
     {
-        foreach (Certificate certificate in _certificates)
+        foreach (Certificate certificate in Certificates)
         {
             certificate.Certify();
         }
-    }
-
-    public IEnumerable<Certificate> GetCertificates()
-    {
-        return _certificates;
-    }
-
-    public void SetCertificates(List<Certificate> certificates)
-    {
-        _certificates = certificates;
     }
 
     public void SetMicrocontroller(Microcontroller microController)
@@ -42,5 +35,4 @@ public sealed class CertificateExperimentalDTO : ICertificateDTO
     {
         Test = test;
     }
-
 }

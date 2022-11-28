@@ -22,7 +22,7 @@ public sealed class TestingAllCommand : IDemoMenuCommand
 
     public void Execute()
     {
-        _dto.SetCertificates(_certificates);
+        _dto.Certificates = _certificates;
         _dto.Apply();
         _promptController.Run(_certificates);
         var p = new PrintCommand(_dto);

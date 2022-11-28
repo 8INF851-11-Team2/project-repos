@@ -7,27 +7,21 @@ public sealed class ExternalClassLoader<T> : ILoader<T> where T : class
     /// <inheritdoc />
     public T? Load(string path)
     {
-        Assembly assembly = Assembly.LoadFile(path);
+        try
+        {
+            Assembly assembly = Assembly.LoadFile(path);
 
-        Type type = typeof(T);
+            Type type = typeof(T);
 
-        Type? externType = assembly.GetExportedTypes().FirstOrDefault(c => c.BaseType == type);
+            Type? externType = assembly.GetExportedTypes().FirstOrDefault(c => c.BaseType == type);
 
-        return externType != null
-                   ? Activator.CreateInstance(externType) as T
-                   : null;
-    }
-
-    private T? LoadDll(string path)
-    {
-        Assembly assembly = Assembly.LoadFile(path);
-
-        Type type = typeof(T);
-
-        Type? externType = assembly.GetExportedTypes().FirstOrDefault(c => c.BaseType == type);
-
-        return externType != null
-                   ? Activator.CreateInstance(externType) as T
-                   : null;
+            return externType != null
+                       ? Activator.CreateInstance(externType) as T
+                       : null;
+        }
+        catch (Exception ex)
+        {
+            throw new LoadException($"Unable to load this dll (path: {path})", ex);
+        }
     }
 }

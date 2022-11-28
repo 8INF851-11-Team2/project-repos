@@ -1,5 +1,8 @@
 namespace LOCMI.Controllers;
 
+using LOCMI.Core.Certificates.DTO;
+using LOCMI.Core.Loaders;
+using LOCMI.Core.Microcontrollers;
 using LOCMI.Models.Menu;
 using LOCMI.Models.Menu.ExpMenu;
 using LOCMI.Views;
@@ -13,15 +16,15 @@ public sealed class ExperimentalController : MenuController<IExpMenuCommand>
 
     protected override Menu<IExpMenuCommand> SetMenu()
     {
-        var loadTestCommand = new LoadTestCommand();
-        var runTestCommand = new RunTestCommand();
-        var loadMicroControllerCommand = new LoadMicrocontrollerCommand();
+        var certificateExperimentalDTO = new CertificateExperimentalDTO();
+
+        var loadJsonMicrocontroller = new LoadMicrocontrollerCommand(View, certificateExperimentalDTO, new JsonLoader<Microcontroller>());
+        var loadCodeMicrocontroller = new LoadMicrocontrollerCommand(View, certificateExperimentalDTO, new ExternalClassLoader<Microcontroller>());
 
         return new Menu<IExpMenuCommand>("Experimental Menu")
         {
-            { "Load Test", loadTestCommand },
-            { "Run Test", runTestCommand },
-            { "Load Microcontroller Test", loadMicroControllerCommand },
+            { "Import from JSON", loadJsonMicrocontroller },
+            { "Import from Code", loadCodeMicrocontroller },
         };
     }
 }
