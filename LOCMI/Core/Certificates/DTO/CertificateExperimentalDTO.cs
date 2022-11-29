@@ -35,4 +35,14 @@ public sealed class CertificateExperimentalDTO : ICertificateDTO
     {
         Test = test;
     }
+
+    public Microcontroller GetMicrocontroller()
+    {
+        return _microController;
+    }
+
+    public void AddCertificate(Certificate certificate)
+    {
+        Certificates.Add(certificate);
+    }
 }

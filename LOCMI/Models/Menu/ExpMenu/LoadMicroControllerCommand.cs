@@ -27,6 +27,9 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         _view.Display("Enter Path for Microcontroller");
         string? path = _view.GetUserEntry();
 
+        //REMOVE NEXT
+        path = "JSON/MC/Test.Json";
+
         Microcontroller? microcontroller;
 
         try
