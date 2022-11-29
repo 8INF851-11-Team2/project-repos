@@ -7,7 +7,6 @@ using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Loaders;
 using LOCMI.Core.Microcontrollers;
-using LOCMI.Microcontrollers;
 using LOCMI.Views;
 
 internal sealed class LoadCertificateCommand : ICommand
@@ -16,7 +15,7 @@ internal sealed class LoadCertificateCommand : ICommand
 
     private readonly IView _view;
 
-    private ILoader<Certificate> _loader;
+    private readonly ILoader<Certificate> _loader;
 
     public LoadCertificateCommand(IView view, CertificateExperimentalDTO dto, ILoader<Certificate> loader)
     {
@@ -32,8 +31,9 @@ internal sealed class LoadCertificateCommand : ICommand
 
         Certificate? certificate;
 
-        if (path != null && path.Equals("DEFAULT")){
-            Microcontroller microcontroller= _dto.GetMicrocontroller();
+        if (path != null && path.Equals("DEFAULT"))
+        {
+            Microcontroller microcontroller = _dto.GetMicrocontroller();
             Certificate certificateA = new CertificateA(microcontroller);
             Certificate certificateB = new CertificateB(microcontroller);
             Certificate certificateC = new CertificateC(microcontroller);
@@ -80,9 +80,6 @@ internal sealed class LoadCertificateCommand : ICommand
                 _view.Display("The certificate has not been loaded", Color.Red);
             }
         }
-        
-
-        
     }
 
     public bool IsExecutable()

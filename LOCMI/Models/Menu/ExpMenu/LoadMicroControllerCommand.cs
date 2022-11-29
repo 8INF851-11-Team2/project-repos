@@ -1,7 +1,6 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
 using System.Drawing;
-using System.Security.Cryptography;
 using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Certificates.Tests;
@@ -63,7 +62,9 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
                     break;
                 default:
                     throw new Exception();
-            };
+            }
+
+            ;
         }
         else
         {

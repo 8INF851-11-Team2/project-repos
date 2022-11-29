@@ -1,5 +1,5 @@
 ﻿namespace LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
-public class OtherPort : Port
+public sealed class OtherPort : Port
 {
 }
