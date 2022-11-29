@@ -1,11 +1,16 @@
-﻿namespace LOCMI.Core.Loaders;
+﻿using LOCMI.Core.Loaders;
 
+namespace LOCMI.Core.Loaders;
+
+using System.Globalization;
+using System.IO;
 using System.Text.Json;
 using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils;
+using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 using Newtonsoft.Json.Linq;
 
 public sealed class JsonLoader<T> : ILoader<T> where T : class
@@ -15,9 +20,20 @@ public sealed class JsonLoader<T> : ILoader<T> where T : class
     {
         try
         {
-            string json = File.ReadAllText(path);
+            if (typeof(T) == typeof(Certificate))
+            {
 
-            return JsonSerializer.Deserialize<T>(json);
+                return (T) (object) LoadCertificate(path);
+            }
+            else if (typeof(T) == typeof(Microcontroller))
+            {
+                return (T) (object) LoadMicrocontroller(path);
+            }
+            else
+            {
+                string json = File.ReadAllText(path);
+                return LoadJson(json);
+            }
         }
         catch (Exception ex)
         {
@@ -25,10 +41,61 @@ public sealed class JsonLoader<T> : ILoader<T> where T : class
         }
     }
 
-    public Certificate LoadCertificate(string path, Microcontroller microcontroller)
+    public Microcontroller? LoadMicrocontroller(string path)
+    { 
+        string json = File.ReadAllText(path);
+        string jsonBis = json.Remove(json.LastIndexOf("Ports"));
+        jsonBis = jsonBis.Remove(jsonBis.LastIndexOf(",")) + "}";
+        Microcontroller microcontroller = (object) LoadJson(jsonBis) as Microcontroller;
+
+        JObject jObject = JObject.Parse(json);
+
+        JToken jToken = jObject.SelectToken("Ports");
+        microcontroller.Ports = new Ports();
+
+        foreach(JToken token in jToken)
+        {
+            List<string> list = token.Values<string>().ToList();
+            int portNum = int.Parse(list[0]);
+
+            Port port = GetPort(token);
+
+
+            microcontroller.Ports.Add(portNum, port);
+        }
+
+        return microcontroller;
+    }
+
+    private static Port GetPort(JToken token)
+    {
+        List<string> list = token.Values<string>().ToList();
+        string name = list[1];
+        float power = 0;
+
+        if (name == "PowerPort")
+        {
+            power = float.Parse(list[2], CultureInfo.InvariantCulture);
+        }
+
+        switch (name)
+        {
+            case "PowerPort":
+                return new PowerPort(power);
+            case "DatePort":
+                return new DataPort();
+            case "GroundPort":
+                return new GroundPort();
+            case "OtherPort":
+                return new OtherPort();
+            default:
+                return new OtherPort();
+        }
+    }
+
+    public Certificate LoadCertificate(string path)
     {
         string json = File.ReadAllText(path);
-
         JObject jObject = JObject.Parse(json);
 
         string name = jObject.SelectToken("Name").Value<string>();
@@ -43,19 +110,30 @@ public sealed class JsonLoader<T> : ILoader<T> where T : class
             {
                 JTokenReader reader = new JTokenReader(token);
                 string tokenPath = reader.Path;
-                string tokenName = tokenPath.Substring(tokenPath.LastIndexOf('.') + 1);
+                string tokenName = tokenPath[(tokenPath.LastIndexOf('.') + 1)..];
                 JToken param = token.SelectToken("Param");
                 testSuite.Add(GetTest(tokenName, param));
             }
         }
 
-        Certificate certificate = new Certificate(testSuite, microcontroller, name);
+        Certificate certificate = new Certificate(testSuite, null, name);
 
         return certificate;
     }
 
+    public T? LoadJson(string json)
+    {
+        try
+        {
+            return JsonSerializer.Deserialize<T>(json);
+        }
+        catch (Exception ex)
+        {
+            throw new LoadException("Unable to load this object", ex);
+        }
+    }
 
-    private ITest GetTest(string name, JToken param)
+    private static ITest GetTest(string name, JToken param)
     {
         ITest test;
 
@@ -91,7 +169,7 @@ public sealed class JsonLoader<T> : ILoader<T> where T : class
                 break;
             case "GPIOTest":
                 int maxDataPort = param.SelectToken("maxDataPort").Value<int>();
-                int minDataPort = param.SelectToken("minDataPort").Value<int>(); 
+                int minDataPort = param.SelectToken("minDataPort").Value<int>();
                 int maxGround = param.SelectToken("maxGround").Value<int>();
                 int minGround = param.SelectToken("minGround").Value<int>();
                 int maxOtherPort = param.SelectToken("maxOtherPort").Value<int>();
@@ -137,17 +215,16 @@ public sealed class JsonLoader<T> : ILoader<T> where T : class
                 break;
             case "ProgrammingLanguageTest":
                 test = new ProgrammingLanguageTest();
-                foreach (JToken token in param) {
+                foreach (JToken token in param)
+                {
                     List<string> l = token.Values<string>().ToList();
                     Language language = new Language(l[0], l[1]);
                     ((ProgrammingLanguageTest) test).Add(language);
                 }
-
                 break;
             default:
                 throw new LoadException("Unable to load this object", null);
         }
-
 
         return test;
     }

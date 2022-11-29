@@ -25,20 +25,14 @@ internal sealed class LoadCertificateCommand : ICommand
 
     public void Execute()
     {
-        _view.Display("TODO : LOAD OR CREATE CERTIFICATE");
         _view.Display("Enter Path for Certificate");
         string? path = _view.GetUserEntry();
-        //REMOVE NEXT
-        path = "JSON/Certificat/Test.Json";
 
-        //TODO
-        //_certifier.SetTest();
         Certificate? certificate;
 
         try
         {
-            JsonLoader<Certificate> loader = new JsonLoader<Certificate>();
-            certificate = loader.LoadCertificate(path, _dto.GetMicrocontroller());
+            certificate = _loader.Load(path);
         }
         catch (LoadException ex)
         {
@@ -53,9 +47,9 @@ internal sealed class LoadCertificateCommand : ICommand
         }
 
         if(certificate != null)
-        { 
+        {
+            certificate.Microcontroller = _dto.GetMicrocontroller();
             _dto.AddCertificate(certificate);
-            //_view.Display("TODO : DTO");
             _dto.Apply();
             var promptController = new PromptController(_view);
             promptController.Run(_dto.Certificates);

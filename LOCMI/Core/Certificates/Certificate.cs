@@ -21,7 +21,7 @@ public class Certificate
 
     public bool IsSuccess { get; private set; }
 
-    public Microcontroller Microcontroller { get; }
+    public Microcontroller Microcontroller { get; set; }
 
     public string Name { get; }
 
