@@ -11,27 +11,30 @@ public sealed class CertificateC : Certificate
     public CertificateC(Microcontroller microcontroller)
         : base("CertificateC", microcontroller)
     {
-        Test = new TestSuite
+        var suite = new TestSuite();
+
+        suite.Add(new ElectronicVersatilityTest
         {
-            new ElectronicVersatilityTest
-            {
-                3.3,
-                5,
-            },
-            new GPIOTest
-            {
-                MaxDataPort = 7,
-                MinDataPort = 6,
-                MaxGround = 2,
-                MinGround = 2,
-                MaxOtherPort = 2,
-                MinOtherPort = 2,
-                MaxPowerPort = 2,
-                MinPowerPort = 1,
-            },
-            new ProgrammingLanguageTest { new ("C++", string.Empty) },
-            new HasHardDiskTest(),
-            new IsMaintainableTest(),
-        };
+            3.3,
+            5,
+        });
+
+        suite.Add(new GPIOTest
+        {
+            MaxDataPort = 7,
+            MinDataPort = 6,
+            MaxGround = 2,
+            MinGround = 2,
+            MaxOtherPort = 2,
+            MinOtherPort = 2,
+            MaxPowerPort = 2,
+            MinPowerPort = 1,
+        });
+
+        suite.Add(new ProgrammingLanguageTest { new ("C++", string.Empty) });
+        suite.Add(new HasHardDiskTest());
+        suite.Add(new IsMaintainableTest());
+
+        Test = suite;
     }
 }

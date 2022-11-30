@@ -1,5 +1,6 @@
 ﻿namespace LOCMI.Core.Certificates.Tests;
 
+using System.Text.Json.Serialization;
 using LOCMI.Core.Microcontrollers;
 
 public abstract class TestCase : ITest
@@ -9,6 +10,7 @@ public abstract class TestCase : ITest
         Name = name;
     }
 
+    [JsonIgnore]
     public string Name { get; }
 
     public void Run(ITestResult testResult, Microcontroller mc)

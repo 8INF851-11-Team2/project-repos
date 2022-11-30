@@ -1,6 +1,7 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
 using System.Drawing;
+using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Loaders;
@@ -48,10 +49,22 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         if (microcontroller != null)
         {
             _dto.SetMicrocontroller(microcontroller);
-            ILoader<ITest> loader = LoaderUtils.GetSameLoader<ITest, Microcontroller>(_loader);
 
-            var command = new LoadTestCommand(_view, _dto, loader);
-            command.Execute();
+            switch (_loader)
+            {
+                case JsonLoader<Microcontroller>:
+                    var command1 = new LoadCertificateCommand(_view, _dto, LoaderUtils.GetSameLoader<Certificate, Microcontroller>(_loader));
+                    command1.Execute();
+                    break;
+                case ExternalClassLoader<Microcontroller>:
+                    var command2 = new LoadTestCommand(_view, _dto, LoaderUtils.GetSameLoader<ITest, Microcontroller>(_loader));
+                    command2.Execute();
+                    break;
+                default:
+                    throw new Exception();
+            }
+
+            ;
         }
         else
         {
