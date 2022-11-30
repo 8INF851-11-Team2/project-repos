@@ -14,7 +14,7 @@ public sealed class CertificateB : Certificate
     {
         var suite = new TestSuite();
 
-        suite.Add(new ProgrammingLanguageTest { new ("C++", "17") });
+        suite.Add(new ProgrammingLanguageTest(new Language("C++", "17")));
         suite.Add(new OperatingSystemTest(new OS()));
         suite.Add(new HasHardDiskTest());
         suite.Add(new GeneralInformationTest(new Identification("Raspberry PI", "RP2000")));
