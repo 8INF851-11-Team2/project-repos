@@ -1,5 +1,6 @@
 ﻿namespace LOCMI.Core.Certificates;
 
+using System.Text.Json.Serialization;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.Results;
 using LOCMI.Core.Microcontrollers;
@@ -23,10 +24,11 @@ public class Certificate
 
     public Microcontroller Microcontroller { get; set; }
 
-    public string Name { get; }
+    public string Name { get; set; }
 
     public ITest Test { get; protected init; } = new TestSuite();
 
+    [JsonIgnore]
     public ITestResult TestResult { get; } = new TestResult();
 
     public void Certify()
