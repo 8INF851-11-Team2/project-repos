@@ -34,12 +34,7 @@ public sealed class CertificateA : Certificate
             MinPowerPort = 1,
         });
 
-        suite.Add(new ConnectorSpecificationTest
-        {
-            "HDMI",
-            "USB",
-            "Wifi",
-        });
+        suite.Add(new ConnectorSpecificationTest("HDMI", "USB", "Wifi"));
 
         Test = suite;
     }

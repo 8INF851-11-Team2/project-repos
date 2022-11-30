@@ -1,6 +1,5 @@
 ﻿namespace LOCMI.Core.Certificates.Tests.TestCases;
 
-using System.Collections;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils;
 
@@ -8,51 +7,40 @@ using LOCMI.Core.Microcontrollers.Utils;
 ///     Test if the microcontroller has the asked connectors
 /// </summary>
 /// <remarks>Test 4</remarks>
-public sealed class ConnectorSpecificationTest : TestCase, IEnumerable<Connector>
+public sealed class ConnectorSpecificationTest : TestCase
 {
-    private readonly List<Connector> _mandatoryConnectors = new ();
-
     public ConnectorSpecificationTest()
         : base("Connector Specification Validation")
     {
     }
 
-    public void Add(string connector)
+    public ConnectorSpecificationTest(params string[] connectors)
+        : this()
     {
-        _mandatoryConnectors.Add(new Connector(connector));
+        MandatoryConnectors = connectors.Select(static c => new Connector(c)).ToList();
     }
 
-    /// <inheritdoc />
-    public IEnumerator<Connector> GetEnumerator()
-    {
-        return _mandatoryConnectors.GetEnumerator();
-    }
+    public List<Connector> MandatoryConnectors { get; set; } = new ();
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
         if (microcontroller.Connectors == null)
         {
-            if (_mandatoryConnectors.Any())
+            if (MandatoryConnectors.Any())
             {
-                string mandatoryConnectors = string.Join(" / ", _mandatoryConnectors.Select(static c => c.Name));
+                string mandatoryConnectors = string.Join(" / ", MandatoryConnectors.Select(static c => c.Name));
                 yield return $"The microcontroller hasn't connector but it must have these connectors: {mandatoryConnectors}";
             }
         }
         else
         {
-            IEnumerable<Connector> missingConnectors = _mandatoryConnectors.Where(connector => !microcontroller.Connectors.Contains(connector));
+            IEnumerable<Connector> missingConnectors = MandatoryConnectors.Where(connector => !microcontroller.Connectors.Contains(connector));
 
             foreach (Connector connector in missingConnectors)
             {
                 yield return $"The microcontroller must have the {connector.Name} connector";
             }
         }
-    }
-
-    /// <inheritdoc />
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 }
