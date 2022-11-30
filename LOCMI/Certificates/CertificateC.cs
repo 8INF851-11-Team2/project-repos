@@ -4,6 +4,7 @@ using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
+using LOCMI.Core.Microcontrollers.Utils;
 
 public sealed class CertificateC : Certificate
 {
@@ -13,11 +14,7 @@ public sealed class CertificateC : Certificate
     {
         var suite = new TestSuite();
 
-        suite.Add(new ElectronicVersatilityTest
-        {
-            3.3,
-            5,
-        });
+        suite.Add(new ElectronicVersatilityTest(3.3, 5));
 
         suite.Add(new GPIOTest
         {
@@ -31,7 +28,7 @@ public sealed class CertificateC : Certificate
             MinPowerPort = 1,
         });
 
-        suite.Add(new ProgrammingLanguageTest { new ("C++", string.Empty) });
+        suite.Add(new ProgrammingLanguageTest(new Language("C++", string.Empty)));
         suite.Add(new HasHardDiskTest());
         suite.Add(new IsMaintainableTest());
 

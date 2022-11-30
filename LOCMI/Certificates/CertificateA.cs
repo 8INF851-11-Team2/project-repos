@@ -14,10 +14,7 @@ public sealed class CertificateA : Certificate
     {
         var suite = new TestSuite();
 
-        suite.Add(new ElectronicVersatilityTest
-        {
-            3.3,
-        });
+        suite.Add(new ElectronicVersatilityTest(3.3));
 
         suite.Add(new PhysicalSpecificationTest
         {
@@ -37,12 +34,7 @@ public sealed class CertificateA : Certificate
             MinPowerPort = 1,
         });
 
-        suite.Add(new ConnectorSpecificationTest
-        {
-            "HDMI",
-            "USB",
-            "Wifi",
-        });
+        suite.Add(new ConnectorSpecificationTest("HDMI", "USB", "Wifi"));
 
         Test = suite;
     }
