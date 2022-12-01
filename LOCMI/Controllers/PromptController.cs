@@ -1,5 +1,6 @@
 ﻿namespace LOCMI.Controllers;
 
+using System.Drawing;
 using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Views;
@@ -17,27 +18,33 @@ public sealed class PromptController
     {
         foreach (Certificate cert in certificates)
         {
-            _view.Display("==============");
+            _view.Display("======================================================================");
             ITestResult testResult = cert.TestResult;
-            _view.Display(cert.Name + " for : " + cert.Microcontroller.Name + ", successful : " + cert.IsSuccess);
-            _view.Display("Successful test(s) : ");
 
-            foreach (TestCase tc in testResult.TestSuccessful)
+            _view.Display($"{cert.Name} for {cert.Microcontroller.Name}, successful: {cert.IsSuccess}", Color.White, cert.IsSuccess
+                                                                                                                         ? Color.Green
+                                                                                                                         : Color.Red);
+
+            if (testResult.TestSuccessful.Any())
             {
-                _view.Display(tc.Name);
+                _view.Display(string.Empty);
+                _view.Display("Successful test(s):");
+
+                foreach (TestCase tc in testResult.TestSuccessful)
+                {
+                    _view.Display($"    {tc.Name}", Color.Green);
+                }
             }
 
-            if (!cert.IsSuccess)
+            if (testResult.TestFailures.Any())
             {
-                _view.Display("");
-                _view.Display("Failed test(s) : ");
+                _view.Display(string.Empty);
+                _view.Display("Failed test(s):");
 
                 foreach (TestFailure tf in testResult.TestFailures)
                 {
-                    var causes = "";
-                    IEnumerable<string> strings = tf.Causes;
-                    strings.ToList().ForEach(s => causes += s + "\n");
-                    _view.Display(tf.TestCase.Name + ", cause(s) : \n" + causes);
+                    _view.Display($"    {tf.TestCase.Name}, cause(s) :");
+                    tf.Causes.ToList().ForEach(c => _view.Display($"        {c}", Color.Red));
                 }
             }
         }

@@ -1,35 +1,32 @@
 ﻿namespace LOCMI.Models.Menu.ExpMenu;
 
-using LOCMI.Controllers;
+using System.Drawing;
+using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
+using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Loaders;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Views;
 
 public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 {
-    private readonly CertificateExperimentalDTO _certifier;
+    private readonly CertificateExperimentalDTO _dto;
 
     private readonly ILoader<Microcontroller> _loader;
 
-    private readonly ScannerController _scannerController;
-
     private readonly IView _view;
 
-    public LoadMicrocontrollerCommand()
-    {
-    }
-
-    public LoadMicrocontrollerCommand(IView view, CertificateExperimentalDTO certifier, ScannerController scannerController)
+    public LoadMicrocontrollerCommand(IView view, CertificateExperimentalDTO dto, ILoader<Microcontroller> loader)
     {
         _view = view;
-        _scannerController = scannerController;
-        _certifier = certifier;
+        _dto = dto;
+        _loader = loader;
     }
 
     public void Execute()
     {
-        string path = _scannerController.Run();
+        _view.Display("Enter Path for Microcontroller");
+        string? path = _view.GetUserEntry();
 
         Microcontroller? microcontroller;
 
@@ -39,11 +36,11 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         }
         catch (LoadException ex)
         {
-            _view.Display(ex.Message);
+            _view.Display(ex.Message, Color.Red);
 
             if (ex.InnerException != null)
             {
-                _view.Display(ex.InnerException.Message);
+                _view.Display(ex.InnerException.Message, Color.Red);
             }
 
             return;
@@ -51,11 +48,27 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 
         if (microcontroller != null)
         {
-            _certifier.SetMicrocontroller(microcontroller);
+            _dto.SetMicrocontroller(microcontroller);
+
+            switch (_loader)
+            {
+                case JsonLoader<Microcontroller>:
+                    var command1 = new LoadCertificateCommand(_view, _dto, LoaderUtils.GetSameLoader<Certificate, Microcontroller>(_loader));
+                    command1.Execute();
+                    break;
+                case ExternalClassLoader<Microcontroller>:
+                    var command2 = new LoadTestCommand(_view, _dto, LoaderUtils.GetSameLoader<ITest, Microcontroller>(_loader));
+                    command2.Execute();
+                    break;
+                default:
+                    throw new Exception();
+            }
+
+            ;
         }
         else
         {
-            _view.Display("The microcontroller has not been loaded");
+            _view.Display("The microcontroller has not been loaded", Color.Red);
         }
     }
 

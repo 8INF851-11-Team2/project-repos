@@ -61,24 +61,24 @@ public sealed class PhysicalSpecificationTest : TestCase
 
     private IEnumerable<string> TestMinDimension(Dimension dimension)
     {
-        if (dimension.Length > MinDimension.Length)
+        if (dimension.Length < MinDimension.Length)
         {
-            yield return $"The length of the microcontroller ({dimension.Length}) is less than the maximum length ({MinDimension.Length})";
+            yield return $"The length of the microcontroller ({dimension.Length}) is less than the minimum length ({MinDimension.Length})";
         }
 
-        if (dimension.Width > MinDimension.Width)
+        if (dimension.Width < MinDimension.Width)
         {
-            yield return $"The width of the microcontroller ({dimension.Width}) is less than the maximum length ({MinDimension.Width})";
+            yield return $"The width of the microcontroller ({dimension.Width}) is less than the minimum length ({MinDimension.Width})";
         }
 
-        if (dimension.Height > MinDimension.Height)
+        if (dimension.Height < MinDimension.Height)
         {
-            yield return $"The height of the microcontroller ({dimension.Height}) is less than the maximum length ({MinDimension.Height})";
+            yield return $"The height of the microcontroller ({dimension.Height}) is less than the minimum length ({MinDimension.Height})";
         }
 
-        if (dimension.Weight > MinDimension.Weight)
+        if (dimension.Weight < MinDimension.Weight)
         {
-            yield return $"The weight of the microcontroller ({dimension.Weight}) is greater than the maximum length ({MinDimension.Weight})";
+            yield return $"The weight of the microcontroller ({dimension.Weight}) is greater than the minimum length ({MinDimension.Weight})";
         }
     }
 }

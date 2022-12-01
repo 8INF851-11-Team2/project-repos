@@ -1,8 +1,10 @@
 ﻿namespace LOCMI.Core.Microcontrollers;
 
+using JetBrains.Annotations;
 using LOCMI.Core.Microcontrollers.Utils;
 
-public sealed class Microcontroller
+[PublicAPI]
+public class Microcontroller
 {
     public IEnumerable<Connector>? Connectors { get; set; }
 
@@ -12,7 +14,7 @@ public sealed class Microcontroller
 
     public Identification? Identification { get; set; }
 
-    public bool IsMaintainable { get; set; } = false;
+    public bool IsMaintainable { get; set; }
 
     public IEnumerable<Language>? Languages { get; set; }
 

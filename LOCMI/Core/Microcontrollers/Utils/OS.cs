@@ -7,5 +7,5 @@ public struct OS
         Name = name;
     }
 
-    public string? Name { get; }
+    public string? Name { get; set; }
 }

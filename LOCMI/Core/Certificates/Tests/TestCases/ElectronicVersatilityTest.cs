@@ -1,6 +1,6 @@
 ﻿namespace LOCMI.Core.Certificates.Tests.TestCases;
 
-using System.Collections;
+using System.Text.Json.Serialization;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
@@ -8,45 +8,35 @@ using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 ///     Test if the microcontroller supports different voltages.
 /// </summary>
 /// <remarks>Test 1</remarks>
-public sealed class ElectronicVersatilityTest : TestCase, IEnumerable<double>
+public sealed class ElectronicVersatilityTest : TestCase
 {
-    private readonly List<double> _testedVoltage = new ();
-
+    [JsonConstructor]
     public ElectronicVersatilityTest()
         : base("Electronic versatility")
     {
     }
 
-    public void Add(double voltage)
+    public ElectronicVersatilityTest(params double[] voltages)
+        : this()
     {
-        _testedVoltage.Add(voltage);
+        TestedVoltage = voltages.ToList();
     }
 
-    /// <inheritdoc />
-    public IEnumerator<double> GetEnumerator()
-    {
-        return _testedVoltage.GetEnumerator();
-    }
+    public List<double> TestedVoltage { get; set; } = new ();
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
-        if (microcontroller.Ports != null)
+        if (microcontroller.Ports == null)
         {
-            IEnumerable<PowerPort> powerPorts = microcontroller.Ports.OfType<PowerPort>();
-
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return _testedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
-                                 .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
-                                 .ToList();
+            return new[] { "The microcontroller has no ports" };
         }
 
-        return new[] { "The microcontroller has no ports" };
-    }
+        IEnumerable<PowerPort> powerPorts = microcontroller.Ports.Where(static c => c is PowerPort).Cast<PowerPort>();
 
-    /// <inheritdoc />
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        return TestedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
+                            .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
+                            .ToList();
     }
 }

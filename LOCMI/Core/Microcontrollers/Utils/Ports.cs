@@ -1,8 +1,11 @@
 ﻿namespace LOCMI.Core.Microcontrollers.Utils;
 
 using System.Collections;
+using System.Text.Json.Serialization;
+using LOCMI.Core.Loaders.Json;
 using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
+[JsonConverter(typeof(PortsJsonConverter))]
 public sealed class Ports : IEnumerable<Port>
 {
     private readonly Dictionary<int, Port> _ports = new ();

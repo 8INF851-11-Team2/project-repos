@@ -1,6 +1,8 @@
 ﻿namespace LOCMI.Microcontrollers;
 
 using LOCMI.Core.Microcontrollers;
+using LOCMI.Core.Microcontrollers.Utils;
+using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
 internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
 {
@@ -9,7 +11,7 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildConnectors()
     {
-        _microcontroller.Connectors = MicrocontrollerC.Connectors.ToList();
+        _microcontroller.Connectors = new[] { new Connector(MicrocontrollerC.Connector) };
 
         return this;
     }
@@ -17,7 +19,7 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDimension()
     {
-        _microcontroller.Dimension = MicrocontrollerC.Dimension;
+        _microcontroller.Dimension = new Dimension(MicrocontrollerC.Length, MicrocontrollerC.Width, MicrocontrollerC.Height, MicrocontrollerC.Weight);
 
         return this;
     }
@@ -25,7 +27,7 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDisk()
     {
-        _microcontroller.Disk = null;
+        _microcontroller.Disk = MicrocontrollerC.Disk;
 
         return this;
     }
@@ -33,7 +35,9 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildIdentification()
     {
-        _microcontroller.Identification = MicrocontrollerC.Identification;
+        (string? brand, string? model) = MicrocontrollerC.Identification;
+
+        _microcontroller.Identification = new Identification(brand, model);
 
         return this;
     }
@@ -41,7 +45,12 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildLanguage()
     {
-        _microcontroller.Languages = MicrocontrollerC.Languages;
+        (string? language, string? version) = MicrocontrollerC.Language;
+
+        _microcontroller.Languages = new List<Language>
+        {
+            new (language, version),
+        };
 
         return this;
     }
@@ -49,6 +58,8 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildMaintenance()
     {
+        _microcontroller.IsMaintainable = MicrocontrollerC.IsMaintainable;
+
         return this;
     }
 
@@ -69,7 +80,29 @@ internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildPort()
     {
-        _microcontroller.Ports = MicrocontrollerC.Ports;
+        _microcontroller.Ports = new Ports();
+
+        MicrocontrollerC.GPIO.Select(static c =>
+                        {
+                            (int key, string value) = c;
+
+                            Port port = value switch
+                            {
+                                "VIN" => new PowerPort(MicrocontrollerC.Powers.Where(p => p.Key == key).Select(static p => p.Value).First()),
+                                "GRN" => new GroundPort(),
+                                "DATA" => new DataPort(),
+                                _ => new OtherPort(),
+                            };
+
+                            return new
+                            {
+                                NumPin = key,
+                                Port = port,
+                            };
+                        })
+                        .ToList()
+                        .ForEach(c => _microcontroller.Ports.Add(c.NumPin, c.Port));
+
         return this;
     }
 

@@ -12,13 +12,14 @@ public sealed class CertificateB : Certificate
     public CertificateB(Microcontroller microcontroller)
         : base("CertificateB", microcontroller)
     {
-        Test = new TestSuite
-        {
-            new ProgrammingLanguageTest { new ("C++", "17") },
-            new OperatingSystemTest(new OS()),
-            new HasHardDiskTest(),
-            new GeneralInformationTest(new Identification("Raspberry PI", "RP2000")),
-            new IsMaintainableTest(),
-        };
+        var suite = new TestSuite();
+
+        suite.Add(new ProgrammingLanguageTest(new Language("C++", "17")));
+        suite.Add(new OperatingSystemTest(new OS()));
+        suite.Add(new HasHardDiskTest());
+        suite.Add(new GeneralInformationTest(new Identification("Raspberry PI", "RP2000")));
+        suite.Add(new IsMaintainableTest());
+
+        Test = suite;
     }
 }

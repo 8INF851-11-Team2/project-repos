@@ -9,33 +9,33 @@ using LOCMI.Core.Microcontrollers.Utils;
 /// <remarks>Test 8</remarks>
 public sealed class GeneralInformationTest : TestCase
 {
-    private readonly Identification _identification;
-
     public GeneralInformationTest(Identification identification)
         : base("Validation of general information")
     {
-        _identification = identification;
+        Identification = identification;
     }
+
+    public Identification Identification { get; }
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
         if (microcontroller.Identification == null)
         {
-            yield return $"The microcontroller hasn't brand and model. It must be a {_identification.Model} made by {_identification.Brand}";
+            yield return $"The microcontroller hasn't brand and model. It must be a {Identification.Model} made by {Identification.Brand}";
         }
         else
         {
             Identification identification = microcontroller.Identification.Value;
 
-            if (identification.Brand == _identification.Brand)
+            if (identification.Brand != Identification.Brand)
             {
-                yield return $"The microcontroller must be made by {_identification.Brand}";
+                yield return $"The microcontroller must be made by {Identification.Brand}";
             }
 
-            if (identification.Model == _identification.Model)
+            if (identification.Model != Identification.Model)
             {
-                yield return $"The microcontroller must be a {_identification.Model}";
+                yield return $"The microcontroller must be a {Identification.Model}";
             }
         }
     }

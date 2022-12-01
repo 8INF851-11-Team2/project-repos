@@ -9,28 +9,28 @@ using LOCMI.Core.Microcontrollers.Utils;
 /// <remarks>Test 6</remarks>
 public sealed class OperatingSystemTest : TestCase
 {
-    private readonly OS _mandatoryOS;
-
     public OperatingSystemTest(OS mandatoryOS)
         : base("Operating system test")
     {
-        _mandatoryOS = mandatoryOS;
+        MandatoryOS = mandatoryOS;
     }
+
+    public OS MandatoryOS { get; }
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
         if (microcontroller.OS == null)
         {
-            yield return string.IsNullOrEmpty(_mandatoryOS.Name)
+            yield return string.IsNullOrEmpty(MandatoryOS.Name)
                              ? "The microcontroller hasn't OS but it must have one"
-                             : $"The microcontroller hasn't OS but it must have the {_mandatoryOS.Name} OS";
+                             : $"The microcontroller hasn't OS but it must have the {MandatoryOS.Name} OS";
         }
         else
         {
-            if (!string.IsNullOrEmpty(_mandatoryOS.Name) && string.IsNullOrEmpty(microcontroller.Name))
+            if (!string.IsNullOrEmpty(MandatoryOS.Name) && string.IsNullOrEmpty(microcontroller.Name))
             {
-                yield return $"The microcontroller has an unknown OS but it must have the {_mandatoryOS.Name} OS";
+                yield return $"The microcontroller has an unknown OS but it must have the {MandatoryOS.Name} OS";
             }
         }
     }

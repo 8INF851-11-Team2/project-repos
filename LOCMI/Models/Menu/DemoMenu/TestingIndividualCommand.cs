@@ -53,25 +53,24 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
             }
         }
 
-        Microcontroller microcontroller;
+        IMicrocontrollerAdapter adapter;
 
         switch (userChoice)
         {
             case 1:
-                var builderA = new MicrocontrollerABuilder();
-                microcontroller = builderA.GetResult();
+                adapter = new MicrocontrollerABuilder();
                 break;
             case 2:
-                var builderB = new MicrocontrollerBBuilder();
-                microcontroller = builderB.GetResult();
+                adapter = new MicrocontrollerBBuilder();
                 break;
             case 3:
-                var builderC = new MicrocontrollerCBuilder();
-                microcontroller = builderC.GetResult();
+                adapter = new MicrocontrollerCBuilder();
                 break;
             default:
                 return;
         }
+
+        Microcontroller microcontroller = adapter.GetResult();
 
         var certificates = new List<Certificate>
         {
@@ -80,7 +79,7 @@ public sealed class TestingIndividualCommand : IDemoMenuCommand
             new CertificateC(microcontroller),
         };
 
-        _dto.SetCertificates(certificates);
+        _dto.Certificates = certificates;
         _dto.Apply();
 
         _promptController.Run(certificates);

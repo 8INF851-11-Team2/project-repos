@@ -20,7 +20,7 @@ public sealed class PrintCommand : ICommand
     {
         DateTime date = DateTime.Now;
         string path = "CERTIFICATE_" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
-        IEnumerable<Certificate> c = _certificateDTO.GetCertificates();
+        IEnumerable<Certificate> c = _certificateDTO.Certificates;
         _printer.Print(c, path).Wait();
     }
 
