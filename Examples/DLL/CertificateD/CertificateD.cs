@@ -4,15 +4,14 @@ using JetBrains.Annotations;
 using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.TestCases;
-using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils;
 
 [UsedImplicitly]
 public class CertificateD : Certificate
 {
     /// <inheritdoc />
-    protected CertificateD(Microcontroller microcontroller)
-        : base("CertificateD", microcontroller)
+    public CertificateD()
+        : base("CertificateD")
     {
         var suite = new TestSuite();
         suite.Add(new ElectronicVersatilityTest(3.3, 5));
