@@ -4,7 +4,7 @@ using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils;
 using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
-internal sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
+public sealed class MicrocontrollerCBuilder : IMicrocontrollerAdapter
 {
     private readonly Microcontroller _microcontroller = new ();
 
