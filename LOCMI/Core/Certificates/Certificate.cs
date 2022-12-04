@@ -7,11 +7,9 @@ using LOCMI.Core.Microcontrollers;
 
 public class Certificate
 {
-    public Certificate(ITest test, Microcontroller microcontroller, string name)
+    public Certificate(string name)
     {
         Name = name;
-        Microcontroller = microcontroller;
-        Test = test;
     }
 
     protected Certificate(string name, Microcontroller microcontroller)
@@ -22,7 +20,7 @@ public class Certificate
 
     public bool IsSuccess { get; private set; }
 
-    public Microcontroller Microcontroller { get; set; }
+    public Microcontroller? Microcontroller { get; set; }
 
     public string Name { get; set; }
 
