@@ -10,6 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{2B683ADE-4316-4BBE-84A9-392B479FBC44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLL", "DLL", "{0BA9F857-D406-4269-A8D2-0509FD4614A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateD", "Examples\DLL\CertificateD\CertificateD.csproj", "{0A419388-4099-4627-BD05-331A0CA72033}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +26,17 @@ Global
 		{3DED94D2-DF14-4273-8F37-BE4AAA78BA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DED94D2-DF14-4273-8F37-BE4AAA78BA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DED94D2-DF14-4273-8F37-BE4AAA78BA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A419388-4099-4627-BD05-331A0CA72033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A419388-4099-4627-BD05-331A0CA72033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A419388-4099-4627-BD05-331A0CA72033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A419388-4099-4627-BD05-331A0CA72033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BA9F857-D406-4269-A8D2-0509FD4614A8} = {2B683ADE-4316-4BBE-84A9-392B479FBC44}
+		{0A419388-4099-4627-BD05-331A0CA72033} = {0BA9F857-D406-4269-A8D2-0509FD4614A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BBEB79C7-FE71-44F4-B570-3B529B62FF7B}
