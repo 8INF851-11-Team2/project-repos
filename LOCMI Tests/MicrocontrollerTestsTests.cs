@@ -4,6 +4,7 @@ using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Certificates.Tests.Results;
 using LOCMI.Core.Certificates.Tests.TestCases;
 using LOCMI.Core.Microcontrollers;
+using LOCMI.Microcontrollers;
 
 [TestClass]
 public class TestsMicrocontrollerTests

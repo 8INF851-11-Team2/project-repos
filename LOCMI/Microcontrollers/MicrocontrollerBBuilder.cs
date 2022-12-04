@@ -3,7 +3,7 @@
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils;
 
-internal sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
+public sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
 {
     private readonly Microcontroller _microcontroller = new ();
 
