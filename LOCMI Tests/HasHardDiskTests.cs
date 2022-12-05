@@ -7,15 +7,15 @@ using LOCMI.Core.Microcontrollers;
 using LOCMI.Microcontrollers;
 
 [TestClass]
-public class IsMaintainableTests
+public class HasHardDiskTests
 {
     [TestMethod]
-    public void IsMaintainableTestWithMicrocontrollerA()
+    public void HasHardDiskTestWithMicrocontrollerA()
     {
         var builderA = new MicrocontrollerABuilder();
         Microcontroller microcontrollerA = builderA.GetResult();
 
-        TestCase testCase = new IsMaintainableTest();
+        TestCase testCase = new HasHardDiskTest();
 
         ITestResult testResult = new TestResult();
         testCase.Run(testResult, microcontrollerA);
@@ -23,26 +23,26 @@ public class IsMaintainableTests
     }
 
     [TestMethod]
-    public void IsMaintainableTestWithMicrocontrollerB()
+    public void HasHardDiskTestWithMicrocontrollerB()
     {
         var builderB = new MicrocontrollerBBuilder();
         Microcontroller microcontrollerB = builderB.GetResult();
 
-        TestCase testCase = new IsMaintainableTest();
+        TestCase testCase = new HasHardDiskTest();
         ITestResult testResult = new TestResult();
         testCase.Run(testResult, microcontrollerB);
         Assert.IsTrue(testResult.IsSuccessful());
     }
 
     [TestMethod]
-    public void IsMaintainableTestWithMicrocontrollerC()
+    public void HasHardDiskTestWithMicrocontrollerC()
     {
         var builderC = new MicrocontrollerCBuilder();
         Microcontroller microcontrollerC = builderC.GetResult();
 
-        TestCase testCase = new IsMaintainableTest();
+        TestCase testCase = new HasHardDiskTest();
         ITestResult testResult = new TestResult();
         testCase.Run(testResult, microcontrollerC);
-        Assert.IsFalse(testResult.IsSuccessful());
+        Assert.IsTrue(testResult.IsSuccessful());
     }
 }

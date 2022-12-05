@@ -15,6 +15,7 @@ public class GPIOTests
         var builderA = new MicrocontrollerABuilder();
         Microcontroller microcontrollerA = builderA.GetResult();
 
+        //certificate A
         TestCase testCase = new GPIOTest
         {
             MaxDataPort = 7,
@@ -30,6 +31,23 @@ public class GPIOTests
         ITestResult testResult = new TestResult();
         testCase.Run(testResult, microcontrollerA);
         Assert.IsTrue(testResult.IsSuccessful());
+
+        //certificate C
+        testCase = new GPIOTest
+        {
+            MaxDataPort = 7,
+            MinDataPort = 6,
+            MaxGround = 2,
+            MinGround = 2,
+            MaxOtherPort = 2,
+            MinOtherPort = 2,
+            MaxPowerPort = 2,
+            MinPowerPort = 1,
+        };
+
+        testResult = new TestResult();
+        testCase.Run(testResult, microcontrollerA);
+        Assert.IsFalse(testResult.IsSuccessful());
     }
 
     [TestMethod]
@@ -38,6 +56,7 @@ public class GPIOTests
         var builderB = new MicrocontrollerBBuilder();
         Microcontroller microcontrollerB = builderB.GetResult();
 
+        //certificate A
         TestCase testCase = new GPIOTest
         {
             MaxDataPort = 7,
@@ -53,6 +72,23 @@ public class GPIOTests
         ITestResult testResult = new TestResult();
         testCase.Run(testResult, microcontrollerB);
         Assert.IsFalse(testResult.IsSuccessful());
+
+        //certificate C
+        testCase = new GPIOTest
+        {
+            MaxDataPort = 7,
+            MinDataPort = 6,
+            MaxGround = 2,
+            MinGround = 2,
+            MaxOtherPort = 2,
+            MinOtherPort = 2,
+            MaxPowerPort = 2,
+            MinPowerPort = 1,
+        };
+
+        testResult = new TestResult();
+        testCase.Run(testResult, microcontrollerB);
+        Assert.IsFalse(testResult.IsSuccessful());
     }
 
     [TestMethod]
@@ -61,6 +97,7 @@ public class GPIOTests
         var builderC = new MicrocontrollerCBuilder();
         Microcontroller microcontrollerC = builderC.GetResult();
 
+        //certificate A
         TestCase testCase = new GPIOTest
         {
             MaxDataPort = 7,
@@ -76,5 +113,22 @@ public class GPIOTests
         ITestResult testResult = new TestResult();
         testCase.Run(testResult, microcontrollerC);
         Assert.IsFalse(testResult.IsSuccessful());
+
+        //certificate C
+        testCase = new GPIOTest
+        {
+            MaxDataPort = 7,
+            MinDataPort = 6,
+            MaxGround = 2,
+            MinGround = 2,
+            MaxOtherPort = 2,
+            MinOtherPort = 2,
+            MaxPowerPort = 2,
+            MinPowerPort = 1,
+        };
+
+        testResult = new TestResult();
+        testCase.Run(testResult, microcontrollerC);
+        Assert.IsTrue(testResult.IsSuccessful());
     }
 }
