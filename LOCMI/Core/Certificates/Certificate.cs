@@ -7,6 +7,7 @@ using LOCMI.Core.Microcontrollers;
 
 public class Certificate
 {
+    [JsonConstructor]
     public Certificate(string name)
     {
         Name = name;
@@ -20,6 +21,7 @@ public class Certificate
 
     public bool IsSuccess { get; private set; }
 
+    [JsonIgnore]
     public Microcontroller? Microcontroller { get; set; }
 
     public string Name { get; set; }
@@ -31,11 +33,14 @@ public class Certificate
 
     public void Certify()
     {
-        Test.Run(TestResult, Microcontroller);
-
-        if (TestResult.IsSuccessful())
+        if (Microcontroller != null)
         {
-            IsSuccess = true;
+            Test.Run(TestResult, Microcontroller);
+
+            if (TestResult.IsSuccessful())
+            {
+                IsSuccess = true;
+            }
         }
     }
 }
