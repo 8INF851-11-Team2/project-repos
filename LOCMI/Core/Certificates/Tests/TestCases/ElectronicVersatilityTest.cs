@@ -10,19 +10,13 @@ using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 /// <remarks>Test 1</remarks>
 public sealed class ElectronicVersatilityTest : TestCase
 {
+    private readonly double[] _testedVoltages = { 3.3, 5 };
+
     [JsonConstructor]
     public ElectronicVersatilityTest()
         : base("Electronic versatility")
     {
     }
-
-    public ElectronicVersatilityTest(params double[] voltages)
-        : this()
-    {
-        TestedVoltage = voltages.ToList();
-    }
-
-    public List<double> TestedVoltage { get; set; } = new ();
 
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
@@ -35,8 +29,8 @@ public sealed class ElectronicVersatilityTest : TestCase
         IEnumerable<PowerPort> powerPorts = microcontroller.Ports.Where(static c => c is PowerPort).Cast<PowerPort>();
 
         // ReSharper disable once CompareOfFloatsByEqualityOperator
-        return TestedVoltage.Where(v => powerPorts.All(p => p.Voltage != v))
-                            .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
-                            .ToList();
+        return _testedVoltages.Where(v => powerPorts.All(p => p.Voltage != v))
+                              .Select(static v => $"The microcontroller does not support an electrical voltage of {v}V")
+                              .ToList();
     }
 }
