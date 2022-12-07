@@ -13,9 +13,9 @@ internal sealed class LoadCertificateCommand : ICommand
 {
     private readonly CertificateExperimentalDTO _dto;
 
-    private readonly IView _view;
-
     private readonly ILoader<Certificate> _loader;
+
+    private readonly IView _view;
 
     public LoadCertificateCommand(IView view, CertificateExperimentalDTO dto, ILoader<Certificate> loader)
     {
@@ -33,7 +33,7 @@ internal sealed class LoadCertificateCommand : ICommand
 
         if (path != null && path.Equals("DEFAULT"))
         {
-            Microcontroller microcontroller = _dto.GetMicrocontroller();
+            Microcontroller microcontroller = _dto.Microcontroller;
             Certificate certificateA = new CertificateA(microcontroller);
             Certificate certificateB = new CertificateB(microcontroller);
             Certificate certificateC = new CertificateC(microcontroller);
@@ -67,7 +67,7 @@ internal sealed class LoadCertificateCommand : ICommand
 
             if (certificate != null)
             {
-                certificate.Microcontroller = _dto.GetMicrocontroller();
+                certificate.Microcontroller = _dto.Microcontroller;
                 _dto.AddCertificate(certificate);
                 _dto.Apply();
                 var promptController = new PromptController(_view);
