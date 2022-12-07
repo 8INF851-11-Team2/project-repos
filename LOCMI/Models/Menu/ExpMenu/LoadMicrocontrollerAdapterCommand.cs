@@ -54,7 +54,7 @@ public class LoadMicrocontrollerAdapterCommand : IExpMenuCommand
 
         if (microcontrollerAdapter != null)
         {
-            _dto.SetMicrocontroller(microcontrollerAdapter.GetResult());
+            _dto.Microcontroller = microcontrollerAdapter.GetResult();
 
             var command = new LoadCertificateCommand(_view, _dto, LoaderUtils.GetSameLoader<Certificate, IMicrocontrollerAdapter>(_loader));
             command.Execute();

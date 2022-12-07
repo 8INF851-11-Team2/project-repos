@@ -53,7 +53,7 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
 
         if (microcontroller != null)
         {
-            _dto.SetMicrocontroller(microcontroller);
+            _dto.Microcontroller = microcontroller;
 
             var command = new LoadCertificateCommand(_view, _dto, LoaderUtils.GetSameLoader<Certificate, Microcontroller>(_loader));
             command.Execute();
