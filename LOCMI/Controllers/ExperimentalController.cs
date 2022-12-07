@@ -19,12 +19,12 @@ public sealed class ExperimentalController : MenuController<IExpMenuCommand>
         var certificateExperimentalDTO = new CertificateExperimentalDTO();
 
         var loadJsonMicrocontroller = new LoadMicrocontrollerCommand(View, certificateExperimentalDTO, new JsonLoader<Microcontroller>());
-        var loadCodeMicrocontroller = new LoadMicrocontrollerCommand(View, certificateExperimentalDTO, new ExternalClassLoader<Microcontroller>());
+        var loadDllAdapter = new LoadMicrocontrollerAdapterCommand(View, certificateExperimentalDTO, new ExternalClassLoader<IMicrocontrollerAdapter>());
 
         return new Menu<IExpMenuCommand>("Experimental Menu")
         {
             { "Import from JSON", loadJsonMicrocontroller },
-            { "Import from Code", loadCodeMicrocontroller },
+            { "Import from Code", loadDllAdapter },
         };
     }
 }

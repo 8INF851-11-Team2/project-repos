@@ -3,7 +3,6 @@
 using System.Drawing;
 using LOCMI.Core.Certificates;
 using LOCMI.Core.Certificates.DTO;
-using LOCMI.Core.Certificates.Tests;
 using LOCMI.Core.Loaders;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Views;
@@ -28,6 +27,12 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         _view.Display("Enter Path for Microcontroller");
         string? path = _view.GetUserEntry();
 
+        if (string.IsNullOrEmpty(path))
+        {
+            _view.Display("The path can't be null or empty", Color.Red);
+            return;
+        }
+
         Microcontroller? microcontroller;
 
         try
@@ -50,21 +55,8 @@ public sealed class LoadMicrocontrollerCommand : IExpMenuCommand
         {
             _dto.SetMicrocontroller(microcontroller);
 
-            switch (_loader)
-            {
-                case JsonLoader<Microcontroller>:
-                    var command1 = new LoadCertificateCommand(_view, _dto, LoaderUtils.GetSameLoader<Certificate, Microcontroller>(_loader));
-                    command1.Execute();
-                    break;
-                case ExternalClassLoader<Microcontroller>:
-                    var command2 = new LoadTestCommand(_view, _dto, LoaderUtils.GetSameLoader<ITest, Microcontroller>(_loader));
-                    command2.Execute();
-                    break;
-                default:
-                    throw new Exception();
-            }
-
-            ;
+            var command = new LoadCertificateCommand(_view, _dto, LoaderUtils.GetSameLoader<Certificate, Microcontroller>(_loader));
+            command.Execute();
         }
         else
         {
