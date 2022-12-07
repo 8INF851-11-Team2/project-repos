@@ -19,6 +19,8 @@ public class Certificate
         Microcontroller = microcontroller;
     }
 
+    public DateTime Date { get; set; } = DateTime.Now.Date;
+
     public bool IsSuccess { get; private set; }
 
     public Microcontroller? Microcontroller { get; set; }
