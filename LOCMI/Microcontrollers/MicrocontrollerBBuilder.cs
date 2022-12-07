@@ -28,7 +28,7 @@ public sealed class MicrocontrollerBBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDisk()
     {
-        _microcontroller.Disk = MicrocontrollerB.Disk;
+        _microcontroller.HasIntegratedHardDisk = MicrocontrollerB.HasIntegratedHardDisk;
 
         return this;
     }

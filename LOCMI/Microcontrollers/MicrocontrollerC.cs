@@ -1,10 +1,10 @@
 ﻿namespace LOCMI.Microcontrollers;
 
-using LOCMI.Core.Microcontrollers.Utils;
-
 public static class MicrocontrollerC
 {
     public const string Connector = "MicroUSB";
+
+    public const bool HasIntegratedHardDisk = true;
 
     public const double Height = 0.68;
 
@@ -17,8 +17,6 @@ public static class MicrocontrollerC
     public const int Weight = 82;
 
     public const double Width = 3.8;
-
-    public static readonly Disk Disk = new ();
 
     public static readonly Dictionary<int, string> GPIO = new ()
     {
