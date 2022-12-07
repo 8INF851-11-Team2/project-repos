@@ -29,7 +29,7 @@ public sealed class CertificateC : Certificate
         });
 
         suite.Add(new ProgrammingLanguageTest(new Language("C++", string.Empty)));
-        suite.Add(new HasHardDiskTest());
+        suite.Add(new HasIntegratedHardDiskTest());
         suite.Add(new IsMaintainableTest());
 
         Test = suite;
