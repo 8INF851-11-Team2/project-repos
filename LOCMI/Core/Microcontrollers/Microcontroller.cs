@@ -1,26 +1,26 @@
 ﻿namespace LOCMI.Core.Microcontrollers;
 
-using JetBrains.Annotations;
 using LOCMI.Core.Microcontrollers.Utils;
 
-[PublicAPI]
-public class Microcontroller
+public sealed class Microcontroller
 {
-    public virtual IEnumerable<Connector>? Connectors { get; set; }
+    public IEnumerable<Connector>? Connectors { get; set; }
 
-    public virtual Dimension? Dimension { get; set; }
+    public Dimension? Dimension { get; set; }
 
-    public virtual Disk? Disk { get; set; }
+    public Disk? ExternalHardDisk { get; set; }
 
-    public virtual Identification? Identification { get; set; }
+    public bool HasIntegratedHardDisk { get; set; }
 
-    public virtual bool IsMaintainable { get; set; }
+    public Identification? Identification { get; set; }
 
-    public virtual IEnumerable<Language>? Languages { get; set; }
+    public bool IsMaintainable { get; set; }
 
-    public virtual string? Name { get; set; }
+    public IEnumerable<Language>? Languages { get; set; }
 
-    public virtual OS? OS { get; set; }
+    public string? Name { get; set; }
 
-    public virtual Ports? Ports { get; set; }
+    public OS? OS { get; set; }
+
+    public Ports? Ports { get; set; }
 }
