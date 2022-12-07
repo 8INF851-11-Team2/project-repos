@@ -14,7 +14,7 @@ public sealed class CertificateC : Certificate
     {
         var suite = new TestSuite();
 
-        suite.Add(new ElectronicVersatilityTest(3.3, 5));
+        suite.Add(new ElectronicVersatilityTest());
 
         suite.Add(new GPIOTest
         {
