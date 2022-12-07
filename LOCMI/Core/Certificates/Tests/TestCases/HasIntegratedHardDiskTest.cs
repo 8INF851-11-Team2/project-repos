@@ -3,12 +3,12 @@
 using LOCMI.Core.Microcontrollers;
 
 /// <summary>
-///     Check if the microcontroller has a hard disk
+///     Check if the microcontroller has an integrated hard disk
 /// </summary>
 /// <remarks>Test 7</remarks>
-public sealed class HasHardDiskTest : TestCase
+public sealed class HasIntegratedHardDiskTest : TestCase
 {
-    public HasHardDiskTest()
+    public HasIntegratedHardDiskTest()
         : base("Has hard disk")
     {
     }
@@ -16,8 +16,8 @@ public sealed class HasHardDiskTest : TestCase
     /// <inheritdoc />
     protected override IEnumerable<string> Test(Microcontroller microcontroller)
     {
-        return microcontroller.Disk != null
+        return microcontroller.HasIntegratedHardDisk
                    ? Array.Empty<string>()
-                   : new[] { "The microcontroller hasn't hard disk" };
+                   : new[] { "The microcontroller hasn't integrated hard disk" };
     }
 }

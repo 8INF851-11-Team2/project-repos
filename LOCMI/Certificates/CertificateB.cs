@@ -16,7 +16,7 @@ public sealed class CertificateB : Certificate
 
         suite.Add(new ProgrammingLanguageTest(new Language("C++", "17")));
         suite.Add(new OperatingSystemTest(new OS()));
-        suite.Add(new HasHardDiskTest());
+        suite.Add(new HasIntegratedHardDiskTest());
         suite.Add(new GeneralInformationTest(new Identification("Raspberry PI", "RP2000")));
         suite.Add(new IsMaintainableTest());
 

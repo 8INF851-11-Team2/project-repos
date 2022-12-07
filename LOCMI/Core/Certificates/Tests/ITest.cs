@@ -10,7 +10,7 @@ using LOCMI.Core.Microcontrollers;
 [JsonDerivedType(typeof(FirmwareTest), "firmwareTest")]
 [JsonDerivedType(typeof(GeneralInformationTest), "generalInformationTest")]
 [JsonDerivedType(typeof(GPIOTest), "gpioTest")]
-[JsonDerivedType(typeof(HasHardDiskTest), "hasHardDiskTest")]
+[JsonDerivedType(typeof(HasIntegratedHardDiskTest), "hasHardDiskTest")]
 [JsonDerivedType(typeof(IsMaintainableTest), "isMaintainableTest")]
 [JsonDerivedType(typeof(OperatingSystemTest), "operatingSystemTest")]
 [JsonDerivedType(typeof(PhysicalSpecificationTest), "physicalSpecificationTest")]

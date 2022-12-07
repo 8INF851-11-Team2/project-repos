@@ -1,9 +1,11 @@
 ﻿namespace MicrocontrollerD;
 
+using JetBrains.Annotations;
 using LOCMI.Core.Microcontrollers;
 using LOCMI.Core.Microcontrollers.Utils;
 using LOCMI.Core.Microcontrollers.Utils.PortTypes;
 
+[UsedImplicitly]
 public class MicrocontrollerDBuilder : IMicrocontrollerAdapter
 {
     private readonly Microcontroller _microcontroller = new ();
@@ -27,7 +29,7 @@ public class MicrocontrollerDBuilder : IMicrocontrollerAdapter
     /// <inheritdoc />
     public IMicrocontrollerAdapter BuildDisk()
     {
-        _microcontroller.Disk = MicrocontrollerD.Disk;
+        _microcontroller.ExternalHardDisk = MicrocontrollerD.Disk;
 
         return this;
     }

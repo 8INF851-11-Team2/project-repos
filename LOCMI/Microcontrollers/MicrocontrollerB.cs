@@ -7,6 +7,8 @@ public static class MicrocontrollerB
 {
     public const string Brand = "Raspberry PI";
 
+    public const bool HasIntegratedHardDisk = true;
+
     public const bool IsMaintainable = true;
 
     public const string Language = "C++";
@@ -20,8 +22,6 @@ public static class MicrocontrollerB
     public static readonly string[] Connectors = { "HDMI", "USB", "Wifi", "Bluetooth" };
 
     public static readonly (int Weight, int Length, double Width, double Height) Dimension = (182, 6, 2.9, 0.77);
-
-    public static readonly Disk Disk = new ();
 
     public static readonly OS OS = new ();
 
