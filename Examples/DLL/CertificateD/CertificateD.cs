@@ -14,7 +14,7 @@ public class CertificateD : Certificate
         : base("CertificateD")
     {
         var suite = new TestSuite();
-        suite.Add(new ElectronicVersatilityTest(3.3, 5));
+        suite.Add(new ElectronicVersatilityTest());
         suite.Add(new HasHardDiskTest());
 
         suite.Add(new GPIOTest
