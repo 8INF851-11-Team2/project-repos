@@ -6,6 +6,12 @@ public sealed class TestSuite : ITest
 {
     public List<ITest> Tests { get; set; } = new ();
 
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return "[" + string.Join(", ", Tests.Select(static c => c.ToString())) + "]";
+    }
+
     public void Add(ITest test)
     {
         Tests.Add(test);

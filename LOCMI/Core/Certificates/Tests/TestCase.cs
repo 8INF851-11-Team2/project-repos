@@ -13,6 +13,12 @@ public abstract class TestCase : ITest
     [JsonIgnore]
     public string Name { get; }
 
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return Name;
+    }
+
     public void Run(ITestResult testResult, Microcontroller mc)
     {
         IEnumerable<string> failureCauses = Test(mc).ToList();
