@@ -13,7 +13,7 @@ public sealed class ExternalClassLoader<T> : ILoader<T> where T : class
 
             Type type = typeof(T);
 
-            Type? externType = assembly.GetExportedTypes().FirstOrDefault(c => c.BaseType == type);
+            Type? externType = assembly.GetExportedTypes().FirstOrDefault(c => c.IsAssignableTo(type));
 
             return externType != null
                        ? Activator.CreateInstance(externType) as T
