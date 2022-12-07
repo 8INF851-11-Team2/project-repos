@@ -21,7 +21,6 @@ public class Certificate
 
     public bool IsSuccess { get; private set; }
 
-    [JsonIgnore]
     public Microcontroller? Microcontroller { get; set; }
 
     public string Name { get; set; }
