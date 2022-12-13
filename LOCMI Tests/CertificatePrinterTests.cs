@@ -75,21 +75,21 @@ public class CertificatePrinterTests
         {
             string text = File.ReadAllText(file);
 
-            Assert.IsTrue(text.Equals("Certificate : CertificateB\n" +
+            string compare = "Certificate : CertificateB\n" +
                 "Date : " + date + "\n" +
                 "Is success : True\n" +
-                "Tests : [Languages, Operating system test, Has hard disk, Validation of general information, Maintenance testing]\n" +
+                "Tests : [Languages, Operating system test, Has hard disk, Validation of general information, Maintenance testing]\r\n" +
                 "Microcontroller: [\n" +
                 "    Name: MicrocontrollerB\n" +
-                "    Connectors: [" + microcontrollerB.Connectors + "]\n" +
+                "    Connectors: [HDMI, USB, Wifi, Bluetooth]\n" +
                 "    Dimension: [\n" +
                 "        Height: " + microcontrollerB.Dimension.Value.Height + "\n" +
                 "        Length: " + microcontrollerB.Dimension.Value.Length + "\n" +
                 "        Width: " + microcontrollerB.Dimension.Value.Width + "\n" +
                 "        Weight: " + microcontrollerB.Dimension.Value.Weight + "\n" +
                 "    ]\n" +
-                "    Has integrated hard disk: True" +
-                "    Identification:[\n" +
+                "    Has integrated hard disk: True\n" +
+                "    Identification: [\n" +
                 "        Brand: " + microcontrollerB.Identification.Value.Brand + "\n" +
                 "        Model: " + microcontrollerB.Identification.Value.Model + "\n" +
                 "    ]\n" +
@@ -105,7 +105,7 @@ public class CertificatePrinterTests
                 "        6: data\n" +
                 "        7: data\n" +
                 "        8: data\n" +
-                "        9: power (3,3V)\n" +
+                "        9: power (3.3V)\n" +
                 "        10: power (5V)\n" +
                 "        11: data\n" +
                 "        12: data\n" +
@@ -117,7 +117,14 @@ public class CertificatePrinterTests
                 "        18: other\n" +
                 "        19: ground\n" +
                 "        20: ground\n" +
-                "]"));
+                "]";
+
+            Assert.IsTrue(text.Equals(compare));
+        }
+
+        if (Directory.Exists(date.Year.ToString()))
+        {
+            Directory.Delete(date.Year.ToString(), true);
         }
     }
 }
