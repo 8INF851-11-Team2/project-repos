@@ -51,7 +51,7 @@ public class CertificatePrinterTests
         var certificateB = new CertificateB(microcontrollerA);
         certificateB.Certify();
 
-        printCertificate(certificateB);
+        PrintCertificate(certificateB);
 
         DateTime date = DateTime.Now;
         string file = "./" + date.Year + "/" + date.Month + "/" + date.Day + "/" + certificateB.Name + "_" + microcontrollerA.Name + "_" + "CERTIFICATE_" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";
@@ -67,7 +67,7 @@ public class CertificatePrinterTests
         var certificateB = new CertificateB(microcontrollerB);
         certificateB.Certify();
 
-        printCertificate(certificateB);
+        PrintCertificate(certificateB);
 
         DateTime date = DateTime.Now;
         string file = "./" + date.Year + "/" + date.Month + "/" + date.Day + "/" + certificateB.Name + "_" + microcontrollerB.Name + "_" + "CERTIFICATE_" + date.Year + date.Month + date.Day + date.Hour + date.Minute + date.Second + ".txt";

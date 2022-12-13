@@ -121,8 +121,8 @@ public class GPIOTests
             MinDataPort = 6,
             MaxGround = 2,
             MinGround = 2,
-            MaxOtherPort = 2,
-            MinOtherPort = 2,
+            MaxOtherPort = 1,
+            MinOtherPort = 1,
             MaxPowerPort = 2,
             MinPowerPort = 1,
         };
