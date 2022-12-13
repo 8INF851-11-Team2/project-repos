@@ -38,13 +38,13 @@ public sealed class PrinterTxt : IPrinter
 
         if (microcontroller.Connectors != null)
         {
-            specifications += $"    Connectors: [{string.Join(", ", microcontroller.Connectors.Select(static c => c.Name))}]";
+            specifications += $"Connectors: [{string.Join(", ", microcontroller.Connectors.Select(static c => c.Name))}]";
         }
 
         if (microcontroller.Dimension != null)
         {
             specifications += $"""
-                        Dimension: [
+                    {"\n"}    Dimension: [
                             Height: {microcontroller.Dimension.Value.Height}
                             Length: {microcontroller.Dimension.Value.Length}
                             Width: {microcontroller.Dimension.Value.Width}
@@ -63,7 +63,7 @@ public sealed class PrinterTxt : IPrinter
         if (microcontroller.Identification != null)
         {
             specifications += $"""
-                        Identification: [
+                    {"\n"}    Identification: [
                             Brand: {microcontroller.Identification.Value.Brand}
                             Model: {microcontroller.Identification.Value.Model}
                         ]
