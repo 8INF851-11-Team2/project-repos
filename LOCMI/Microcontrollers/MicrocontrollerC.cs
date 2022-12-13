@@ -26,7 +26,7 @@ public static class MicrocontrollerC
         { 4, "DATA" },
         { 5, "DATA" },
         { 6, "DATA" },
-        { 7, "OTHER" },
+        { 7, "VIN" },
         { 8, "GRN" },
         { 9, "DATA" },
         { 10, "DATA" },
