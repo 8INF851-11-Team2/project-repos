@@ -8,7 +8,7 @@ public static class MicrocontrollerC
 
     public const double Height = 0.68;
 
-    public const bool IsMaintainable = true;
+    public const bool IsMaintainable = false;
 
     public const double Length = 1.72;
 
@@ -26,7 +26,7 @@ public static class MicrocontrollerC
         { 4, "DATA" },
         { 5, "DATA" },
         { 6, "DATA" },
-        { 7, "OTHER" },
+        { 7, "VIN" },
         { 8, "GRN" },
         { 9, "DATA" },
         { 10, "DATA" },
