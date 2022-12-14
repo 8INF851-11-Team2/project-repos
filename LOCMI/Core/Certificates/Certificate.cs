@@ -27,7 +27,7 @@ public class Certificate
 
     public string Name { get; set; }
 
-    public ITest Test { get; protected init; } = new TestSuite();
+    public ITest Test { get; set; } = new TestSuite();
 
     [JsonIgnore]
     public ITestResult TestResult { get; } = new TestResult();
